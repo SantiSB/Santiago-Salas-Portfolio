@@ -1,0 +1,37 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCE = [
+  {
+    date: "Enero 2020 - Marzo 2022",
+    title: "Desarrollador Frontend Junior en Tech Innovations Inc.",
+    description:
+      "Participé en el desarrollo de aplicaciones web responsivas con React.js, colaborando en un equipo ágil para implementar mejoras de UI/UX y aumentar la satisfacción del usuario en un 25%.",
+    link: "https://techinnovations.com/portfolio/react-projects",
+  },
+  {
+    date: "Abril 2022 - Julio 2023",
+    title: "Desarrollador Frontend en Creative Solutions",
+    description:
+      "Lideré la migración de jQuery a Vue.js para un proyecto clave, mejorando la eficiencia del rendimiento en un 40%. Implementé CI/CD con GitHub Actions, mejorando el flujo de trabajo de desarrollo y la calidad del código.",
+    link: "https://creativesolutions.com/case-studies/vuejs-migration",
+  },
+  {
+    date: "Agosto 2023 - Presente",
+    title: "Senior Frontend Developer en Global Tech Enterprises",
+    description:
+      "Gestiono un equipo de desarrolladores para crear soluciones escalables utilizando Angular y TypeScript, enfocándonos en micro-frontends para mejorar la modularidad y reutilización del código. Nuestro trabajo ha contribuido a un incremento del 35% en la retención de clientes.",
+    link: "https://globaltechenterprises.com/projects/angular-advancements",
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700 ml-3 mt-4">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItem {...experience} />;
+      </li>
+    ))
+  }
+</ol>

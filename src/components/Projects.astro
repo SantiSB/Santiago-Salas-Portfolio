@@ -1,0 +1,76 @@
+---
+import ReactJS from "../icons/React.astro";
+import MaterialUI from "../icons/MaterialUI.astro";
+
+const TAGS = {
+  REACT: {
+    name: "React.js",
+    class: "bg-black text-white",
+    icon: ReactJS,
+  },
+  MATERIALUI: {
+    name: "Material UI",
+    class: "bg-white text-black",
+    icon: MaterialUI,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "Proyecto Alpha",
+    description:
+      "Este es un proyecto enfocado en el desarrollo de una aplicación web interactiva.",
+    tecnologia: "React",
+    link: "https://ejemploproyectoalpha.com",
+    github: "https://github.com/usuario/proyectoalpha",
+    imagen: "/projects/sgc.webp",
+    tags: [TAGS.REACT, TAGS.MATERIALUI],
+  },
+  {
+    title: "Proyecto Beta",
+    description:
+      "Este proyecto se centra en la creación de una API robusta para manejo de datos.",
+    tecnologia: "Node.js",
+    link: "https://ejemploproyectobeta.com",
+    github: "https://github.com/usuario/proyectobeta",
+    imagen: "/projects/sgc.webp",
+    tags: [TAGS.REACT, TAGS.MATERIALUI],
+  },
+  {
+    title: "Proyecto Gamma",
+    description:
+      "Desarrollo de un videojuego sencillo para dispositivos móviles.",
+    tecnologia: "Unity",
+    link: "https://ejemploproyectogamma.com",
+    github: "https://github.com/usuario/proyectogamma",
+    imagen: "/projects/sgc.webp",
+    tags: [TAGS.REACT, TAGS.MATERIALUI],
+  },
+];
+---
+
+{
+  PROJECTS.map(({ imagen, title, description, tags }) => (
+    <article>
+      <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex gap-x-2 flex-row mb-2">
+        {tags.map((tag) => (
+          <li>
+            <span
+              class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
+            >
+              <tag.icon class="size-4" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <img
+        class="rounded shadow-2xl shadow-white/10"
+        src={imagen}
+        alt={`Captura de pantalla del proyecto ${title}`}
+      />
+    </article>
+  ))
+}
