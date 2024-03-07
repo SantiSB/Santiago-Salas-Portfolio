@@ -3,25 +3,37 @@ import ExperienceItem from "./ExperienceItem.astro";
 
 const EXPERIENCE = [
   {
-    date: "Enero 2020 - Marzo 2022",
-    title: "Desarrollador Frontend Junior en Tech Innovations Inc.",
+    date: "November, 2022 – February, 2024",
+    title: "LinkedAI",
     description:
-      "Participé en el desarrollo de aplicaciones web responsivas con React.js, colaborando en un equipo ágil para implementar mejoras de UI/UX y aumentar la satisfacción del usuario en un 25%.",
-    link: "https://techinnovations.com/portfolio/react-projects",
+      "Significantly enhanced platform usability focusing on user experience, accessibility, and customization, leading to increased user retention and reduced support costs. Optimized source code for scalability and maintenance, employing best development practices for clean, standardized code. Implemented AI for automated image tagging, reducing processing time. Developed a high-performance tool for interactive viewing and reviewing of large image datasets, improving data reliability and accuracy.",
+    link: "", // Si existe un enlace específico, agrégalo aquí
+    techStack:
+      "React, JavaScript, MUI, API Rest, GraphQL, Redux, Jest, Testing Library, Prettier, ESLint, Bitbucket, Jira",
   },
   {
-    date: "Abril 2022 - Julio 2023",
-    title: "Desarrollador Frontend en Creative Solutions",
+    date: "February, 2022 - September, 2022",
+    title: "J&A Real Estate",
     description:
-      "Lideré la migración de jQuery a Vue.js para un proyecto clave, mejorando la eficiencia del rendimiento en un 40%. Implementé CI/CD con GitHub Actions, mejorando el flujo de trabajo de desarrollo y la calidad del código.",
-    link: "https://creativesolutions.com/case-studies/vuejs-migration",
+      "Designed and developed an intuitive property cataloguing system from scratch, enhancing visualization, search, and filtering capabilities. This innovation significantly boosted organizational efficiency, employee productivity, and reduced task completion times, improving overall operational efficiency.",
+    link: "", // Si existe un enlace específico, agrégalo aquí
+    techStack: "React, JavaScript, MUI, REST API, Redux, XD, GitLab",
   },
   {
-    date: "Agosto 2023 - Presente",
-    title: "Senior Frontend Developer en Global Tech Enterprises",
+    date: "March, 2020 - November, 2021",
+    title: "Colombian Geological Service (SGC)",
     description:
-      "Gestiono un equipo de desarrolladores para crear soluciones escalables utilizando Angular y TypeScript, enfocándonos en micro-frontends para mejorar la modularidad y reutilización del código. Nuestro trabajo ha contribuido a un incremento del 35% en la retención de clientes.",
-    link: "https://globaltechenterprises.com/projects/angular-advancements",
+      "Developed an advanced earthquake and volcano viewer from scratch, establishing it as the leading platform in Latin America. Enhanced design and code for better usability, accessibility, and performance, supporting real-time data for millions. Contributed to significant improvements in geological emergency response and public safety.",
+    link: "", // Si existe un enlace específico, agrégalo aquí
+    techStack: "React, JavaScript, MUI, Sass/CSS, Rest API, Redux, GitLab",
+  },
+  {
+    date: "September, 2019 - February, 2020",
+    title: "Lobocueros S.A.S",
+    description:
+      "Led the design and development of an e-commerce platform from scratch, integrating comprehensive product catalogs, payment solutions, and a user-friendly responsive design. This project significantly enabled online sales and enhanced customer experience across devices.",
+    link: "", // Si existe un enlace específico, agrégalo aquí
+    techStack: "React, JavaScript, MUI, Sass/CSS, REST API, Redux, XD, GitHub",
   },
 ];
 ---
@@ -30,7 +42,7 @@ const EXPERIENCE = [
   {
     EXPERIENCE.map((experience) => (
       <li class="mb-10 ms-4">
-        <ExperienceItem {...experience} />;
+        <ExperienceItem {...experience} />
       </li>
     ))
   }

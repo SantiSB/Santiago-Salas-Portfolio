@@ -20,7 +20,7 @@ import SectionContainer from "../components/SectionContainer.astro";
   <main class="px-4">
     <SectionContainer class="py-60 pb-64 xl:py-44 xl:pb-64">
       <h1
-        class="text-white text-2xl sm:text-4xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
+        class="text-white text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
       >
         Hello 👋 I'm Santiago <a
           class="flex justify-center items-center"
@@ -45,20 +45,20 @@ import SectionContainer from "../components/SectionContainer.astro";
         <!-- <SocialPill href="mailto:a.santiago.salas.b@gmail.com">
           <MailIcon class="size-4 md:size-6" />a.santiago.salas.b@gmail.com
         </SocialPill> -->
-        <SocialPill href="/public/CV - Santiago Salas.pdf" download="Santiago_Salas_CV.pdf" bg="blue">
+        <SocialPill href="/CV - Santiago Salas.pdf" download="Santiago_Salas_CV.pdf" bg="blue">
           <DownloadCV class="size-4 md:size-6" />Download CV
         </SocialPill>
       </nav>
     </SectionContainer>
-    <SectionContainer id="experience">
-      <h2 class="text-2xl font-semibold mb-b flex gap-x-2 items-center">
+    <SectionContainer id="experience" class="py-4">
+      <h2 class="text-2xl font-semibold mb-b flex gap-x-2 items-center mb-8">
         <Briefcase class="size-7" />
-        Experiencia Laboral
+        Laboral Experience
       </h2>
       <Experience />
     </SectionContainer>
-    <SectionContainer id="projects">
-      <h2 class="text-2xl font-semibold mb-b flex gap-x-2 items-center">
+    <SectionContainer id="projects" class="py-4 mb-24">
+      <h2 class="text-2xl font-semibold mb-b flex gap-x-2 items-center mb-8">
         <CodeIcon class="size-7" />
         Proyectos
       </h2>
