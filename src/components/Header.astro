@@ -1,13 +1,15 @@
-<header class="flex justify-between items-center py-5 w-full px-5 lg:px-32 xl:px-40">
-  <img
-    class="rounded-full w-19 h-12"
-    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp7QcsW8z_WnRBqFMmmKC_Hr-t4LzGZDAM4wPDM3H1&s"
-    alt="avatar"
-  />
-  <nav class="flex flex-row gap-x-8 opacity-80">
-    <a href="#top">Inicio</a>
-    <a href="#experiencia">Experiencia</a>
-    <a href="#proyectos">Proyectos</a>
-    <a href="#contacto">Contacto</a>
+---
+import SHWhiteBlack from "../icons/SantiHub/SHWhiteBlack.astro";
+---
+
+<header
+  class="flex justify-between items-center py-5 w-full px-5 lg:px-32 xl:px-40"
+>
+  <a href="#"><SHWhiteBlack class="size-10 cursor-pointer" alt="Logo Santiago Salas"/></a>
+  <nav class="flex flex-row gap-x-8">
+    <a class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold" href="#top">Inicio</a>
+    <a class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold" href="#experiencia">Experiencia</a>
+    <a class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold" href="#proyectos">Proyectos</a>
+    <a class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold" href="#contacto">Contacto</a>
   </nav>
 </header>
