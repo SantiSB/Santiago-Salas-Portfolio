@@ -1,0 +1,43 @@
+---
+import SectionContainer from "../components/utils/SectionContainer.astro";
+import Badge from "../components/utils/Badge.astro";
+import Pill from "../components/utils/Pill.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import GitHub from "../icons/GitHub.astro";
+import DownloadCV from "../icons/DownloadCV.astro";
+---
+
+<SectionContainer class="py-60 pb-64 xl:py-44 xl:pb-64">
+  <h1
+    class="text-white text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10 text-center sm:text-start"
+  >
+    Hello 👋 I'm Santiago{" "}
+    <a
+      class="flex justify-center items-center min-w-36"
+      href="https://www.linkedin.com/in/santiagosalasbolaños"
+      target="_blank"
+    >
+      <Badge>Avalible to work</Badge>
+    </a>
+  </h1>
+  <h2 class="text-xl lg:text-2xl text-wrap max-w-[700px] min-h-12">
+    <span>4+ Years of experience as</span>
+    <span class="text-ligthBlue font-bold">Frontend Developer</span>
+    <span> specialized on</span>
+    <span class="text-ligthBlue font-bold">React</span>
+  </h2>
+  <nav class="flex flex-wrap gap-4 mt-6">
+    <Pill href="https://www.linkedin.com/in/santiagosalasbolaños">
+      <LinkedIn class="size-4 md:size-6" />
+      LinkedIn
+    </Pill>
+    <Pill href="https://www.github.com/SantiSB/SantiSB">
+      <GitHub class="size-4 md:size-6" />
+      GitHub
+    </Pill>
+    <Pill href="files/CV.pdf" download="Santiago_Salas_CV.pdf" bg="blue">
+      <DownloadCV class="size-4 md:size-6" />
+      Download CV
+    </Pill>
+  </nav>
+</SectionContainer>; ---
