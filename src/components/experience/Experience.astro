@@ -1,41 +1,6 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
-
-const EXPERIENCE = [
-  {
-    date: "November, 2022 – February, 2024",
-    title: "LinkedAI",
-    description:
-      "Significantly enhanced platform usability focusing on user experience, accessibility, and customization, leading to increased user retention and reduced support costs. Optimized source code for scalability and maintenance, employing best development practices for clean, standardized code. Implemented AI for automated image tagging, reducing processing time. Developed a high-performance tool for interactive viewing and reviewing of large image datasets, improving data reliability and accuracy.",
-    link: "", // Si existe un enlace específico, agrégalo aquí
-    techStack:
-      "React, JavaScript, MUI, API Rest, GraphQL, Redux, Jest, Testing Library, Prettier, ESLint, Bitbucket, Jira",
-  },
-  {
-    date: "February, 2022 - September, 2022",
-    title: "J&A Real Estate",
-    description:
-      "Designed and developed an intuitive property cataloguing system from scratch, enhancing visualization, search, and filtering capabilities. This innovation significantly boosted organizational efficiency, employee productivity, and reduced task completion times, improving overall operational efficiency.",
-    link: "", // Si existe un enlace específico, agrégalo aquí
-    techStack: "React, JavaScript, MUI, REST API, Redux, XD, GitLab",
-  },
-  {
-    date: "March, 2020 - November, 2021",
-    title: "Colombian Geological Service (SGC)",
-    description:
-      "Developed an advanced earthquake and volcano viewer from scratch, establishing it as the leading platform in Latin America. Enhanced design and code for better usability, accessibility, and performance, supporting real-time data for millions. Contributed to significant improvements in geological emergency response and public safety.",
-    link: "", // Si existe un enlace específico, agrégalo aquí
-    techStack: "React, JavaScript, MUI, Sass/CSS, Rest API, Redux, GitLab",
-  },
-  {
-    date: "September, 2019 - February, 2020",
-    title: "Lobocueros S.A.S",
-    description:
-      "Led the design and development of an e-commerce platform from scratch, integrating comprehensive product catalogs, payment solutions, and a user-friendly responsive design. This project significantly enabled online sales and enhanced customer experience across devices.",
-    link: "", // Si existe un enlace específico, agrégalo aquí
-    techStack: "React, JavaScript, MUI, Sass/CSS, REST API, Redux, XD, GitHub",
-  },
-];
+import { EXPERIENCE } from "../utils/Info.js";
 ---
 
 <ol class="relative border-s border-gray-200 dark:border-gray-700 ml-3 mt-4">

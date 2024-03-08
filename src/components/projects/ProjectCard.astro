@@ -1,19 +1,14 @@
 ---
 const { project } = Astro.props;
-
 ---
 
-<div
-  class="max-w-sm bg-black/30 border border-ligthBlue rounded-lg shadow"
->
+<div class="max-w-sm bg-black/30 border border-ligthBlue rounded-lg shadow">
   <a href="#">
     <img class="rounded-t-lg" src={project.imagen} alt="" />
   </a>
   <div class="p-5">
     <a href="#">
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-ligthBlue"
-      >
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-ligthBlue">
         {project.title}
       </h5>
     </a>

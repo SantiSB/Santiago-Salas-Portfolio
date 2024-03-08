@@ -1,15 +1,30 @@
 ---
-import WhiteBlack from "../icons/SantiHub/WhiteBlack.astro";
+import WhiteBlack from "../icons/santihub/WhiteBlack.astro";
+
+
+const links = [
+  { href: "#", text: "Home" },
+  { href: "#experience", text: "Experience" },
+  { href: "#projects", text: "Projectos" },
+];
 ---
 
 <header
   class="flex justify-between items-center py-5 w-full px-5 lg:px-32 xl:px-40"
 >
-  <a href="#"><WhiteBlack class="size-10 cursor-pointer" alt="Logo Santiago Salas"/></a>
+  <a href="#"
+    ><WhiteBlack class="size-10 cursor-pointer" alt="Logo Santiago Salas" /></a
+  >
   <nav class="flex flex-row gap-x-4 text-sm sm:text-base">
-    <a class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold" href="#">Home</a>
-    <a class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold" href="#experience">Experience</a>
-    <a class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold" href="#projects">Projectos</a>
-    <a class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold" href="#contact">Contact</a>
+    {
+      links.map((link) => (
+        <a
+          class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold"
+          href={link.href}
+        >
+          {link.text}
+        </a>
+      ))
+    }
   </nav>
 </header>
