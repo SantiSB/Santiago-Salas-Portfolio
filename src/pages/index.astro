@@ -1,16 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Badge from "../components/Badge.astro";
-import SocialPill from "../components/SocialPill.astro";
-import LinkedInIcon from "../icons/LinkedInIcon.astro";
-import GitHubIcon from "../icons/GitHubIcon.astro";
-import MailIcon from "../icons/MailIcon.astro";
+import Badge from "../components/utils/Badge.astro";
+import Pill from "../components/utils/Pill.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import GitHub from "../icons/GitHub.astro";
 import DownloadCV from "../icons/DownloadCV.astro";
-import Briefcase from "../icons/Briefcase.astro";
-import CodeIcon from "../icons/CodeIcon.astro";
-import Experience from "../components/Experience.astro";
-import Projects from "../components/Projects.astro";
-import SectionContainer from "../components/SectionContainer.astro";
+import LaboralExperience from "../icons/LaboralExperience.astro";
+import CodeProjects from "../icons/CodeProjects.astro";
+import Experience from "../components/experience/Experience.astro";
+import Projects from "../components/projects/Projects.astro";
+import SectionContainer from "../components/utils/SectionContainer.astro";
 ---
 
 <Layout
@@ -36,30 +35,27 @@ import SectionContainer from "../components/SectionContainer.astro";
         <span class="text-ligthBlue font-bold">React</span>
       </h2>
       <nav class="flex flex-wrap gap-4 mt-6">
-        <SocialPill href="https://www.linkedin.com/in/santiagosalasbolaños">
-          <LinkedInIcon class="size-4 md:size-6" />LinkedIn
-        </SocialPill>
-        <SocialPill href="https://www.github.com/SantiSB/SantiSB">
-          <GitHubIcon class="size-4 md:size-6" />GitHub
-        </SocialPill>
-        <!-- <SocialPill href="mailto:a.santiago.salas.b@gmail.com">
-          <MailIcon class="size-4 md:size-6" />a.santiago.salas.b@gmail.com
-        </SocialPill> -->
-        <SocialPill href="/CV - Santiago Salas.pdf" download="Santiago_Salas_CV.pdf" bg="blue">
+        <Pill href="https://www.linkedin.com/in/santiagosalasbolaños">
+          <LinkedIn class="size-4 md:size-6" />LinkedIn
+        </Pill>
+        <Pill href="https://www.github.com/SantiSB/SantiSB">
+          <GitHub class="size-4 md:size-6" />GitHub
+        </Pill>
+        <Pill href="files/CV.pdf" download="Santiago_Salas_CV.pdf" bg="blue">
           <DownloadCV class="size-4 md:size-6" />Download CV
-        </SocialPill>
+        </Pill>
       </nav>
     </SectionContainer>
     <SectionContainer id="experience" class="py-4">
       <h2 class="text-2xl font-semibold mb-b flex gap-x-2 items-center mb-8">
-        <Briefcase class="size-7" />
+        <LaboralExperience class="size-7" />
         Laboral Experience
       </h2>
       <Experience />
     </SectionContainer>
     <SectionContainer id="projects" class="py-4 mb-24">
       <h2 class="text-2xl font-semibold mb-b flex gap-x-2 items-center mb-8">
-        <CodeIcon class="size-7" />
+        <CodeProjects class="size-7" />
         Proyectos
       </h2>
       <Projects />
