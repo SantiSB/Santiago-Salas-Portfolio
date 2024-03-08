@@ -34,45 +34,43 @@ const TAGS = {
 
 const PROJECTS = [
   {
-    title: "Mejora de Usabilidad en LinkedAI",
+    title: "Usability Improvement in LinkedAI",
     description:
-      "Optimización de la usabilidad de la plataforma de LinkedAI, implementando AI para etiquetado automático de imágenes y desarrollando un visor interactivo de alta performance.",
+      "Optimized LinkedAI platform usability with AI for auto image tagging and high-performance viewer development for enhanced user interaction.",
     tecnologia: "React",
-    link: "", // Añadir enlace si está disponible
-    github: "", // Añadir enlace si está disponible
+    link: "", // Add link if available
+    github: "", // Add link if available
     imagen: "/projects/linkedai.webp",
     tags: [TAGS.REACT, TAGS.MATERIALUI, TAGS.GRAPHQL, TAGS.REDUX],
   },
   {
-    title: "Visualizador de Terremotos y Volcanes - SGC",
+    title: "Earthquake and Volcano Visualizer - SGC",
     description:
-      "Creación de un innovador visualizador de información sísmica y volcánica para el SGC, mejorando significativamente la experiencia de usuario y la eficiencia en la respuesta a emergencias geológicas.",
+      "Innovated a seismic and volcanic data viewer for SGC, improving UX and emergency response efficiency with enhanced geological data visualization.",
     tecnologia: "React",
-    link: "", // Añadir enlace si está disponible
-    github: "", // Añadir enlace si está disponible
+    link: "", // Add link if available
+    github: "", // Add link if available
     imagen: "/projects/sgc.webp",
     tags: [TAGS.REACT, TAGS.SASS, TAGS.REDUX],
   },
   {
-    title: "Desarrollo de E-Commerce - Lobocueros S.A.S",
+    title: "E-Commerce Development - Lobocueros S.A.S",
     description:
-      "Lideré el diseño y desarrollo de una plataforma e-commerce desde cero, integrando un catálogo de productos, procesamiento de pagos y un diseño responsivo.",
+      "Led e-commerce platform creation for Lobocueros, integrating a product catalog, payment process, and responsive design for optimal user engagement.",
     tecnologia: "React",
-    link: "", // Añadir enlace si está disponible
-    github: "", // Añadir enlace si está disponible
+    link: "", // Add link if available
+    github: "", // Add link if available
     imagen: "/projects/lobocueros.webp",
     tags: [TAGS.REACT, TAGS.MATERIALUI, TAGS.SASS],
   },
 ];
 ---
 
-<div
-  class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 justify-items-center"
->
+<div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 justify-items-center">
   {
     PROJECTS.map((project) => (
       <article>
-        {console.log('project', project)}
+        {console.log("project", project)}
         <ProjectCard project={project} />
       </article>
     ))

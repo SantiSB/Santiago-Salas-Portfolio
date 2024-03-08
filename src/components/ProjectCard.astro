@@ -4,7 +4,7 @@ const { project } = Astro.props;
 ---
 
 <div
-  class="max-w-sm bg-black/30 border border-blue rounded-lg shadow dark:bg-blue dark:border-blue"
+  class="max-w-sm bg-black/30 border border-ligthBlue rounded-lg shadow"
 >
   <a href="#">
     <img class="rounded-t-lg" src={project.imagen} alt="" />
@@ -24,7 +24,7 @@ const { project } = Astro.props;
       href={project.link}
       class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-blue bg-opacity-20 border border-blue text-ligthBlue hover:bg-white hover:text-black hover:border-white transition"
     >
-      Read more
+      Visit
       <svg
         class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
         aria-hidden="true"
