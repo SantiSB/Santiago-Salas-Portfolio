@@ -5,9 +5,9 @@ export default {
   theme: {
     colors: {
       white: "#fff",
-      black: "#000",
-      blue: "#1649FF",
-      ligthBlue: "#21A2FF"
+      black: "#575757",
+      // blue: "#fff",
+      ligthBlue: "#2df6fc"
     },
   },
   plugins: [],
