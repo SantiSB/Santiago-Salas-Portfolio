@@ -1,8 +1,6 @@
-# Portafolio de Santiago Salas - Desarrollador Web Frontned con mas de 4 años de experiencia 🌐
+# Santiago Salas Portfolio - Frontend Web Developer with more than 4 Years of Experience 🌐
 
-Bienvenido a mi Portafolio! 👋
-
-Esta es la primera versión ! 🚀
+Welcome to My Portafolio! 👋
 
 ![Mockup Main](/public/images/mockups/portfolio.webp)
 ![Mockup Laptop](/public/images/mockups/laptop.webp)
