@@ -31,3 +31,9 @@ jobs:
 
       - name: Deploy to S3
         run: aws s3 sync ./dist s3://santiagosalas
+
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id E1M55NU0M59VDG --paths "/*"
+        env:
+          DISTRIBUTION_ID: E1M55NU0M59VDG
+
