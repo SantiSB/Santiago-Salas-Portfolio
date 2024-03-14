@@ -121,7 +121,8 @@ const TAGS = {
 const PROJECTS = [
   {
     title: "LinkedAI platform",
-    description: "The world's fastest computer vision data training platform.",
+    description:
+      "The LinkedAI platform is the world's fastest at creating training data for computer vision using advanced artificial intelligence tools for image labeling and review.",
     link: "https://platform.linkedai.co/login",
     repo: "",
     image: "/images/projects/linkedai.webp",
@@ -137,20 +138,11 @@ const PROJECTS = [
   {
     title: "Viewers and Website SGC",
     description:
-      "The best viewer of earthquakes and volcanoes in Latin America",
+      "The SGC's earthquake and volcano viewers, leaders in Latin America, provide geological information through interactive maps, ensuring real-time updates for optimal risk management.",
     link: "https://sgc.gov.co/sismos",
     repo: "",
     image: "/images/projects/sgc.webp",
     tags: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.MATERIALUI, TAGS.SASS, TAGS.REDUX],
-  },
-  {
-    title: "Lobocueros E-Commerce",
-    description:
-      "The virtual store of one of the longest-running leather goods stores in Colombia.",
-    link: "",
-    github: "",
-    image: "/images/projects/lobocueros.webp",
-    tags: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.SASS, TAGS.REDUX],
   },
 ];
 
@@ -159,33 +151,60 @@ const EXPERIENCE = [
     date: "November, 2022 – February, 2024",
     title: "LinkedAI",
     description:
-      "Actively involved in developing the fastest global platform for computer vision training data. I enhanced usability and performance, boosting user retention. I integrated advanced AI modules for auto-labeling and precise review of vast image datasets, ensuring unmatched data accuracy. I optimized the source code for better maintenance and scalability. I reduced complexity and implemented unit tests increasing system reliability. Additionally, i worked on the company's landing pages reinforced online presence and user accessibility, further solidifying market position.",
+      "The leading platform for creating data for AI training in computer vision. Implemented AI techniques for automatic labeling and review of images, improving efficiency and data quality. I developed advanced modules for image management, optimized the usability of the platform, implemented unit tests and raised the quality of the code, ensuring its maintenance and scalability, in addition to participating in the development of the sales page.",
     link: "https://www.linkedai.co/platform",
-    techStack: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.MATERIALUI, TAGS.GRAPHQL, TAGS.REDUX, TAGS.JEST, TAGS.TESTING_LIBRARY],
+    techStack: [
+      TAGS.REACT,
+      TAGS.JAVASCRIPT,
+      TAGS.MATERIALUI,
+      TAGS.REDUX,
+      TAGS.GRAPHQL,
+      TAGS.JEST,
+      TAGS.TESTING_LIBRARY,
+    ],
   },
   {
     date: "February, 2022 - September, 2022",
     title: "J&A Real Estate",
     description:
-      "I created a unique property cataloging system, facilitating an intuitive and effective filtered search. This development has allowed the company's employees to improve their organization and productivity significantly. Reducing the time needed to complete internal tasks has improved operational efficiency. This advance represents a notable change in how the company manages and accesses property information, marking a before and after in its internal processes.",
+      "At the prominent real estate agency in Nariño, I developed a property cataloging system from scratch, drastically improving the visualization, search and management of properties. This innovation optimized the organization and increased the productivity of agents and administrators, reducing the time dedicated to internal tasks and increasing the company's operational efficiency, consolidating its position as a leader in the sector with a broad portfolio and diversity of services.",
     link: "",
-    techStack: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.MATERIALUI, TAGS.REDUX, TAGS.JEST],
+    techStack: [
+      TAGS.REACT,
+      TAGS.JAVASCRIPT,
+      TAGS.MATERIALUI,
+      TAGS.REDUX,
+      TAGS.JEST,
+    ],
   },
   {
     date: "March, 2020 - November, 2021",
     title: "Colombian Geological Service (SGC)",
     description:
-      "I developed the SGC earthquake and volcano viewer, the leader in Latin America, from scratch, capable of offering interactive seismological and volcanic data in real time. I made the layout and usability and adaptability improvements of the design. Optimized performance to support millions of data and users, creating an effective platform for geological emergencies. I contributed to a seismic activity search engine, increasing earthquake prevention in Colombia, and developed modules for the SGC website, expanding access to key services and information from the Ministry of Mines and Energy.",
+      "At the SGC, I developed from scratch the best earthquake and volcano viewer in Latin America and various web modules, dramatically improving the management and visualization of seismic data. This innovation elevated the response to natural disasters. I also optimized the site to handle large volumes of data and ensure real-time updates, and created an essential historical seismic cataloging system for researchers and authorities.",
     link: "https://www.sgc.gov.co/",
-    techStack: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.MATERIALUI, TAGS.SASS, TAGS.GRAPHQL, TAGS.REDUX],
+    techStack: [
+      TAGS.REACT,
+      TAGS.JAVASCRIPT,
+      TAGS.MATERIALUI,
+      TAGS.SASS,
+      TAGS.GRAPHQL,
+      TAGS.REDUX,
+    ],
   },
   {
     date: "September, 2019 - February, 2020",
     title: "Lobocueros S.A.S",
     description:
-      "I led the creation of an e-commerce for a long-standing Colombian leather goods store, offering an interactive catalog with filters and pagination, product details, and a shopping cart functionality with a secure payment gateway. This project, designed to adapt to any device, improves the online shopping experience, highlighting the tradition and quality of the brand.",
+      "In this Colombian leather goods store distinguished for its exquisite craftsmanship and leather products of the highest quality. I developed the e-commerce website from scratch with modules such as product catalog, search filter, product detail, shopping cart, secure payment gateway , contact forms, Google Maps API, and responsive design.",
     link: "",
-    techStack: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.MATERIALUI, TAGS.SASS, TAGS.GRAPHQL, TAGS.REDUX],
+    techStack: [
+      TAGS.REACT,
+      TAGS.JAVASCRIPT,
+      TAGS.MATERIALUI,
+      TAGS.SASS,
+      TAGS.REDUX,
+    ],
   },
 ];
 
