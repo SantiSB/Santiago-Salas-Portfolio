@@ -14,6 +14,8 @@ import HTML from "../../icons/stack/HTML.astro";
 import TailwindCSS from "../../icons/stack/TailwindCSS.astro";
 import ThreeJS from "../../icons/stack/ThreeJS.astro";
 import GraphQL from "../../icons/stack/GraphQL.astro";
+import Netlify from "../../icons/stack/Netlify.astro";
+import Aws from "../../icons/stack/Aws.astro";
 
 const TAGS = {
   REACT: {
@@ -69,7 +71,12 @@ const TAGS = {
   AWS: {
     name: "AWS",
     class: "text-white",
-    icon: "Aws",
+    icon: Aws,
+  },
+  NETLIFY: {
+    name: "NETLIFY",
+    class: "text-white",
+    icon: Netlify,
   },
   GITHUB: {
     name: "GitHub",
@@ -129,20 +136,39 @@ const PROJECTS = [
     tags: [
       TAGS.REACT,
       TAGS.JAVASCRIPT,
+      TAGS.TYPESCRIPT,
       TAGS.MATERIALUI,
       TAGS.REDUX,
       TAGS.GRAPHQL,
       TAGS.JEST,
+      TAGS.AWS,
     ],
   },
   {
     title: "Viewers and Website SGC",
     description:
-      "The SGC's earthquake and volcano viewers, leaders in Latin America, provide geological information through interactive maps, ensuring real-time updates for optimal risk management.",
+      "SGC's quake & volcano viewers, Latin America's leaders, offer geological info on interactive maps with real-time updates for risk management.",
     link: "https://sgc.gov.co/sismos",
     repo: "",
     image: "/images/projects/sgc.webp",
-    tags: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.MATERIALUI, TAGS.SASS, TAGS.REDUX],
+    tags: [TAGS.REACT, TAGS.JAVASCRIPT, TAGS.MATERIALUI, TAGS.SASS, TAGS.REDUX, TAGS.AWS],
+  },
+  {
+    title: "DSTEV Sessions 2°",
+    description:
+      "Promoting the best electronic music event in Pasto, this landing page offers attractive 3D animations, high speed and performance for a captivating experience.",
+    link: "https://master--inquisitive-croquembouche-42d01f.netlify.app/",
+    repo: "https://github.com/SantiSB/DSTEV-Sessions-2",
+    image: "/images/projects/dstev.webp",
+    tags: [
+      TAGS.ASTRO,
+      TAGS.REACT,
+      TAGS.JAVASCRIPT,
+      TAGS.TYPESCRIPT,
+      TAGS.TAILWIND,
+      TAGS.THREE_JS,
+      TAGS.NETLIFY,
+    ],
   },
 ];
 
