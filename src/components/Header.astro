@@ -1,6 +1,7 @@
 ---
+import ThemeIcon from "./utils/ThemeIcon.astro";
+
 const links = [
-  { href: "#", text: "Home" },
   { href: "#experience", text: "Experience" },
   { href: "#projects", text: "Projects" },
   { href: "#contact", text: "Contact" },
@@ -13,7 +14,7 @@ const links = [
   <a href="#"
     ><img
       src="/icons/SantiHub.svg"
-      class="h-8 fill-black"
+      class="h-8"
       alt="Santiago Salas Bolaños Logo"
     /></a
   >
@@ -21,7 +22,7 @@ const links = [
     {
       links.map((link) => (
         <a
-          class="hover:text-ligthBlue focus:text-ligthBlue transition font-semibold text-white"
+          class="hover:text-blue-600 dark:hover:text-blue-400 focus:text-blue-600 dark:focus:text-blue-400 transition font-semibold"
           href={link.href}
         >
           {link.text}
@@ -29,4 +30,5 @@ const links = [
       ))
     }
   </nav>
+  <ThemeIcon />
 </header>

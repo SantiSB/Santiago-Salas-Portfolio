@@ -20,107 +20,86 @@ import Aws from "../../icons/stack/Aws.astro";
 const TAGS = {
   REACT: {
     name: "React.js",
-    class: "text-white",
     icon: ReactJS,
   },
   MATERIALUI: {
     name: "Material UI",
-    class: "text-white",
     icon: MaterialUI,
   },
   GRAPHQL: {
     name: "GraphQL",
-    class: "text-white",
     icon: GraphQL,
   },
   REDUX: {
     name: "Redux",
-    class: "text-white",
     icon: Redux,
   },
   SASS: {
     name: "Sass",
-    class: "text-white",
     icon: Sass,
   },
   HTML: {
     name: "HTML",
-    class: "text-white",
     icon: HTML,
   },
   CSS: {
     name: "CSS",
-    class: "text-white",
     icon: CSS,
   },
   TAILWIND: {
     name: "Tailwind CSS",
-    class: "text-white",
     icon: TailwindCSS,
   },
   THREE_JS: {
     name: "Three.js",
-    class: "text-white",
     icon: ThreeJS,
   },
   ASTRO: {
     name: "Astro",
-    class: "text-white",
     icon: AstroFramework,
   },
   AWS: {
     name: "AWS",
-    class: "text-white",
     icon: Aws,
   },
   NETLIFY: {
     name: "NETLIFY",
-    class: "text-white",
     icon: Netlify,
   },
   GITHUB: {
     name: "GitHub",
-    class: "text-white",
     icon: GitHub,
   },
   GITLAB: {
     name: "GitLab",
-    class: "text-white",
     icon: GitLab,
   },
   BITBUCKET: {
     name: "Bitbucket",
-    class: "text-white",
     icon: "Bitbucket",
   },
   JAVASCRIPT: {
     name: "JavaScript",
-    class: "text-white",
     icon: JavaScript,
   },
   TYPESCRIPT: {
     name: "TypeScript",
-    class: "text-white",
     icon: TypeScript,
   },
   JEST: {
     name: "Jest",
-    class: "text-white",
     icon: Jest,
   },
   TESTING_LIBRARY: {
     name: "Testing Library",
-    class: "text-white",
     icon: "Testing-Library",
   },
   VITEST: {
     name: "Vitest",
-    class: "text-white",
     icon: Vitest,
   },
   NEXT_JS: {
     name: "Next.js",
-    class: "text-white",
     icon: "Next.js",
   },
 };

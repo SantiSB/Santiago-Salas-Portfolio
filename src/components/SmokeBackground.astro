@@ -2,11 +2,11 @@
   <canvas
     id="smoke-canvas"
     aria-label="Efecto de fondo de humo"
-    class="opacity-70 dark:opacity-40"></canvas>
+    class="opacity-40 dark:opacity-50"></canvas>
 </div>
 
 <script>
-  const NUM_PARTICLES = 30; // Número de partículas
+  const NUM_PARTICLES = 40; // Número de partículas
   const canvas = document.getElementById("smoke-canvas") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
   let raf: number;
