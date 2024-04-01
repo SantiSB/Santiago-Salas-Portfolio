@@ -16,11 +16,25 @@ const { title, description } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Frontend Developer experto en React con mas de 4 años de experiencia" />
+    <meta
+      name="description"
+      content="Frontend Developer experto en React con mas de 4 años de experiencia"
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/icons/SantiHub.svg" />
     <meta name="generator" content={description} />
     <title>{title}</title>
+    <script>
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
   </head>
   <body class="bg-gray-50 dark:bg-black text-black dark:text-white">
     <SmokeBackground />
