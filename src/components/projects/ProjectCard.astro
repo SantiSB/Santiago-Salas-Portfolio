@@ -3,14 +3,14 @@ const { project } = Astro.props;
 ---
 
 <div
-  class="max-w-sm bg-gray-300/20 dark:bg-black/20 border border-blue-900 dark:border-blue-300 rounded-lg overflow-hidden flex flex-col shadow-md"
+  class="max-w-sm bg-gray-300/20 dark:bg-black/20 border border-blue-900 dark:border-blue-400 rounded-lg overflow-hidden flex flex-col shadow-md"
 >
   <a href={project.image}>
     <img class="w-full h-48 object-cover" src={project.image} alt="" />
   </a>
   <div class="p-4">
     <a href="#">
-      <h5 class="mb-2.5 text-blue-900 dark:text-blue-300 text-lg font-bold">{project.title}</h5>
+      <h5 class="mb-2.5 text-blue-900 dark:text-blue-400 text-lg font-bold">{project.title}</h5>
     </a>
     <p class=" text-sm overflow-auto h-24">{project.description}</p>
     <div class="h-10 overflow-x-auto whitespace-nowrap">
@@ -33,7 +33,7 @@ const { project } = Astro.props;
       project.link && (
         <a
           href={project.link}
-          class="h-10 inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-blue-100/20 border border-blue-900 dark:border-blue-300 text-blue-900 dark:text-blue-300 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-black dark:hover:border-white transition-colors mt-4"
+          class="h-10 inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-blue-100/20 border border-blue-900 dark:border-blue-400 text-blue-900 dark:text-blue-400 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-black dark:hover:border-white transition-colors mt-4"
         >
           Visit
           <svg
@@ -58,7 +58,7 @@ const { project } = Astro.props;
       project.repo && (
         <a
           href={project.repo}
-          class="h-10 inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-blue-100/20 border border-blue-900 dark:border-blue-300 text-blue-900 dark:text-blue-300 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-black dark:hover:border-white transition-colors mt-2"
+          class="h-10 inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-blue-100/20 border border-blue-900 dark:border-blue-400 text-blue-900 dark:text-blue-400 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-black dark:hover:border-white transition-colors mt-2"
         >
           Repo
           <svg

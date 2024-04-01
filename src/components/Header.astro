@@ -1,5 +1,6 @@
 ---
 import ThemeIcon from "../icons/ThemeIcon.astro";
+import Logo from "./assets/Logo.astro";
 
 const links = [
   { href: "#experience", text: "Experience" },
@@ -11,13 +12,7 @@ const links = [
 <header
   class="flex justify-between items-center py-5 w-full px-5 lg:px-32 xl:px-40"
 >
-  <a href="#"
-    ><img
-      src="/icons/SantiHub.svg"
-      class="h-8"
-      alt="Santiago Salas Bolaños Logo"
-    /></a
-  >
+  <a href="#"><Logo /></a>
   <nav class="flex flex-row gap-x-4 text-sm sm:text-base">
     {
       links.map((link) => (
@@ -30,5 +25,5 @@ const links = [
       ))
     }
   </nav>
-  <ThemeIcon color="#ffffff"/>
+  <ThemeIcon color="#ffffff" />
 </header>
