@@ -10,8 +10,9 @@ export interface Props {
   date: string;
   link?: string;
   techStack: Tech[];
+  achievements?: string[];
 }
-const { title, description, date, link, techStack } = { ...Astro.props };
+const { title, description, date, link, techStack, achievements } = { ...Astro.props };
 ---
 
 <div
@@ -25,6 +26,15 @@ const { title, description, date, link, techStack } = { ...Astro.props };
 <p class="mb-4 text-base font-normal text-pretty">
   {description}
 </p>
+
+{achievements && achievements.length > 0 && (
+  <ul class="list-disc list-inside mb-4 text-pretty">
+    {achievements.map((achievement) => (
+      <li>{achievement}</li>
+    ))}
+  </ul>
+)}
+
 <div class="flex gap-4">
   <ul class="flex flex-row mb-2 gap-x-2">
     {
