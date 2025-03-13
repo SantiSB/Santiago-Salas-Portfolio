@@ -5,7 +5,7 @@ import { PROJECTS } from "../utils/Info";
 const Projects = () => {
   return (
     <motion.div 
-      className="grid grid-cols-1 gap-8 mt-8 sm:grid-cols-2 lg:grid-cols-3"
+      className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-2 4xl:grid-cols-3"
       initial="hidden"
       animate="visible"
       variants={{

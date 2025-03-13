@@ -1,10 +1,28 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const ProjectCard = ({ project }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Define the subtle floating animation with a random delay
+  const subtleFloatAnimation = {
+    y: ["0%", "-1%", "0%", "1%", "0%"], // Subtle vertical movement
+    transition: {
+      duration: 8, // Longer duration for a slower effect
+      ease: "easeInOut",
+      repeat: Infinity, // Repeat the animation indefinitely
+      repeatType: "mirror", // Reverse the animation direction on repeat
+      delay: Math.random() * 2, // Random delay between 0 and 2 seconds
+    },
+  };
+
   return (
     <motion.div 
-      className="w-full max-w-sm bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl shadow-lg overflow-hidden flex flex-col transition-transform transform hover:scale-105"
-      whileHover={{ scale: 1.05 }}
+      className="w-full bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl shadow-lg overflow-hidden flex flex-col transition-transform transform"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      animate={isHovered ? { y: 0 } : subtleFloatAnimation} // Pause floating effect on hover
+      whileHover={{ scale: 1.05 }} // Keep the scale effect on hover
     >
       <a href={project.image} className="flex-shrink-0">
         <img className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110" src={project.image} alt="" />
