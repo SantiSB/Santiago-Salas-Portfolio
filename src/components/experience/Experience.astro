@@ -4,10 +4,11 @@ import { EXPERIENCE } from "../utils/Info.js";
 
 ---
 
-<ol class="relative border-s border-gray-700 dark:border-gray-300 ml-3 mt-4">
+<ol class="relative border-l-4 border-blue-500 dark:border-blue-300 ml-3 mt-4 space-y-12">
   {
     EXPERIENCE.map((experience) => (
-      <li class="mb-10 ms-4">
+      <li class="mb-10 ml-6">
+        <div class="absolute w-4 h-4 bg-blue-500 rounded-full mt-1.5 -left-2 border-2 border-white dark:border-gray-800"></div>
         <ExperienceItem {...experience} />
       </li>
     ))
