@@ -12,15 +12,28 @@ export interface Props {
   techStack: Tech[];
   achievements?: string[];
 }
-const { title, description, date, link, techStack, achievements } = { ...Astro.props };
+const { title, description, date, link, techStack, achievements = [] } = { ...Astro.props };
+import { motion } from "framer-motion";
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  hover: { scale: 1.05 }
+};
 ---
 
-<div class="p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+<motion.div 
+  variants={cardVariants} 
+  initial="hidden" 
+  animate="visible" 
+  whileHover="hover"
+  className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-xl transition-transform"
+>
   <time class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">{date}</time>
   <h3 class="text-2xl font-semibold text-blue-900 dark:text-blue-400">{title}</h3>
   <p class="mt-2 text-base text-gray-700 dark:text-gray-300">{description}</p>
 
-  {achievements && achievements.length > 0 && (
+  {achievements?.length > 0 && (
     <ul class="list-disc list-inside mt-4 text-gray-700 dark:text-gray-300">
       {achievements.map((achievement) => (
         <li>{achievement}</li>
@@ -29,39 +42,20 @@ const { title, description, date, link, techStack, achievements } = { ...Astro.p
   )}
 
   <div class="flex flex-wrap gap-2 mt-4">
-    {
-      techStack.map((tech) => (
-        <span class="flex items-center gap-2 px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 rounded-full text-xs">
-          <tech.icon class="w-4 h-4" />
-          {tech.name}
-        </span>
-      ))
-    }
+    {techStack.map((tech) => (
+      <span class="flex items-center gap-2 px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 rounded-full text-xs">
+        <tech.icon class="w-4 h-4" />
+        {tech.name}
+      </span>
+    ))}
   </div>
 
-  {
-    link && (
-      <a
-        href={link}
-        class="inline-flex items-center mt-4 px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
-      >
-        Visit
-        <svg
-          class="w-4 h-4 ml-2"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 10"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 5h12m0 0L9 1m4 4L9 9"
-          />
-        </svg>
-      </a>
-    )
-  }
-</div>
+  {link && (
+    <a href={link} class="inline-flex items-center mt-4 px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
+      Visit
+      <svg class="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+      </svg>
+    </a>
+  )}
+</motion.div>

@@ -1,13 +1,13 @@
 ---
+import Experience from "../components/experience/Experience";
 import SectionContainer from "../components/utils/SectionContainer.astro";
 import LaboralExperience from "../icons/LaboralExperience.astro";
-import Experience from "../components/experience/Experience.astro";
 ---
 
 <SectionContainer id="experience" class="py-4">
-  <h2 class="text-blue-900 dark:text-blue-400 text-2xl font-semibold mb-b flex gap-x-2 items-center mb-8">
-    <LaboralExperience class="size-7 fill-none" />
+  <h2 class="text-blue-900 dark:text-blue-400 text-3xl font-bold flex gap-x-3 items-center mb-12">
+    <LaboralExperience class="size-8 fill-none" />
     Laboral Experience
   </h2>
-  <Experience />
+  <Experience client:visible />
 </SectionContainer>
