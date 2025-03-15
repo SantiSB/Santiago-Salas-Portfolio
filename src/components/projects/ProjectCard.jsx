@@ -34,10 +34,9 @@ const ProjectCard = ({ project }) => {
           </a>
           <p className="text-sm text-gray-600 dark:text-gray-400">{project.description}</p>
         </div>
-        <div className="flex gap-2 mt-4 overflow-x-auto">
+        <div className="flex gap-2 mt-4 flex-wrap">
           {project.tags?.map((tag, i) => (
             <span key={i} className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full text-xs">
-              <tag.icon className="w-4 h-4" />
               {tag.name}
             </span>
           ))}
