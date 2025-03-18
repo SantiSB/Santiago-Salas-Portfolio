@@ -95,6 +95,12 @@ const TAGS = {
   DART: {
     name: "Dart",
   },
+  LEAFLET: {
+    name: "Leaflet",
+  },
+  TANSTACK_QUERY: {
+    name: "Tanstack Query",
+  },
 };
 
 const PROJECTS = [
@@ -111,17 +117,16 @@ const PROJECTS = [
       TAGS.TYPESCRIPT,
       TAGS.TAILWIND,
       TAGS.FIREBASE,
-      TAGS.REST_API,
     ],
   },
   {
-    title: "Music City GP - IndyCar Event Website",
+    title: "Big Machine Music City Grand Prix – Official Website",
     description:
-      "Contributed to the development of the official Music City GP website, enhancing the user experience with custom WordPress modules. Improved event visibility through SEO optimization and streamlined the ticket purchasing process for a seamless customer journey.",
+      "Contributed to enhancing the official Big Machine Music City Grand Prix website by improving design and optimizing responsiveness. Focused on refining the user experience and implementing WordPress enhancements to ensure seamless navigation across all devices.",
     link: "",
     repo: "",
     image: "/images/projects/musicCity.webp",
-    tags: [TAGS.WORDPRESS, TAGS.JAVASCRIPT],
+    tags: [TAGS.WORDPRESS],
   },
   // {
   //   title: "Presidium Solutions Mobile App",
@@ -164,11 +169,10 @@ const PROJECTS = [
       TAGS.JAVASCRIPT,
       TAGS.REDUX,
       TAGS.MATERIALUI,
-      TAGS.GRAPHQL,
-      TAGS.REST_API,
       TAGS.JEST,
       TAGS.TESTING_LIBRARY,
       TAGS.AWS,
+      TAGS.TANSTACK_QUERY,
     ],
   },
   {
@@ -180,8 +184,11 @@ const PROJECTS = [
     image: "/images/projects/sgc.webp",
     tags: [
       TAGS.REACT,
-      TAGS.NEXT_JS,
-      TAGS.TYPESCRIPT,
+      TAGS.JAVASCRIPT,
+      TAGS.SASS,
+      TAGS.MATERIALUI,
+      TAGS.LEAFLET,
+      TAGS.REDUX,
     ],
   },
   // {
@@ -206,8 +213,8 @@ const PROJECTS = [
     repo: "",
     image: "/images/projects/dstev.webp",
     tags: [
-      TAGS.REACT,
       TAGS.ASTRO,
+      TAGS.REACT,
       TAGS.TYPESCRIPT,
       TAGS.TAILWIND,
       TAGS.THREE_JS,
@@ -276,7 +283,7 @@ const EXPERIENCE = [
     date: "November 2022 – February 2024",
     companyLink: "https://www.linkedai.co/",
     description:
-      "LinkedAI is the fastest platform for creating and curating training datasets for artificial intelligence and machine learning models, with a focus on computer vision and natural language processing (NLP). Its technology enables advanced data annotation with high precision, optimizing AI model performance through automated labeling, AI-assisted review, and bias reduction.\n\n" +
+      "LinkedAI is the fastest platform for creating and curating training datasets for artificial intelligence and machine learning models, with a focus on computer vision and natural language processing. Its technology enables advanced data annotation with high precision, optimizing AI model performance through automated labeling, AI-assisted review, and bias reduction.\n\n" +
       "🌍 Interdisciplinary Collaboration:\n" +
       "- 🔄 Worked closely with backend, design, and marketing teams to ensure an intuitive and accessible user interface aligned with business goals.",
     projectsAndContributions: [
