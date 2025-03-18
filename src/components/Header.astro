@@ -10,7 +10,7 @@ const links = [
 ---
 
 <header
-  class="fixed top-0 left-0 flex justify-between items-center py-5 w-full px-5 lg:px-32 xl:px-40 bg-[#F2F2F2]/70 dark:bg-[#0B0B0B]/70 z-50 transition-all duration-300 ease-in-out"
+  class="fixed top-0 left-0 flex justify-between items-center py-5 w-full px-5 lg:px-32 xl:px-40 z-50 transition-all duration-300 ease-in-out"
   id="header"
 >
   <a href="#"><Logo /></a>
@@ -36,12 +36,16 @@ const links = [
   window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
-    if (currentScroll > 0) {
+    if (currentScroll > 50) {
       header?.classList.remove('py-5');
       header?.classList.add('py-3');
+      header?.classList.add('bg-[#F2F2F2]/70');
+      header?.classList.add('dark:bg-[#0B0B0B]/70');
     } else {
       header?.classList.remove('py-3');
       header?.classList.add('py-5');
+      header?.classList.remove('bg-[#F2F2F2]/70');
+      header?.classList.remove('dark:bg-[#0B0B0B]/70');
     }
     
     lastScroll = currentScroll;
