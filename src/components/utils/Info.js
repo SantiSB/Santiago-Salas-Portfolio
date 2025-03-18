@@ -104,7 +104,7 @@ const PROJECTS = [
       "Designed and developed the Presidium Solutions website, improving customer engagement with an intuitive interface and effective SEO strategies. Created an interactive ROI calculator with real-time data visualization, PDF export, and automated email reports, enhancing user experience and boosting conversion rates.",
     link: "",
     repo: "",
-    image: "/images/projects/linkedai.webp",
+    image: "/images/projects/presidium.webp",
     tags: [
       TAGS.REACT,
       TAGS.NEXT_JS,
@@ -120,38 +120,38 @@ const PROJECTS = [
       "Contributed to the development of the official Music City GP website, enhancing the user experience with custom WordPress modules. Improved event visibility through SEO optimization and streamlined the ticket purchasing process for a seamless customer journey.",
     link: "",
     repo: "",
-    image: "/images/projects/linkedai.webp",
+    image: "/images/projects/musicCity.webp",
     tags: [TAGS.WORDPRESS, TAGS.JAVASCRIPT],
   },
-  {
-    title: "Presidium Solutions Mobile App",
-    description:
-      "Enhanced an existing revenue-generating mobile application by implementing new features using Flutter. Focused on improving functionality while ensuring stability and maintaining an intuitive user experience.",
-    link: "",
-    repo: "",
-    image: "/images/projects/linkedai.webp",
-    tags: [
-      TAGS.FLUTTER,
-      TAGS.DART,
-    ],
-  },
-  {
-    title: "SmartSpecs (AI Project Management System)",
-    description:
-      "Developing an intelligent system for project management and planning with AI, designed to automate requirement generation, risk estimation, and integration with productivity tools and online meeting platforms.",
-    link: "https://santiagosalas.com/smartspecs",
-    repo: "",
-    image: "/images/projects/linkedai.webp",
-    tags: [
-      TAGS.NEXT_JS,
-      TAGS.REACT,
-      TAGS.TYPESCRIPT,
-      TAGS.REDUX,
-      TAGS.TAILWIND,
-      TAGS.FIREBASE,
-      TAGS.OPENAI,
-    ],
-  },
+  // {
+  //   title: "Presidium Solutions Mobile App",
+  //   description:
+  //     "Enhanced an existing revenue-generating mobile application by implementing new features using Flutter. Focused on improving functionality while ensuring stability and maintaining an intuitive user experience.",
+  //   link: "",
+  //   repo: "",
+  //   image: "/images/projects/linkedai.webp",
+  //   tags: [
+  //     TAGS.FLUTTER,
+  //     TAGS.DART,
+  //   ],
+  // },
+  // {
+  //   title: "SmartSpecs (AI Project Management System)",
+  //   description:
+  //     "Developing an intelligent system for project management and planning with AI, designed to automate requirement generation, risk estimation, and integration with productivity tools and online meeting platforms.",
+  //   link: "https://santiagosalas.com/smartspecs",
+  //   repo: "",
+  //   image: "/images/projects/linkedai.webp",
+  //   tags: [
+  //     TAGS.NEXT_JS,
+  //     TAGS.REACT,
+  //     TAGS.TYPESCRIPT,
+  //     TAGS.REDUX,
+  //     TAGS.TAILWIND,
+  //     TAGS.FIREBASE,
+  //     TAGS.OPENAI,
+  //   ],
+  // },
   {
     title: "LinkedAI - AI Training Data Platform",
     description:
@@ -177,27 +177,43 @@ const PROJECTS = [
       "Designed and developed the most advanced seismic and volcanic activity monitoring platform in Latin America. Built an interactive map-based system with real-time data visualization, enabling users to track geological events with precision. Optimized the processing of large historical datasets for faster response times, ensuring a seamless user experience. Enhanced scalability and concurrency to handle high-traffic queries without performance degradation. Additionally, contributed to the optimization and development of multiple modules for the SGC website, ensuring a responsive and accessible user experience. Led the migration and restructuring of style code, improving project maintainability and scalability.",
     link: "",
     repo: "",
-    image: "/images/projects/linkedai.webp",
+    image: "/images/projects/sgc.webp",
     tags: [
       TAGS.REACT,
       TAGS.NEXT_JS,
       TAGS.TYPESCRIPT,
     ],
   },
+  // {
+  //   title: "Seismic Activity Catalog",
+  //   description:
+  //     "Developed a seismic activity cataloging system for efficient historical data consultation, editing, and filtering. Designed an optimized interface for seamless search and visualization of seismic and volcanic events, enhancing accessibility for researchers and government entities.",
+  //   link: "",
+  //   repo: "",
+  //   image: "/images/projects/linkedai.webp",
+  //   tags: [
+  //     TAGS.REACT,
+  //     TAGS.NEXT_JS,
+  //     TAGS.TYPESCRIPT,
+  //     TAGS.REDUX,
+  //   ],
+  // },
   {
-    title: "Seismic Activity Catalog",
+    title: "DSTEV Sessions - Electronic Music Event Landing Page",
     description:
-      "Developed a seismic activity cataloging system for efficient historical data consultation, editing, and filtering. Designed an optimized interface for seamless search and visualization of seismic and volcanic events, enhancing accessibility for researchers and government entities.",
+      "Designed and developed a high-impact landing page for DSTEV Sessions, an exclusive electronic music event. Focused on delivering a visually engaging and responsive UI that captured the essence of the event. Integrated smooth animations, countdown timers, and artist lineups to enhance user engagement. Optimized performance for fast loading times, ensuring a seamless experience across all devices. Implemented SEO best practices to maximize event visibility and reach. Delivered a scalable and maintainable codebase for future iterations.",
     link: "",
     repo: "",
-    image: "/images/projects/linkedai.webp",
+    image: "/images/projects/dstev.webp",
     tags: [
       TAGS.REACT,
-      TAGS.NEXT_JS,
+      TAGS.ASTRO,
       TAGS.TYPESCRIPT,
-      TAGS.REDUX,
+      TAGS.TAILWIND,
+      TAGS.THREE_JS,
     ],
-  },
+},
+
 ];
 
 const EXPERIENCE = [
