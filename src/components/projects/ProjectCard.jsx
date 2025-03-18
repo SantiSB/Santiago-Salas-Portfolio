@@ -30,13 +30,13 @@ const ProjectCard = ({ project }) => {
       <div className="p-6 flex flex-col justify-between flex-grow">
         <div>
           <a href="#">
-            <h5 className="mb-2 text-2xl font-bold text-gray-800 dark:text-gray-200">{project.title}</h5>
+            <h5 className="mb-2 text-2xl font-bold text-gray-800 dark:text-white">{project.title}</h5>
           </a>
-          <p className="text-sm text-gray-600 dark:text-gray-400">{project.description}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-300">{project.description}</p>
         </div>
         <div className="flex gap-2 mt-4 flex-wrap">
           {project.tags?.map((tag, i) => (
-            <span key={i} className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full text-xs">
+            <span key={i} className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-white rounded-full text-xs">
               {tag.name}
             </span>
           ))}

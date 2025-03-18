@@ -18,12 +18,12 @@ const ExperienceItem = ({ title, description, date, companyLink, techStack, proj
       animate={isInView ? "visible" : "hidden"}
       className={`p-8 bg-gray-100 dark:bg-gray-900 rounded-xl shadow-lg transition-transform ${isInView ? 'border-2 border-gray-400' : ''}`}
     >
-      <time className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">{date}</time>
-      <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
-      <p className="mt-2 text-base text-gray-600 dark:text-gray-400">{description}</p>
+      <time className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-300">{date}</time>
+      <h3 className="text-2xl font-semibold text-gray-800 dark:text-white">{title}</h3>
+      <p className="mt-2 text-base text-gray-600 dark:text-gray-300">{description}</p>
 
       {projectsAndContributions.length > 0 && (
-        <ul className="list-disc list-inside mt-4 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc list-inside mt-4 text-gray-600 dark:text-gray-300">
           {projectsAndContributions.map((project, i) => (
             <ul key={i}>
               <strong>{project.name}:</strong>
@@ -39,7 +39,7 @@ const ExperienceItem = ({ title, description, date, companyLink, techStack, proj
 
       <div className="flex flex-wrap gap-2 mt-4">
         {techStack.map((tech, i) => (
-          <span key={i} className="flex items-center gap-2 px-3 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full text-xs">
+          <span key={i} className="flex items-center gap-2 px-3 py-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-white rounded-full text-xs">
             {tech.name}
           </span>
         ))}

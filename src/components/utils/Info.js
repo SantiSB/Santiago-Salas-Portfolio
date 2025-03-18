@@ -108,7 +108,7 @@ const PROJECTS = [
     title: "Presidium Solutions Website & ROI Calculator",
     description:
       "Designed and developed the Presidium Solutions website, improving customer engagement with an intuitive interface and effective SEO strategies. Created an interactive ROI calculator with real-time data visualization, PDF export, and automated email reports, enhancing user experience and boosting conversion rates.",
-    link: "",
+    link: "https://presidiumsolutions.com/roi-calculator/",
     repo: "",
     image: "/images/projects/presidium.webp",
     tags: [
@@ -123,7 +123,7 @@ const PROJECTS = [
     title: "Big Machine Music City Grand Prix – Official Website",
     description:
       "Contributed to enhancing the official Big Machine Music City Grand Prix website by improving design and optimizing responsiveness. Focused on refining the user experience and implementing WordPress enhancements to ensure seamless navigation across all devices.",
-    link: "",
+    link: "https://musiccitygp.com/musicfestival/",
     repo: "",
     image: "/images/projects/musicCity.webp",
     tags: [TAGS.WORDPRESS],
@@ -161,7 +161,7 @@ const PROJECTS = [
     title: "LinkedAI - AI Training Data Platform",
     description:
       "Contributed to the development of LinkedAI, a high-performance platform for creating and curating AI training datasets with a focus on computer vision and natural language processing. Led optimizations in architecture, performance, and scalability while integrating AI-driven automation for data annotation. Developed advanced image visualization tools, improved system stability with extensive testing, and collaborated across teams to enhance the user experience and conversion rates.",
-    link: "",
+    link: "https://www.linkedai.co/platform",
     repo: "",
     image: "/images/projects/linkedai.webp",
     tags: [
@@ -179,7 +179,7 @@ const PROJECTS = [
     title: "Seismic & Volcanic Activity Viewer & SGC Website",
     description:
       "Designed and developed the most advanced seismic and volcanic activity monitoring platform in Latin America. Built an interactive map-based system with real-time data visualization, enabling users to track geological events with precision. Optimized the processing of large historical datasets for faster response times, ensuring a seamless user experience. Enhanced scalability and concurrency to handle high-traffic queries without performance degradation. Additionally, contributed to the optimization and development of multiple modules for the SGC website, ensuring a responsive and accessible user experience. Led the migration and restructuring of style code, improving project maintainability and scalability.",
-    link: "",
+    link: "https://sgc.gov.co/sismos",
     repo: "",
     image: "/images/projects/sgc.webp",
     tags: [
@@ -206,10 +206,10 @@ const PROJECTS = [
   //   ],
   // },
   {
-    title: "DSTEV Sessions - Electronic Music Event Landing Page",
+    title: "DSTEV Sessions - Electronic Music Event Landing Page - Arkhes",
     description:
       "Designed and developed a high-impact landing page for DSTEV Sessions, an exclusive electronic music event. Focused on delivering a visually engaging and responsive UI that captured the essence of the event. Integrated smooth animations, countdown timers, and artist lineups to enhance user engagement. Optimized performance for fast loading times, ensuring a seamless experience across all devices. Implemented SEO best practices to maximize event visibility and reach. Delivered a scalable and maintainable codebase for future iterations.",
-    link: "",
+    link: "https://arkhes.co/",
     repo: "",
     image: "/images/projects/dstev.webp",
     tags: [
