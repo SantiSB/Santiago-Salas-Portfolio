@@ -3,10 +3,12 @@ import SectionContainer from "../components/utils/SectionContainer.astro";
 import Title from "../components/presentation/Title";
 import Subtitle from "../components/presentation/Subtitle";
 import SocialLinks from "../components/presentation/SocialLinks";
+import ScrollArrows from "../components/presentation/ScrollArrows";
 ---
 
 <SectionContainer class="min-h-[100vh] flex flex-col items-center justify-center">
   <Title client:load />
   <Subtitle client:load />
   <SocialLinks client:load />
+  <ScrollArrows client:load />
 </SectionContainer>
