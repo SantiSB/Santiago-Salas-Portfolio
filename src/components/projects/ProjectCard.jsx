@@ -25,7 +25,11 @@ const ProjectCard = ({ project }) => {
       whileHover={{ scale: 1.05 }} // Keep the scale effect on hover
     >
       <a href={project.image} className="flex-shrink-0">
-        <img className="w-full h-72 object-cover transition-transform duration-300 hover:scale-110" src={project.image} alt="" />
+        <img 
+          className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110 sm:h-56 md:h-64 lg:h-72" 
+          src={project.image} 
+          alt="" 
+        />
       </a>
       <div className="p-6 flex flex-col justify-between flex-grow">
         <div>
