@@ -10,7 +10,7 @@ export default function SocialLinks() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
-      className="flex flex-wrap gap-4 mt-6"
+      className="flex justify-center md:gap-4 gap-2 mt-4"
     >
       <Pill href="https://www.linkedin.com/in/santiagosalasbolaños">
         <LinkedInIcon className="size-4 md:size-6 fill-black dark:fill-white" />
