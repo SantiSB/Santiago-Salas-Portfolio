@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NetlifyIcon = (props) => (
   <svg
     {...props}

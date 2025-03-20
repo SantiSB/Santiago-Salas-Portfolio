@@ -1,18 +1,17 @@
 ---
 interface Tech {
   name: string;
-  icon: any;
 }
 
 export interface Props {
   title: string;
   description: string;
   date: string;
-  link?: string;
+  companyLink?: string;
   techStack: Tech[];
   achievements?: string[];
 }
-const { title, description, date, link, techStack, achievements = [] } = { ...Astro.props };
+const { title, description, date, companyLink, techStack, achievements = [] } = { ...Astro.props };
 import { motion } from "framer-motion";
 
 const cardVariants = {
@@ -44,14 +43,13 @@ const cardVariants = {
   <div class="flex flex-wrap gap-2 mt-4">
     {techStack.map((tech) => (
       <span class="flex items-center gap-2 px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 rounded-full text-xs">
-        <tech.icon class="w-4 h-4" />
         {tech.name}
       </span>
     ))}
   </div>
 
-  {link && (
-    <a href={link} class="inline-flex items-center mt-4 px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
+  {companyLink && (
+    <a href={companyLink} class="inline-flex items-center mt-4 px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
       Visit
       <svg class="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>

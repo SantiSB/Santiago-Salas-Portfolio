@@ -31,23 +31,16 @@ const links = [
 
 <script>
   const header = document.getElementById('header');
-  let lastScroll = 0;
 
   window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+    const currentScroll = window.scrollY;
     
     if (currentScroll > 50) {
       header?.classList.remove('py-5');
-      header?.classList.add('py-3');
-      header?.classList.add('bg-[#F2F2F2]/70');
-      header?.classList.add('dark:bg-[#0B0B0B]/70');
+      header?.classList.add('py-3', 'bg-[#F2F2F2]/70', 'dark:bg-[#0B0B0B]/70');
     } else {
-      header?.classList.remove('py-3');
+      header?.classList.remove('py-3', 'bg-[#F2F2F2]/70', 'dark:bg-[#0B0B0B]/70');
       header?.classList.add('py-5');
-      header?.classList.remove('bg-[#F2F2F2]/70');
-      header?.classList.remove('dark:bg-[#0B0B0B]/70');
     }
-    
-    lastScroll = currentScroll;
   });
 </script>

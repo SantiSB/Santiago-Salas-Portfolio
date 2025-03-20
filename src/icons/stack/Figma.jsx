@@ -1,5 +1,3 @@
-import React from 'react';
-
 const FigmaIcon = (props) => (
   <svg
     {...props}
