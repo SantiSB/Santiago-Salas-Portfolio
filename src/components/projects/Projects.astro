@@ -3,10 +3,10 @@ import ProjectCard from "./ProjectCard.astro";
 import { PROJECTS } from "../utils/Info.js";
 ---
 
-<div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 justify-items-center">
+<div class="grid grid-cols-1 gap-8 mt-8 sm:grid-cols-2 lg:grid-cols-3">
   {
     PROJECTS.map((project) => (
-      <article>
+      <article class="transform transition hover:scale-105">
         <ProjectCard project={project} />
       </article>
     ))

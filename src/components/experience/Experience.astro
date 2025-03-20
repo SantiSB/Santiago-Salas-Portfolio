@@ -1,15 +1,27 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
 import { EXPERIENCE } from "../utils/Info.js";
+import { motion } from "framer-motion";
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 ---
 
-<ol class="relative border-s border-gray-700 dark:border-gray-300 ml-3 mt-4">
-  {
-    EXPERIENCE.map((experience) => (
-      <li class="mb-10 ms-4">
-        <ExperienceItem {...experience} />
-      </li>
-    ))
-  }
-</ol>
+<motion.ol 
+  initial="hidden" 
+  animate="visible" 
+  className="relative border-l-4 border-blue-500 dark:border-blue-300 ml-3 mt-4 space-y-12"
+>
+  {EXPERIENCE.map((experience, index) => (
+    <motion.li 
+      key={index} 
+      variants={itemVariants} 
+      className="mb-10 ml-6 relative"
+    >
+      <div class="absolute w-5 h-5 bg-blue-500 rounded-full mt-1.5 -left-2.5 border-2 border-white dark:border-gray-800 shadow-lg"></div>
+      <ExperienceItem {...experience} />
+    </motion.li>
+  ))}
+</motion.ol>
