@@ -1,0 +1,166 @@
+---
+/**
+ * Single media surface for every card and detail view.
+ *
+ * Accepts, via the `media` prop:
+ *   { type: "image",   src, alt }
+ *   { type: "mockup",  src, alt }                  // same as image, semantic hint only
+ *   { type: "video",   src, poster, alt }          // muted, controls, never autoplays
+ *   { type: "gallery", items: [{ src, alt }] }     // horizontal scroll-snap, no autoplay
+ *   { type: "placeholder" } | null | undefined     // branded fallback
+ *
+ * The placeholder is intentional-looking, not an empty box, and is meant to be
+ * swapped for a real screenshot by editing the data file only.
+ */
+import { t, UI } from "../../i18n";
+
+interface Props {
+  media?: any;
+  name?: string;
+  lang: "en" | "es";
+  alt?: string;
+  class?: string;
+  transitionName?: string;
+  eager?: boolean;
+}
+
+const {
+  media,
+  name = "",
+  lang,
+  alt,
+  class: className = "",
+  transitionName,
+  eager = false,
+} = Astro.props;
+
+const type = media?.type ?? "placeholder";
+const label = alt || t(media?.alt, lang) || name;
+const loading = eager ? "eager" : "lazy";
+const style = transitionName
+  ? `view-transition-name:${transitionName}`
+  : undefined;
+
+const slug = (name || "media")
+  .toLowerCase()
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .replace(/[^a-z0-9]+/g, "-")
+  .replace(/(^-|-$)/g, "");
+
+const words = name.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+const monogram =
+  words.length === 0
+    ? "SS"
+    : words.length === 1
+      ? words[0].slice(0, 2).toUpperCase()
+      : (words[0][0] + words[1][0]).toUpperCase();
+
+const variant =
+  [...(name || "x")].reduce((acc, char) => acc + char.charCodeAt(0), 0) % 3;
+const patternId = `pattern-${slug}-${variant}`;
+---
+
+<div class={`relative overflow-hidden ${className}`} style={style}>
+  {
+    (type === "image" || type === "mockup") && (
+      <img
+        src={media.src}
+        alt={label}
+        loading={loading}
+        decoding="async"
+        class="h-full w-full object-cover"
+      />
+    )
+  }
+
+  {
+    type === "video" && (
+      <video
+        src={media.src}
+        poster={media.poster}
+        controls
+        muted
+        playsinline
+        preload="metadata"
+        aria-label={label}
+        class="h-full w-full object-cover"
+      />
+    )
+  }
+
+  {
+    type === "gallery" && (
+      <ul class="flex h-full w-full snap-x snap-mandatory gap-2 overflow-x-auto">
+        {media.items.map((item: any) => (
+          <li class="w-full shrink-0 snap-center">
+            <img
+              src={item.src}
+              alt={t(item.alt, lang) || label}
+              loading={loading}
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    type === "placeholder" && (
+      <div
+        role="img"
+        aria-label={label || name}
+        class="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-gray-50 to-blue-200 text-blue-900 dark:from-blue-950 dark:via-gray-950 dark:to-black dark:text-blue-400"
+      >
+        <svg aria-hidden="true" class="absolute inset-0 h-full w-full opacity-20">
+          <defs>
+            {variant === 0 && (
+              <pattern id={patternId} width="22" height="22" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1.4" fill="currentColor" />
+              </pattern>
+            )}
+            {variant === 1 && (
+              <pattern
+                id={patternId}
+                width="40"
+                height="40"
+                patternUnits="userSpaceOnUse"
+                patternTransform="rotate(45)"
+              >
+                <line x1="0" y1="0" x2="0" y2="40" stroke="currentColor" stroke-width="1.5" />
+              </pattern>
+            )}
+            {variant === 2 && (
+              <pattern id={patternId} width="48" height="48" patternUnits="userSpaceOnUse">
+                <path
+                  d="M0 48 L48 0 M-12 12 L12 -12 M36 60 L60 36"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  fill="none"
+                />
+              </pattern>
+            )}
+          </defs>
+          <rect width="100%" height="100%" fill={`url(#${patternId})`} />
+        </svg>
+
+        <span
+          aria-hidden="true"
+          class="absolute -right-10 -top-16 size-48 rounded-full border border-current opacity-20"
+        />
+
+        <div class="relative flex flex-col items-center gap-2 px-6 text-center">
+          <span class="flex size-12 items-center justify-center rounded-xl border border-blue-900/25 bg-white/60 text-base font-bold dark:border-blue-400/25 dark:bg-black/40">
+            {monogram}
+          </span>
+          <span class="text-xs font-semibold uppercase tracking-[0.2em]">{name}</span>
+          <span class="text-[10px] font-light uppercase tracking-widest opacity-70">
+            {t(UI.labels.placeholderNote, lang)}
+          </span>
+        </div>
+      </div>
+    )
+  }
+</div>

@@ -1,0 +1,87 @@
+---
+/**
+ * Top navigation strip for every view other than Home:
+ * a back control plus a discreet breadcrumb trail.
+ *
+ * The back control uses real in-app history when the visitor already navigated
+ * inside the site, and falls back to the parent route otherwise (direct entry,
+ * shared link, search result) — so no view is ever a dead end.
+ */
+import { t, UI } from "../../i18n";
+import { FOCUS } from "../../styles/ui";
+
+interface Props {
+  lang: "en" | "es";
+  /** Breadcrumb trail, root first. The last item is the current view. */
+  items: { label: any; href?: string }[];
+  /** Where the back control goes when there is no in-app history. */
+  backHref: string;
+  /** Named for assistive tech, e.g. "Back: Featured projects". */
+  backLabel: any;
+  class?: string;
+}
+
+const { lang, items, backHref, backLabel, class: className = "" } = Astro.props;
+const last = items.length - 1;
+---
+
+<div class={`flex items-center gap-3 ${className}`}>
+  <a
+    href={backHref}
+    data-back
+    aria-label={`${t(UI.nav.back, lang)}: ${t(backLabel, lang)}`}
+    class={`inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-gray-300 text-gray-700 transition-colors hover:border-blue-800 hover:text-blue-800 dark:border-gray-700 dark:text-gray-300 dark:hover:border-blue-400 dark:hover:text-blue-400 ${FOCUS}`}
+  >
+    <span aria-hidden="true" class="text-base leading-none">←</span>
+  </a>
+
+  <nav aria-label={t(UI.nav.breadcrumb, lang)} class="min-w-0">
+    <ol class="flex flex-wrap items-center text-xs text-gray-600 dark:text-gray-400">
+      {
+        items.map((item, index) => (
+          <li
+            class={`flex items-center ${index < last - 1 ? "hidden sm:flex" : "flex"}`}
+          >
+            {item.href ? (
+              <a
+                href={item.href}
+                class={`rounded underline-offset-4 transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-400 ${FOCUS}`}
+              >
+                {t(item.label, lang)}
+              </a>
+            ) : (
+              <span
+                aria-current="page"
+                class="max-w-[52vw] truncate font-medium text-gray-800 dark:text-gray-200 sm:max-w-none"
+              >
+                {t(item.label, lang)}
+              </span>
+            )}
+            {index < last && (
+              <span aria-hidden="true" class="px-1.5 text-gray-400 dark:text-gray-600">
+                /
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </nav>
+</div>
+
+<script>
+  // Tracks whether the visitor has navigated inside the site during this session
+  let inAppNavigations = 0;
+  document.addEventListener("astro:after-swap", () => {
+    inAppNavigations += 1;
+  });
+
+  document.addEventListener("click", (event) => {
+    const trigger = (event.target as HTMLElement)?.closest?.("[data-back]");
+    if (!trigger) return;
+    if (inAppNavigations === 0) return; // no history: follow the parent href
+
+    event.preventDefault();
+    window.history.back();
+  });
+</script>

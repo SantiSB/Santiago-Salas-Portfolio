@@ -1,46 +1,192 @@
 ---
 import ThemeIcon from "../icons/ThemeIcon.astro";
 import Logo from "./assets/Logo.astro";
+import { NAV, UI, t, route, otherLang } from "../i18n";
+import { FOCUS } from "../styles/ui";
 
-const links = [
-  { href: "#experience", text: "Experience" },
-  { href: "#projects", text: "Projects" },
-  { href: "#contact", text: "Contact" },
-];
+interface Props {
+  lang: "en" | "es";
+  active?: string;
+  altPath: string;
+}
+
+const { lang, active, altPath } = Astro.props;
+const target = otherLang(lang);
+
+const linkBase = `text-sm font-medium transition-colors ${FOCUS} rounded`;
+const linkIdle =
+  "text-gray-700 hover:text-blue-800 dark:text-gray-300 dark:hover:text-blue-400";
+const linkActive = "text-blue-900 font-semibold dark:text-blue-400";
 ---
 
 <header
-  class="fixed top-0 left-0 flex justify-between items-center py-5 w-full px-5 lg:px-32 xl:px-40 z-50 transition-all duration-300 ease-in-out"
   id="header"
+  transition:animate="none"
+  class="fixed left-0 top-0 z-50 flex w-full items-center justify-between bg-transparent px-4 py-2.5 backdrop-blur-md transition-[padding,background-color] duration-200 sm:px-6 sm:py-3 lg:px-12 xl:px-20"
 >
-  <a href="#"><Logo /></a>
-  <nav class="flex flex-row gap-x-4 text-sm sm:text-base">
+  <a
+    href={route("home", lang)}
+    aria-label={t(UI.nav.home, lang)}
+    class={`flex items-center rounded ${FOCUS}`}
+  >
+    <Logo />
+  </a>
+
+  <nav
+    aria-label={lang === "es" ? "Principal" : "Main"}
+    class="hidden items-center gap-x-5 md:flex lg:gap-x-7"
+  >
     {
-      links.map((link) => (
+      NAV.map((item) => (
         <a
-          class="hover:text-blue-600 dark:hover:text-blue-400 focus:text-blue-600 dark:focus:text-blue-400 transition font-semibold"
-          href={link.href}
+          href={route(item.id, lang)}
+          aria-current={active === item.id ? "page" : undefined}
+          class={`${linkBase} ${active === item.id ? linkActive : linkIdle}`}
         >
-          {link.text}
+          {t(item.label, lang)}
         </a>
       ))
     }
+    <button type="button" data-contact-open class={`${linkBase} ${linkIdle}`}>
+      {t(UI.nav.contact, lang)}
+    </button>
   </nav>
-  <ThemeIcon color="#ffffff" />
+
+  <div class="flex items-center gap-x-2 sm:gap-x-3">
+    <a
+      href={altPath}
+      hreflang={target}
+      aria-label={t(UI.nav.switchLang, lang)}
+      class={`rounded-full border border-blue-800/30 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-blue-900 transition-colors hover:border-blue-800 dark:border-blue-400/30 dark:text-blue-400 dark:hover:border-blue-400 ${FOCUS}`}
+    >
+      {target}
+    </a>
+
+    <ThemeIcon />
+
+    <button
+      id="menu-toggle"
+      type="button"
+      class={`rounded p-1 text-gray-800 dark:text-gray-200 md:hidden ${FOCUS}`}
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label={t(UI.nav.openMenu, lang)}
+    >
+      <svg
+        id="menu-icon-open"
+        class="size-6 fill-none stroke-current stroke-2"
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+      <svg
+        id="menu-icon-close"
+        class="hidden size-6 fill-none stroke-current stroke-2"
+        viewBox="0 0 24 24"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+  </div>
+
+  {/* Fully opaque so page content never competes with the menu */}
+  <nav
+    id="mobile-nav"
+    aria-label={lang === "es" ? "Principal (móvil)" : "Main (mobile)"}
+    class="absolute left-0 right-0 top-full hidden border-b border-gray-200 bg-gray-50 px-4 pb-3 pt-1 dark:border-gray-800 dark:bg-black md:!hidden"
+  >
+    <ul class="flex flex-col">
+      {
+        NAV.map((item) => (
+          <li>
+            <a
+              href={route(item.id, lang)}
+              aria-current={active === item.id ? "page" : undefined}
+              class={`block border-b border-gray-200 py-3 text-base transition-colors hover:text-blue-800 dark:border-gray-800 dark:hover:text-blue-400 ${FOCUS} ${
+                active === item.id
+                  ? "font-semibold text-blue-900 dark:text-blue-400"
+                  : "font-medium text-gray-800 dark:text-gray-200"
+              }`}
+            >
+              {t(item.label, lang)}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <button
+          type="button"
+          data-contact-open
+          class={`block w-full py-3 text-left text-base font-medium text-gray-800 transition-colors hover:text-blue-800 dark:text-gray-200 dark:hover:text-blue-400 ${FOCUS}`}
+        >
+          {t(UI.nav.contact, lang)}
+        </button>
+      </li>
+    </ul>
+  </nav>
 </header>
 
 <script>
-  const header = document.getElementById('header');
+  // This module runs once; the elements are replaced on every view transition,
+  // so global listeners are registered once and always re-query the DOM.
+  const setMenu = (open: boolean) => {
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.getElementById("mobile-nav");
+    nav?.classList.toggle("hidden", !open);
+    document.getElementById("menu-icon-open")?.classList.toggle("hidden", open);
+    document
+      .getElementById("menu-icon-close")
+      ?.classList.toggle("hidden", !open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    document.documentElement.style.overflow = open ? "hidden" : "";
+  };
 
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    
-    if (currentScroll > 50) {
-      header?.classList.remove('py-5');
-      header?.classList.add('py-3', 'bg-[#F2F2F2]/70', 'dark:bg-[#0B0B0B]/70');
-    } else {
-      header?.classList.remove('py-3', 'bg-[#F2F2F2]/70', 'dark:bg-[#0B0B0B]/70');
-      header?.classList.add('py-5');
-    }
+  const onScroll = () => {
+    const header = document.getElementById("header");
+    if (!header) return;
+    const scrolled = window.scrollY > 24;
+    // Only the background colour changes; the blur stays mounted so the animated
+    // canvas behind it never gets a compositing flash mid-scroll.
+    header.classList.toggle("bg-gray-50/85", scrolled);
+    header.classList.toggle("dark:bg-black/85", scrolled);
+    header.classList.toggle("bg-transparent", !scrolled);
+    header.classList.toggle("py-1.5", scrolled);
+    header.classList.toggle("py-2.5", !scrolled);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    const nav = document.getElementById("mobile-nav");
+    if (!nav || nav.classList.contains("hidden")) return;
+    setMenu(false);
+    document.getElementById("menu-toggle")?.focus();
+  });
+
+  function initHeader() {
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.getElementById("mobile-nav");
+
+    toggle?.addEventListener("click", () => {
+      setMenu(nav?.classList.contains("hidden") ?? false);
+    });
+
+    // Any menu entry closes the panel before the navigation starts
+    nav?.addEventListener("click", (event) => {
+      if ((event.target as HTMLElement).closest("a,button")) setMenu(false);
+    });
+
+    onScroll();
+  }
+
+  document.addEventListener("astro:page-load", initHeader);
+  // A scroll lock must never survive a navigation
+  document.addEventListener("astro:after-swap", () => {
+    document.documentElement.style.overflow = "";
   });
 </script>

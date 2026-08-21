@@ -1,0 +1,135 @@
+---
+/**
+ * Global contact panel: a native <dialog>, so Escape, focus trapping and focus
+ * restoration are handled by the browser. Opened from anywhere via
+ * `<button data-contact-open>`; bottom sheet on mobile, centered modal on desktop.
+ */
+import { t, UI } from "../../i18n";
+import { SITE } from "../../data/site";
+import { BODY, META, FOCUS, BTN_PRIMARY, BTN_SECONDARY } from "../../styles/ui";
+import Mail from "../../icons/Mail.astro";
+import Phone from "../../icons/Phone.astro";
+import LinkedIn from "../../icons/LinkedIn.astro";
+import GitHub from "../../icons/GitHub.astro";
+import DownloadCV from "../../icons/DownloadCV.astro";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+const row = `flex items-center gap-3 rounded-lg border border-gray-200 bg-white/70 px-3 py-2.5 text-sm text-gray-800 transition-colors hover:border-blue-800/40 dark:border-gray-800 dark:bg-gray-900/60 dark:text-gray-200 dark:hover:border-blue-400/40 ${FOCUS}`;
+---
+
+<dialog
+  id="contact-dialog"
+  aria-labelledby="contact-dialog-title"
+  class="fixed inset-x-0 bottom-0 top-auto m-0 max-h-[88svh] w-full overflow-y-auto rounded-t-2xl border-t border-gray-200 bg-gray-50 p-0 text-black dark:border-gray-800 dark:bg-[#0B0B0B] dark:text-white sm:inset-0 sm:m-auto sm:h-fit sm:max-w-md sm:rounded-2xl sm:border"
+>
+  <div class="p-5 sm:p-6">
+    <div class="flex items-start justify-between gap-4">
+      <h2
+        id="contact-dialog-title"
+        class="text-xl font-bold text-blue-900 dark:text-blue-400"
+      >
+        {t(UI.contact.title, lang)}
+      </h2>
+      <button
+        type="button"
+        data-contact-close
+        aria-label={t(UI.contact.close, lang)}
+        class={`-mr-1 -mt-1 rounded p-1 text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white ${FOCUS}`}
+      >
+        <svg
+          class="size-5 fill-none stroke-current stroke-2"
+          viewBox="0 0 24 24"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+    </div>
+
+    <p class={`mt-2 ${BODY}`}>{t(UI.contact.body, lang)}</p>
+    <p class={`mt-2 ${META}`}>{t(UI.contact.roles, lang)}</p>
+
+    <ul class="mt-5 space-y-2">
+      <li>
+        <a href={`mailto:${SITE.email}`} class={row}>
+          <Mail class="size-4 shrink-0 fill-none" />
+          <span class="min-w-0 truncate">{SITE.email}</span>
+        </a>
+      </li>
+      <li>
+        <a href={`tel:${SITE.phone}`} class={row}>
+          <Phone class="size-4 shrink-0 fill-none" />
+          <span>{SITE.phone}</span>
+        </a>
+      </li>
+      <li>
+        <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class={row}>
+          <LinkedIn class="size-4 shrink-0" />
+          <span>LinkedIn</span>
+        </a>
+      </li>
+      <li>
+        <a href={SITE.github} target="_blank" rel="noopener noreferrer" class={row}>
+          <GitHub class="size-4 shrink-0" />
+          <span>GitHub</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mt-5 flex flex-wrap gap-2">
+      <a href={`mailto:${SITE.email}`} class={BTN_PRIMARY}>
+        {t(UI.contact.email, lang)}
+      </a>
+      <a href={SITE.cv} download="Santiago_Salas_CV.pdf" class={BTN_SECONDARY}>
+        <DownloadCV class="size-4 fill-none" />
+        {t(UI.actions.downloadCv, lang)}
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  function initContactDialog() {
+    const dialog = document.getElementById(
+      "contact-dialog"
+    ) as HTMLDialogElement | null;
+    if (!dialog || dialog.dataset.ready === "true") return;
+    dialog.dataset.ready = "true";
+
+    const open = () => {
+      if (dialog.open) return;
+      dialog.showModal();
+      document.documentElement.style.overflow = "hidden";
+    };
+    const close = () => dialog.close();
+
+    document.querySelectorAll("[data-contact-open]").forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        open();
+      });
+    });
+
+    dialog
+      .querySelectorAll("[data-contact-close]")
+      .forEach((btn) => btn.addEventListener("click", close));
+
+    // Clicking the backdrop (the dialog element itself) closes the panel
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) close();
+    });
+
+    // Native <dialog> restores focus to the trigger; we only undo the scroll lock
+    dialog.addEventListener("close", () => {
+      document.documentElement.style.overflow = "";
+    });
+  }
+
+  document.addEventListener("astro:page-load", initContactDialog);
+</script>

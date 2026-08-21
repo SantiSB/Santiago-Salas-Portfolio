@@ -1,0 +1,12 @@
+---
+import { CHIP, CHIP_ACCENT } from "../../styles/ui";
+
+interface Props {
+  accent?: boolean;
+  class?: string;
+}
+
+const { accent = false, class: className = "" } = Astro.props;
+---
+
+<span class={`${accent ? CHIP_ACCENT : CHIP} ${className}`}><slot /></span>

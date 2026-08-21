@@ -1,0 +1,47 @@
+---
+import { t, UI, route } from "../../i18n";
+import { CAPABILITIES_SUMMARY } from "../../data/capabilities";
+import SectionHeading from "../ui/SectionHeading.astro";
+import ArrowLink from "../ui/ArrowLink.astro";
+import { CARD } from "../../styles/ui";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+---
+
+<section class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
+  <div class="reveal flex flex-wrap items-end justify-between gap-4">
+    <SectionHeading
+      lang={lang}
+      eyebrow={UI.home.skills.eyebrow}
+      title={UI.home.skills.title}
+    />
+    <ArrowLink href={route("skills", lang)}>
+      {t(UI.actions.allCapabilities, lang)}
+    </ArrowLink>
+  </div>
+
+  <dl class="reveal mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      CAPABILITIES_SUMMARY.map((group) => (
+        <div class={`p-4 ${CARD}`}>
+          <dt class="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-900 dark:text-blue-400">
+            {t(group.title, lang)}
+          </dt>
+          <dd class="mt-1.5 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            {group.items.map((item) => t(item, lang)).join(" · ")}
+            {group.total > group.items.length && (
+              <span class="text-gray-600 dark:text-gray-400">
+                {" "}
+                +{group.total - group.items.length}
+              </span>
+            )}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

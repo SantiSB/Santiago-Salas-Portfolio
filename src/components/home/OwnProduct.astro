@@ -1,0 +1,61 @@
+---
+import { t, UI, workUrl } from "../../i18n";
+import { OWN_PRODUCT } from "../../data/site";
+import { getWork } from "../../data/work";
+import Media from "../media/Media.astro";
+import Chip from "../ui/Chip.astro";
+import ArrowLink from "../ui/ArrowLink.astro";
+import { CARD, EYEBROW, BODY } from "../../styles/ui";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+const work = getWork(OWN_PRODUCT.slug);
+const href = workUrl(OWN_PRODUCT.slug, lang);
+---
+
+<section class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
+  <article
+    class={`reveal overflow-hidden ${CARD} border-blue-800/25 dark:border-blue-400/25`}
+  >
+    <div class="grid lg:grid-cols-2">
+      <Media
+        media={work?.media}
+        name={OWN_PRODUCT.title}
+        lang={lang}
+        transitionName={`media-${OWN_PRODUCT.slug}`}
+        class="aspect-[16/9] border-b border-gray-200 dark:border-gray-800 lg:order-2 lg:aspect-auto lg:min-h-[320px] lg:border-b-0 lg:border-l"
+      />
+
+      <div class="p-5 sm:p-7 lg:order-1 lg:flex lg:flex-col lg:justify-center">
+        <p class={EYEBROW}>{t(OWN_PRODUCT.label, lang)}</p>
+        <h2
+          class="mt-2 text-2xl font-bold text-blue-900 dark:text-blue-400 sm:text-3xl"
+          style="view-transition-name:title-passtix"
+        >
+          {OWN_PRODUCT.title}
+        </h2>
+        <p class="mt-2 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
+          {t(OWN_PRODUCT.message, lang)}
+        </p>
+        <p class={`mt-3 ${BODY}`}>{t(OWN_PRODUCT.body, lang)}</p>
+
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {
+            OWN_PRODUCT.highlights.map((item) => (
+              <li>
+                <Chip accent>{t(item, lang)}</Chip>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-5">
+          <ArrowLink href={href}>{t(UI.actions.seeStory, lang)}</ArrowLink>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

@@ -1,0 +1,37 @@
+---
+import { t } from "../../i18n";
+import { EYEBROW, BODY } from "../../styles/ui";
+
+interface Props {
+  lang: "en" | "es";
+  eyebrow?: any;
+  title?: any;
+  intro?: any;
+  as?: "h1" | "h2";
+  class?: string;
+}
+
+const {
+  lang,
+  eyebrow,
+  title,
+  intro,
+  as = "h2",
+  class: className = "",
+} = Astro.props;
+const Heading = as;
+---
+
+<div class={`max-w-3xl ${className}`}>
+  {eyebrow && <p class={EYEBROW}>{t(eyebrow, lang)}</p>}
+  {
+    title && (
+      <Heading
+        class={`mt-2 text-2xl font-bold text-blue-900 dark:text-blue-400 sm:text-3xl`}
+      >
+        {t(title, lang)}
+      </Heading>
+    )
+  }
+  {intro && <p class={`mt-3 ${BODY} sm:text-base`}>{t(intro, lang)}</p>}
+</div>

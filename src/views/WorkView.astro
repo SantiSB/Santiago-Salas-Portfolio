@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import PageNav from "../components/ui/PageNav.astro";
+import ArrowLink from "../components/ui/ArrowLink.astro";
+import WorkCard from "../components/work/WorkCard.astro";
+import ContactCta from "../components/contact/ContactCta.astro";
+import { WORK, OTHER_WORK } from "../data/work";
+import { SEO } from "../data/site";
+import { ROUTES, UI, t, otherLang, route } from "../i18n";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+const meta = SEO.work[lang];
+const featured = WORK.find((item) => item.featured);
+---
+
+<Layout
+  lang={lang}
+  active="work"
+  title={meta.title}
+  description={meta.description}
+  path={ROUTES.work[lang]}
+  altPath={ROUTES.work[otherLang(lang)]}
+>
+  <div class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
+    <PageNav
+      lang={lang}
+      class="reveal mb-6"
+      backHref={route("home", lang)}
+      backLabel={UI.nav.home}
+      items={[
+        { label: UI.nav.home, href: route("home", lang) },
+        { label: UI.workView.title },
+      ]}
+    />
+
+    <SectionHeading
+      lang={lang}
+      as="h1"
+      eyebrow={UI.workView.eyebrow}
+      title={UI.workView.title}
+      intro={UI.workView.intro}
+      class="reveal"
+    />
+
+    {/* Editorial grid: the own product leads, the rest follows */}
+    <div class="mt-8 grid gap-4 sm:gap-5 lg:grid-cols-3">
+      {
+        featured && (
+          <WorkCard
+            work={featured}
+            lang={lang}
+            variant="full"
+            layout="horizontal"
+            class="reveal lg:col-span-3"
+          />
+        )
+      }
+      {
+        OTHER_WORK.map((work) => (
+          <WorkCard work={work} lang={lang} variant="full" class="reveal" />
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-8">
+      <ArrowLink href={route("experience", lang)}>
+        {t(UI.workView.toExperience, lang)}
+      </ArrowLink>
+    </div>
+  </div>
+
+  <ContactCta lang={lang} />
+</Layout>

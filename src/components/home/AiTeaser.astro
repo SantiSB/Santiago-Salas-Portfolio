@@ -1,0 +1,33 @@
+---
+import { t, UI, route, workUrl } from "../../i18n";
+import SectionHeading from "../ui/SectionHeading.astro";
+import ArrowLink from "../ui/ArrowLink.astro";
+import AITracks from "../ai/AITracks.astro";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+---
+
+<section class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
+  <div class="reveal flex flex-wrap items-end justify-between gap-4">
+    <SectionHeading
+      lang={lang}
+      eyebrow={UI.home.ai.eyebrow}
+      title={UI.home.ai.title}
+    />
+    <ArrowLink href={route("ai", lang)}>{t(UI.actions.moreOnAi, lang)}</ArrowLink>
+  </div>
+
+  <div class="mt-6">
+    <AITracks lang={lang} variant="compact" />
+  </div>
+
+  <div class="reveal mt-4">
+    <ArrowLink href={workUrl("ai-project-management", lang)}>
+      {t(UI.actions.seeAiProject, lang)}
+    </ArrowLink>
+  </div>
+</section>

@@ -1,0 +1,195 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Media from "../components/media/Media.astro";
+import Chip from "../components/ui/Chip.astro";
+import ArrowLink from "../components/ui/ArrowLink.astro";
+import PageNav from "../components/ui/PageNav.astro";
+import ContactCta from "../components/contact/ContactCta.astro";
+import { WORK } from "../data/work";
+import { SITE } from "../data/site";
+import { UI, t, otherLang, workUrl, route } from "../i18n";
+import { CARD, EYEBROW, BODY, META, FOCUS } from "../styles/ui";
+
+interface Props {
+  lang: "en" | "es";
+  work: any;
+}
+
+const { lang, work } = Astro.props;
+const meta = work.seo[lang];
+const name = t(work.name, lang);
+
+const index = WORK.findIndex((item) => item.slug === work.slug);
+const previous = index > 0 ? WORK[index - 1] : null;
+const next = index < WORK.length - 1 ? WORK[index + 1] : null;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name,
+  headline: t(work.headline, lang),
+  description: meta.description,
+  url: new URL(workUrl(work.slug, lang), SITE.url).href,
+  inLanguage: lang,
+  author: { "@type": "Person", name: SITE.fullName, url: SITE.url },
+  keywords: work.tech.join(", "),
+};
+---
+
+<Layout
+  lang={lang}
+  active="work"
+  title={meta.title}
+  description={meta.description}
+  path={workUrl(work.slug, lang)}
+  altPath={workUrl(work.slug, otherLang(lang))}
+  jsonLd={jsonLd}
+>
+  <article class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
+    <PageNav
+      lang={lang}
+      backHref={route("work", lang)}
+      backLabel={UI.workView.title}
+      items={[
+        { label: UI.nav.home, href: route("home", lang) },
+        { label: UI.workView.title, href: route("work", lang) },
+        { label: name },
+      ]}
+    />
+
+    <header class="mt-6 max-w-3xl">
+      <p class={EYEBROW}>{t(work.kind, lang)}</p>
+      <h1
+        class="mt-2 text-3xl font-bold text-blue-900 dark:text-blue-400 sm:text-4xl"
+        style={`view-transition-name:title-${work.slug}`}
+      >
+        {name}
+      </h1>
+      <p class="mt-2 text-lg font-semibold text-gray-900 dark:text-white sm:text-xl">
+        {t(work.headline, lang)}
+      </p>
+      <p class={`mt-3 ${BODY} sm:text-base`}>{t(work.summary, lang)}</p>
+    </header>
+
+    <Media
+      media={work.media}
+      name={name}
+      lang={lang}
+      eager
+      transitionName={`media-${work.slug}`}
+      class={`mt-6 aspect-[16/9] w-full rounded-xl border border-gray-200 dark:border-gray-800 sm:aspect-[21/9]`}
+    />
+
+    <div class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-10">
+      <div class="min-w-0 space-y-7">
+        {
+          work.story.map((block: any) => (
+            <section class="reveal">
+              <h2 class={EYEBROW}>{t(block.label, lang)}</h2>
+              {block.body && (
+                <p class={`mt-2 ${BODY} sm:text-base`}>{t(block.body, lang)}</p>
+              )}
+              {block.items && (
+                <ul class="mt-2 space-y-2">
+                  {block.items.map((item: any) => (
+                    <li class={`relative pl-4 ${BODY} sm:text-base`}>
+                      <span
+                        aria-hidden="true"
+                        class="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-blue-700/60 dark:bg-blue-400/60"
+                      />
+                      {t(item, lang)}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))
+        }
+      </div>
+
+      <aside class="lg:sticky lg:top-24 lg:self-start">
+        <div class={`p-5 ${CARD}`}>
+          <dl class="space-y-3">
+            <div>
+              <dt class={EYEBROW}>{t(UI.labels.role, lang)}</dt>
+              <dd class="mt-0.5 text-sm text-gray-800 dark:text-gray-200">
+                {t(work.role, lang)}
+              </dd>
+            </div>
+            <div>
+              <dt class={EYEBROW}>{t(UI.labels.period, lang)}</dt>
+              <dd class="mt-0.5 text-sm text-gray-800 dark:text-gray-200">
+                {t(work.period, lang)}
+              </dd>
+            </div>
+            <div>
+              <dt class={EYEBROW}>{t(UI.labels.context, lang)}</dt>
+              <dd class={`mt-0.5 ${META}`}>{t(work.context, lang)}</dd>
+            </div>
+          </dl>
+
+          <p class={`mt-5 ${EYEBROW}`}>{t(UI.labels.stack, lang)}</p>
+          <ul class="mt-2 flex flex-wrap gap-1.5">
+            {
+              work.tech.map((tech: string) => (
+                <li>
+                  <Chip>{tech}</Chip>
+                </li>
+              ))
+            }
+          </ul>
+
+          {
+            work.links.length > 0 && (
+              <ul class="mt-5 space-y-2">
+                {work.links.map((item: any) => (
+                  <li>
+                    <ArrowLink href={item.href} external>
+                      {t(item.label, lang)}
+                    </ArrowLink>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+        </div>
+      </aside>
+    </div>
+
+    <nav
+      aria-label={lang === "es" ? "Otros proyectos" : "Other projects"}
+      class="mt-10 flex flex-col gap-3 border-t border-gray-200 pt-6 dark:border-gray-800 sm:flex-row sm:justify-between"
+    >
+      {
+        previous ? (
+          <a
+            href={workUrl(previous.slug, lang)}
+            class={`group flex flex-col rounded-lg p-3 transition-colors hover:bg-gray-100 dark:hover:bg-gray-900 ${FOCUS}`}
+          >
+            <span class={META}>← {t(UI.actions.previous, lang)}</span>
+            <span class="text-sm font-semibold text-gray-900 dark:text-white">
+              {t(previous.name, lang)}
+            </span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next && (
+          <a
+            href={workUrl(next.slug, lang)}
+            class={`group flex flex-col rounded-lg p-3 text-right transition-colors hover:bg-gray-100 dark:hover:bg-gray-900 ${FOCUS}`}
+          >
+            <span class={META}>{t(UI.actions.next, lang)} →</span>
+            <span class="text-sm font-semibold text-gray-900 dark:text-white">
+              {t(next.name, lang)}
+            </span>
+          </a>
+        )
+      }
+    </nav>
+  </article>
+
+  <ContactCta lang={lang} />
+</Layout>

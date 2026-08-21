@@ -1,0 +1,44 @@
+---
+import { t, UI, route } from "../../i18n";
+import { OTHER_WORK } from "../../data/work";
+import SectionHeading from "../ui/SectionHeading.astro";
+import ArrowLink from "../ui/ArrowLink.astro";
+import WorkCard from "../work/WorkCard.astro";
+import { META } from "../../styles/ui";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+---
+
+<section class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
+  <div class="reveal flex flex-wrap items-end justify-between gap-4">
+    <SectionHeading
+      lang={lang}
+      eyebrow={UI.home.work.eyebrow}
+      title={UI.home.work.title}
+    />
+    <ArrowLink href={route("work", lang)}>
+      {t(UI.actions.seeAllProjects, lang)}
+    </ArrowLink>
+  </div>
+
+  {/* Mobile: user-driven horizontal rail with snap. Never moves on its own. */}
+  <ul
+    class="rail reveal -mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0"
+  >
+    {
+      OTHER_WORK.slice(0, 3).map((work) => (
+        <li class="w-[82%] shrink-0 snap-start sm:w-[60%] md:w-auto">
+          <WorkCard work={work} lang={lang} />
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class={`mt-2 md:hidden ${META}`} aria-hidden="true">
+    {t(UI.home.work.hint, lang)}
+  </p>
+</section>

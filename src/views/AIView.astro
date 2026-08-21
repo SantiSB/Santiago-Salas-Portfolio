@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import PageNav from "../components/ui/PageNav.astro";
+import AITracks from "../components/ai/AITracks.astro";
+import ArrowLink from "../components/ui/ArrowLink.astro";
+import WorkCard from "../components/work/WorkCard.astro";
+import ContactCta from "../components/contact/ContactCta.astro";
+import { getWork } from "../data/work";
+import { SEO } from "../data/site";
+import { ROUTES, UI, t, otherLang, route } from "../i18n";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+const meta = SEO.ai[lang];
+const aiWork = getWork("ai-project-management");
+const linkedai = getWork("linkedai");
+---
+
+<Layout
+  lang={lang}
+  active="ai"
+  title={meta.title}
+  description={meta.description}
+  path={ROUTES.ai[lang]}
+  altPath={ROUTES.ai[otherLang(lang)]}
+>
+  <div class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
+    <PageNav
+      lang={lang}
+      class="reveal mb-6"
+      backHref={route("home", lang)}
+      backLabel={UI.nav.home}
+      items={[
+        { label: UI.nav.home, href: route("home", lang) },
+        { label: UI.aiView.eyebrow },
+      ]}
+    />
+
+    <SectionHeading
+      lang={lang}
+      as="h1"
+      eyebrow={UI.aiView.eyebrow}
+      title={UI.aiView.title}
+      intro={UI.aiView.intro}
+      class="reveal"
+    />
+
+    <div class="mt-8">
+      <AITracks lang={lang} />
+    </div>
+
+    <div class="mt-10 sm:mt-14">
+      <h2
+        class="reveal text-lg font-bold text-blue-900 dark:text-blue-400 sm:text-xl"
+      >
+        {t(UI.labels.featuredProjects, lang)}
+      </h2>
+      <div class="mt-4 grid gap-4 sm:gap-5 lg:grid-cols-2">
+        {aiWork && <WorkCard work={aiWork} lang={lang} variant="full" class="reveal" />}
+        {linkedai && <WorkCard work={linkedai} lang={lang} variant="full" class="reveal" />}
+      </div>
+    </div>
+
+    <div class="reveal mt-6">
+      <ArrowLink href={route("skills", lang)}>
+        {t(UI.actions.allCapabilities, lang)}
+      </ArrowLink>
+    </div>
+  </div>
+
+  <ContactCta lang={lang} />
+</Layout>

@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import PageNav from "../components/ui/PageNav.astro";
+import SkillsToolbox from "../components/skills/SkillsToolbox";
+import ContactCta from "../components/contact/ContactCta.astro";
+import { SEO } from "../data/site";
+import { ROUTES, UI, otherLang, route } from "../i18n";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+const meta = SEO.skills[lang];
+---
+
+<Layout
+  lang={lang}
+  title={meta.title}
+  description={meta.description}
+  path={ROUTES.skills[lang]}
+  altPath={ROUTES.skills[otherLang(lang)]}
+>
+  <div class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
+    <PageNav
+      lang={lang}
+      class="reveal mb-6"
+      backHref={route("home", lang)}
+      backLabel={UI.nav.home}
+      items={[
+        { label: UI.nav.home, href: route("home", lang) },
+        { label: UI.skillsView.title },
+      ]}
+    />
+
+    <SectionHeading
+      lang={lang}
+      as="h1"
+      eyebrow={UI.skillsView.eyebrow}
+      title={UI.skillsView.title}
+      intro={UI.skillsView.intro}
+      class="reveal mb-8"
+    />
+
+    <SkillsToolbox lang={lang} client:visible />
+  </div>
+
+  <ContactCta lang={lang} />
+</Layout>

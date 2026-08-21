@@ -1,0 +1,227 @@
+/**
+ * Central capability inventory. This is the single place where the full list of
+ * technologies lives — experience and work views only show a representative subset.
+ */
+export const CAPABILITIES = [
+  {
+    id: "frontend",
+    title: { en: "Frontend Engineering", es: "Frontend Engineering" },
+    items: [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Next.js",
+      "Angular",
+      "Redux / Redux Toolkit",
+      "TanStack Query",
+      "Vite",
+      "Astro",
+    ],
+  },
+  {
+    id: "ui",
+    title: { en: "UI & Design Systems", es: "UI y sistemas de diseño" },
+    items: [
+      "Material UI",
+      "Tailwind CSS",
+      "Storybook",
+      "Figma",
+      "HTML Canvas",
+      "Sass",
+      { en: "Responsive Design", es: "Responsive Design" },
+    ],
+  },
+  {
+    id: "architecture",
+    title: { en: "Architecture", es: "Arquitectura" },
+    items: [
+      { en: "Frontend Architecture", es: "Arquitectura frontend" },
+      { en: "Multi-repository Systems", es: "Sistemas multi-repositorio" },
+      "Bounded Contexts",
+      { en: "Hexagonal Architecture", es: "Arquitectura hexagonal" },
+      "REST APIs",
+      "GraphQL",
+      { en: "Private npm Packages", es: "Paquetes npm privados" },
+      "Docker Compose",
+      "Feature Flags",
+    ],
+  },
+  {
+    id: "quality",
+    title: { en: "Quality", es: "Calidad" },
+    items: [
+      "Jest",
+      "Vitest",
+      "React Testing Library",
+      "Karate",
+      { en: "Testing Strategy", es: "Estrategia de testing" },
+    ],
+  },
+  {
+    id: "ai",
+    title: { en: "Applied AI", es: "IA aplicada" },
+    items: [
+      "LLMs",
+      "Prompt Engineering",
+      "RAG",
+      "Embeddings",
+      { en: "Vector Databases", es: "Bases vectoriales" },
+      { en: "Semantic Search", es: "Búsqueda semántica" },
+      "Speech-to-text",
+      "Dify",
+      "n8n",
+    ],
+  },
+  {
+    id: "ai-dev",
+    title: {
+      en: "AI-Assisted Development",
+      es: "Desarrollo asistido por IA",
+    },
+    items: [
+      "Claude",
+      "Cursor",
+      { en: "Agents", es: "Agentes" },
+      "Skills",
+      { en: "Code Review", es: "Code Review" },
+      "Testing",
+      { en: "Technical Research", es: "Investigación técnica" },
+    ],
+  },
+  {
+    id: "product",
+    title: { en: "Product", es: "Producto" },
+    items: [
+      "Product Discovery",
+      { en: "MVP Validation", es: "Validación de MVP" },
+      { en: "Requirements", es: "Requerimientos" },
+      { en: "Prioritization", es: "Priorización" },
+      "UX",
+      { en: "Product Strategy", es: "Estrategia de producto" },
+    ],
+  },
+  {
+    // Collaboration shown as things actually done in a team, not adjectives
+    id: "collaboration",
+    title: {
+      en: "Collaboration & Leadership",
+      es: "Colaboración y liderazgo",
+    },
+    items: [
+      { en: "Stakeholder Alignment", es: "Alineación con stakeholders" },
+      { en: "Estimations", es: "Estimaciones" },
+      { en: "Refinements", es: "Refinamientos" },
+      { en: "Demos", es: "Demos" },
+      { en: "Technical Decisions", es: "Decisiones técnicas" },
+      { en: "Cross-functional Work", es: "Trabajo interdisciplinario" },
+      { en: "Client Communication", es: "Comunicación con clientes" },
+    ],
+  },
+];
+
+/** Two ways of working with AI. Kept short: the detail lives in the AI view. */
+export const AI_TRACKS = [
+  {
+    id: "with-ai",
+    title: {
+      en: "Building products with AI",
+      es: "Construir productos con IA",
+    },
+    body: {
+      en: "I turn AI capabilities into features people can actually use inside a digital product.",
+      es: "Convierto capacidades de inteligencia artificial en funcionalidades utilizables dentro de productos digitales.",
+    },
+    items: [
+      "LLMs",
+      "RAG",
+      "Embeddings",
+      { en: "Vector databases", es: "Bases vectoriales" },
+      { en: "Semantic search", es: "Búsqueda semántica" },
+      "Speech-to-text",
+      "Workflows",
+      "Dify",
+      "n8n",
+    ],
+  },
+  {
+    id: "using-ai",
+    title: {
+      en: "Building software using AI",
+      es: "Construir software usando IA",
+    },
+    body: {
+      en: "I use AI as an integral part of the engineering process, to increase speed, quality and analysis capacity.",
+      es: "Utilizo inteligencia artificial como parte integral del proceso de ingeniería para aumentar velocidad, calidad y capacidad de análisis.",
+    },
+    items: [
+      "Claude",
+      "Cursor",
+      { en: "Agents", es: "Agentes" },
+      "Skills",
+      "Code Review",
+      "Testing",
+      { en: "Technical research", es: "Investigación técnica" },
+    ],
+  },
+];
+
+/** Compact five-step flow: horizontal on desktop, vertical on mobile. */
+export const PROCESS = [
+  {
+    n: "01",
+    title: { en: "Understand", es: "Entender" },
+    keywords: [
+      { en: "Problem", es: "Problema" },
+      { en: "User", es: "Usuario" },
+      { en: "Goal", es: "Objetivo" },
+      { en: "Constraints", es: "Restricciones" },
+    ],
+  },
+  {
+    n: "02",
+    title: { en: "Validate", es: "Validar" },
+    keywords: [
+      { en: "Demo", es: "Demo" },
+      { en: "Prototype", es: "Prototipo" },
+      { en: "MVP", es: "MVP" },
+    ],
+  },
+  {
+    n: "03",
+    title: { en: "Design", es: "Diseñar" },
+    keywords: [
+      { en: "Flows", es: "Flujos" },
+      { en: "Requirements", es: "Requerimientos" },
+      { en: "Architecture", es: "Arquitectura" },
+      { en: "Decisions", es: "Decisiones" },
+    ],
+  },
+  {
+    n: "04",
+    title: { en: "Build", es: "Construir" },
+    keywords: [
+      "UX",
+      { en: "Quality", es: "Calidad" },
+      "Testing",
+      { en: "Performance", es: "Rendimiento" },
+    ],
+  },
+  {
+    n: "05",
+    title: { en: "Iterate", es: "Iterar" },
+    keywords: [
+      { en: "Users", es: "Usuarios" },
+      { en: "Metrics", es: "Métricas" },
+      { en: "Learning", es: "Aprendizaje" },
+      { en: "Evolution", es: "Evolución" },
+    ],
+  },
+];
+
+/** Condensed version for the home view: three items per group, no repetition. */
+export const CAPABILITIES_SUMMARY = CAPABILITIES.map((group) => ({
+  id: group.id,
+  title: group.title,
+  items: group.items.slice(0, 4),
+  total: group.items.length,
+}));

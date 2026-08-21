@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/hero/Hero.astro";
+import Pillars from "../components/home/Pillars.astro";
+import PathPreview from "../components/home/PathPreview.astro";
+import OwnProduct from "../components/home/OwnProduct.astro";
+import WorkRail from "../components/home/WorkRail.astro";
+import AiTeaser from "../components/home/AiTeaser.astro";
+import SkillsSummary from "../components/home/SkillsSummary.astro";
+import ContactCta from "../components/contact/ContactCta.astro";
+import { SEO } from "../data/site";
+import { ROUTES, otherLang } from "../i18n";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+const meta = SEO.home[lang];
+---
+
+<Layout
+  lang={lang}
+  active="home"
+  title={meta.title}
+  description={meta.description}
+  path={ROUTES.home[lang]}
+  altPath={ROUTES.home[otherLang(lang)]}
+>
+  <Hero lang={lang} />
+  <Pillars lang={lang} />
+  <PathPreview lang={lang} />
+  <OwnProduct lang={lang} />
+  <WorkRail lang={lang} />
+  <AiTeaser lang={lang} />
+  <SkillsSummary lang={lang} />
+  <ContactCta lang={lang} />
+</Layout>
