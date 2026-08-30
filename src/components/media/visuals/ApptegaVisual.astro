@@ -1,0 +1,155 @@
+---
+/**
+ * Apptega — conceptual visual, NOT a screenshot.
+ *
+ * The Apptega product is private, so nothing here reproduces its interface or
+ * its real architecture. It is a deliberately abstract picture of the *kind* of
+ * complexity described in the case study: an Angular legacy and new React
+ * modules coexisting on top of shared foundations.
+ *
+ * Drawn with the portfolio's own tokens (blue accent, gray neutrals) so it
+ * belongs to the site rather than looking like a corporate infographic.
+ */
+import VisualFrame from "./VisualFrame.astro";
+import { t } from "../../../i18n";
+
+interface Props {
+  lang: "en" | "es";
+  size?: "sm" | "lg";
+}
+
+const { lang, size = "sm" } = Astro.props;
+const big = size === "lg";
+
+const copy = {
+  label: {
+    en: "Conceptual diagram: an Angular legacy application evolving into independent React modules on top of a shared design system, feature flags and a dockerized multi-repository setup.",
+    es: "Diagrama conceptual: una aplicación heredada en Angular que evoluciona hacia módulos React independientes sobre un sistema de diseño compartido, feature flags y un entorno multi-repositorio dockerizado.",
+  },
+  legacy: { en: "Legacy", es: "Heredado" },
+  monolith: { en: "Monolithic app", es: "App monolítica" },
+  modules: { en: "Independent modules", es: "Módulos independientes" },
+  foundation: { en: "Shared foundations", es: "Bases compartidas" },
+};
+
+const foundations = [
+  { en: "Design System", es: "Design System" },
+  { en: "Feature Flags", es: "Feature Flags" },
+  { en: "Bounded Contexts", es: "Bounded Contexts" },
+  "Docker Compose",
+  { en: "Multi-repo", es: "Multi-repo" },
+];
+
+const moduleLabels = ["Module", "Module", "Module", "Module"];
+
+const micro = big ? "text-[11px]" : "text-[9px]";
+const small = big ? "text-sm" : "text-[11px]";
+---
+
+<VisualFrame size={size} label={t(copy.label, lang)}>
+  <div class={`flex items-stretch ${big ? "gap-4" : "gap-2 sm:gap-3"}`}>
+    {/* Legacy: dashed, muted, deliberately static */}
+    <div
+      class={`flex flex-1 flex-col justify-between rounded-lg border border-dashed border-gray-400/70 bg-white/50 text-gray-600 dark:border-gray-600/70 dark:bg-white/[0.03] dark:text-gray-400 ${
+        big ? "p-4" : "p-2.5"
+      }`}
+    >
+      <p class={`font-semibold uppercase tracking-[0.16em] ${micro}`}>
+        {t(copy.legacy, lang)}
+      </p>
+      <div class={`space-y-1.5 ${big ? "my-4" : "my-2"}`} aria-hidden="true">
+        {
+          [92, 74, 84, 62, 80].map((width) => (
+            <span
+              class={`block rounded-full bg-current opacity-30 ${big ? "h-1" : "h-[3px]"}`}
+              style={`width:${width}%`}
+            />
+          ))
+        }
+      </div>
+      <p class={`font-bold ${small}`}>Angular</p>
+      <p class={`${micro} opacity-70`}>{t(copy.monolith, lang)}</p>
+    </div>
+
+    {/* Transition: incremental, not a rewrite */}
+    <div class="flex shrink-0 flex-col items-center justify-center px-0.5" aria-hidden="true">
+      {
+        [0, 1, 2].map((row) => (
+          <svg
+            viewBox="0 0 24 8"
+            class={`${big ? "w-8" : "w-6"} fill-none stroke-current stroke-[1.5] text-blue-700/70 dark:text-blue-400/70`}
+            style={`opacity:${0.45 + row * 0.25}`}
+          >
+            <path d="M1 4h18m0 0-4-3m4 3-4 3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        ))
+      }
+    </div>
+
+    {/* Modern: solid, bounded, independently deployable */}
+    <div class="flex-[1.25]">
+      <p
+        class={`font-semibold uppercase tracking-[0.16em] text-blue-800 dark:text-blue-400 ${micro}`}
+      >
+        React
+      </p>
+      <div class={`grid grid-cols-2 ${big ? "mt-3 gap-3" : "mt-1.5 gap-1.5"}`}>
+        {
+          moduleLabels.map(() => (
+            <div
+              class={`rounded-md border border-blue-800/35 bg-white/70 dark:border-blue-400/35 dark:bg-blue-950/40 ${
+                big ? "p-3" : "p-1.5"
+              }`}
+            >
+              <span
+                aria-hidden="true"
+                class={`block w-2/3 rounded-full bg-blue-700/60 dark:bg-blue-400/60 ${
+                  big ? "h-1" : "h-[3px]"
+                }`}
+              />
+              <span
+                aria-hidden="true"
+                class={`block w-full rounded-full bg-gray-400/40 dark:bg-gray-600/50 ${
+                  big ? "mt-2 h-1" : "mt-1 h-[3px]"
+                }`}
+              />
+              <span
+                aria-hidden="true"
+                class="mt-1 block h-[3px] w-5/6 rounded-full bg-gray-400/40 dark:bg-gray-600/50"
+              />
+            </div>
+          ))
+        }
+      </div>
+      <p class={`text-gray-600 dark:text-gray-400 ${big ? "mt-3" : "mt-1.5"} ${micro}`}>
+        {t(copy.modules, lang)}
+      </p>
+    </div>
+  </div>
+
+  {/* The layer that keeps both halves consistent */}
+  <div
+    class={`border-t border-gray-300/70 dark:border-gray-700/70 ${
+      big ? "mt-6 pt-5" : "mt-3 pt-2.5"
+    }`}
+  >
+    <p
+      class={`font-semibold uppercase tracking-[0.16em] text-gray-600 dark:text-gray-400 ${micro}`}
+    >
+      {t(copy.foundation, lang)}
+    </p>
+    <ul class={`flex flex-wrap gap-1.5 ${big ? "mt-3" : "mt-1.5"}`}>
+      {
+        foundations.map((item) => (
+          <li
+            class={`rounded-full border border-gray-300 text-gray-700 dark:border-gray-700 dark:text-gray-300 ${
+              big ? "px-3 py-1" : "px-2 py-0.5"
+            } ${micro}`}
+          >
+            {t(item, lang)}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</VisualFrame>

@@ -3,16 +3,21 @@
  * Single media surface for every card and detail view.
  *
  * Accepts, via the `media` prop:
- *   { type: "image",   src, alt }
+ *   { type: "image",   src, alt, width, height }
  *   { type: "mockup",  src, alt }                  // same as image, semantic hint only
  *   { type: "video",   src, poster, alt }          // muted, controls, never autoplays
  *   { type: "gallery", items: [{ src, alt }] }     // horizontal scroll-snap, no autoplay
+ *   { type: "concept", key: "passtix" | "apptega" | "ai-flow" }
  *   { type: "placeholder" } | null | undefined     // branded fallback
  *
- * The placeholder is intentional-looking, not an empty box, and is meant to be
- * swapped for a real screenshot by editing the data file only.
+ * `concept` renders a hand-built HTML/SVG drawing from ./visuals — never a
+ * screenshot, never an invented interface. Real screenshots always win: swap
+ * the `media` object in the data file and nothing else changes.
  */
-import { t, UI } from "../../i18n";
+import { t } from "../../i18n";
+import PasstixVisual from "./visuals/PasstixVisual.astro";
+import ApptegaVisual from "./visuals/ApptegaVisual.astro";
+import AiFlowVisual from "./visuals/AiFlowVisual.astro";
 
 interface Props {
   media?: any;
@@ -22,6 +27,8 @@ interface Props {
   class?: string;
   transitionName?: string;
   eager?: boolean;
+  /** `lg` is for full-width surfaces (detail hero, home own-product block). */
+  size?: "sm" | "lg";
 }
 
 const {
@@ -32,6 +39,7 @@ const {
   class: className = "",
   transitionName,
   eager = false,
+  size = "sm",
 } = Astro.props;
 
 const type = media?.type ?? "placeholder";
@@ -69,10 +77,17 @@ const patternId = `pattern-${slug}-${variant}`;
         alt={label}
         loading={loading}
         decoding="async"
+        fetchpriority={eager ? "high" : undefined}
+        width={media.width ?? 1200}
+        height={media.height ?? 675}
         class="h-full w-full object-cover"
       />
     )
   }
+
+  {type === "concept" && media.key === "passtix" && <PasstixVisual lang={lang} size={size} />}
+  {type === "concept" && media.key === "apptega" && <ApptegaVisual lang={lang} size={size} />}
+  {type === "concept" && media.key === "ai-flow" && <AiFlowVisual lang={lang} size={size} />}
 
   {
     type === "video" && (
@@ -99,6 +114,8 @@ const patternId = `pattern-${slug}-${variant}`;
               alt={t(item.alt, lang) || label}
               loading={loading}
               decoding="async"
+              width={item.width ?? 1200}
+              height={item.height ?? 675}
               class="h-full w-full object-cover"
             />
           </li>
@@ -151,14 +168,13 @@ const patternId = `pattern-${slug}-${variant}`;
           class="absolute -right-10 -top-16 size-48 rounded-full border border-current opacity-20"
         />
 
-        <div class="relative flex flex-col items-center gap-2 px-6 text-center">
+        {/* Branded plate, not a "coming soon" sign: it stands on its own until
+            a real asset replaces the `media` entry in the data file. */}
+        <div class="relative flex flex-col items-center gap-2.5 px-6 text-center">
           <span class="flex size-12 items-center justify-center rounded-xl border border-blue-900/25 bg-white/60 text-base font-bold dark:border-blue-400/25 dark:bg-black/40">
             {monogram}
           </span>
           <span class="text-xs font-semibold uppercase tracking-[0.2em]">{name}</span>
-          <span class="text-[10px] font-light uppercase tracking-widest opacity-70">
-            {t(UI.labels.placeholderNote, lang)}
-          </span>
         </div>
       </div>
     )

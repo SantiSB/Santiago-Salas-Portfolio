@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import SmokeBackground from "../components/SmokeBackground.astro";
 import ContactDialog from "../components/contact/ContactDialog.astro";
 import { SITE } from "../data/site";
+import { t } from "../i18n";
 import "@fontsource-variable/onest";
 import "../styles/global.css";
 
@@ -19,6 +20,8 @@ interface Props {
   active?: string;
   ogImage?: string;
   jsonLd?: Record<string, any>;
+  /** Case studies are articles; everything else is a plain page. */
+  ogType?: "website" | "article";
 }
 
 const {
@@ -30,6 +33,7 @@ const {
   active,
   ogImage = SITE.ogImage,
   jsonLd,
+  ogType = "website",
 } = Astro.props;
 
 const canonical = new URL(path, SITE.url).href;
@@ -47,6 +51,7 @@ const person = {
   email: `mailto:${SITE.email}`,
   telephone: SITE.phone,
   jobTitle: SITE.role,
+  description: t(SITE.positioning, lang),
   address: { "@type": "PostalAddress", addressCountry: "CO" },
   sameAs: [SITE.linkedin, SITE.github],
   knowsLanguage: ["es", "en"],
@@ -55,6 +60,7 @@ const person = {
     "TypeScript",
     "Frontend Architecture",
     "Design Systems",
+    "Web Performance",
     "Testing",
     "Applied AI",
     "Product Engineering",
@@ -77,19 +83,39 @@ const person = {
     <link rel="alternate" hreflang="es" href={esHref} />
     <link rel="alternate" hreflang="x-default" href={enHref} />
 
-    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#f6f6f6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE.fullName} />
-    <meta property="og:locale" content={lang === "es" ? "es_CO" : "en_US"} />
+    <meta
+      property="og:locale"
+      content={lang === "es" ? "es_CO" : "en_US"}
+    />
+    <meta
+      property="og:locale:alternate"
+      content={lang === "es" ? "en_US" : "es_CO"}
+    />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={image} />
-    <meta property="og:image:alt" content={`${SITE.fullName} — ${SITE.role}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta
+      property="og:image:alt"
+      content={`${SITE.fullName} — ${t(SITE.positioning, lang)}`}
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
+    <meta
+      name="twitter:image:alt"
+      content={`${SITE.fullName} — ${t(SITE.positioning, lang)}`}
+    />
 
     <script
       type="application/ld+json"
@@ -107,19 +133,49 @@ const person = {
     }
 
     <script is:inline>
-      // Applied before first paint, and again after every view transition swap
+      // Applied before first paint, and again after every view transition swap.
+      // Light is the default for a first-time visitor; dark is a deliberate
+      // choice the visitor makes with the toggle, and it is remembered.
       (function () {
         const apply = () => {
-          const stored = localStorage.getItem("color-theme");
-          const dark =
-            stored === "dark" ||
-            (!stored &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          const dark = localStorage.getItem("color-theme") === "dark";
           document.documentElement.classList.toggle("dark", dark);
           document.documentElement.classList.add("js");
         };
         apply();
         document.addEventListener("astro:after-swap", apply);
+      })();
+    </script>
+
+    <script is:inline define:vars={{ lang, altPath }}>
+      // Language resolution, in order:
+      //   1. a preference the visitor saved by using the EN/ES switch
+      //   2. the browser language — `es*` gets Spanish, anything else English
+      // It only ever runs on a first, direct entry (no in-app history), and it
+      // never overrides a URL the visitor explicitly chose. Crawlers are
+      // unaffected: canonical and hreflang are already in the served HTML.
+      (function () {
+        if (window.__langChecked) return;
+        window.__langChecked = true;
+
+        let stored = null;
+        try {
+          stored = localStorage.getItem("preferred-lang");
+        } catch {
+          return;
+        }
+
+        // Anything other than a known language is ignored, so a stale or
+        // empty value can never send the visitor into a redirect loop.
+        const wanted =
+          stored === "en" || stored === "es"
+            ? stored
+            : (navigator.language || "en").toLowerCase().startsWith("es")
+              ? "es"
+              : "en";
+
+        if (wanted === lang || !altPath) return;
+        window.location.replace(altPath);
       })();
     </script>
 
@@ -166,14 +222,17 @@ const person = {
   </body>
 </html>
 <style is:global>
-  :root {
-    color-scheme: light dark;
-  }
+  /* The theme is driven by the `dark` class, never by the OS preference, so
+     color-scheme has to follow the class too (scrollbars, form controls). */
   html {
+    color-scheme: light;
     font-family: "Onest Variable", system-ui, sans-serif;
     background-color: #f6f6f6;
   }
   html.dark {
-    background-color: #000000;
+    color-scheme: dark;
+    /* Near-black rather than #000: keeps the card borders and the smoke layer
+       readable without changing the identity. */
+    background-color: #0a0a0a;
   }
 </style>

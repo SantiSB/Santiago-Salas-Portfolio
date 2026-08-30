@@ -1,0 +1,47 @@
+---
+/**
+ * Shared surface for the hand-built conceptual visuals.
+ *
+ * These are drawings, not screenshots: pure HTML/SVG using the existing colour
+ * tokens, so they read as part of the portfolio rather than as stock imagery.
+ * `size` exists because the same visual renders both inside a 360px card and
+ * across a 1120px detail hero, and Tailwind breakpoints track the viewport,
+ * not the container.
+ */
+interface Props {
+  size?: "sm" | "lg";
+  label: string;
+  class?: string;
+}
+
+const { size = "sm", label, class: className = "" } = Astro.props;
+
+// Several visuals can share a page, so the pattern id is derived from the label.
+// Identical labels produce identical patterns, so a collision is harmless.
+const gridId = `visual-grid-${Math.abs(
+  [...`${label}${size}`].reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) | 0, 7)
+).toString(36)}`;
+---
+
+<div
+  role="img"
+  aria-label={label}
+  data-size={size}
+  class={`relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50 text-blue-900 dark:from-gray-950 dark:via-black dark:to-blue-950/50 dark:text-blue-300 ${className}`}
+>
+  {/* Faint technical grid, same in both themes */}
+  <svg aria-hidden="true" class="absolute inset-0 h-full w-full opacity-[0.13]">
+    <defs>
+      <pattern id={gridId} width="26" height="26" patternUnits="userSpaceOnUse">
+        <path d="M26 0H0V26" fill="none" stroke="currentColor" stroke-width="1"></path>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill={`url(#${gridId})`}></rect>
+  </svg>
+
+  <div
+    class={`relative w-full ${size === "lg" ? "max-w-[760px] p-6 sm:p-8" : "max-w-[460px] p-4"}`}
+  >
+    <slot />
+  </div>
+</div>

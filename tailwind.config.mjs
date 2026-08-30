@@ -6,7 +6,9 @@ export default {
     extend: {
       colors: {
         white: "#ffffff",
-        black: "#000000",
+        // Near-black instead of pure #000: same identity, less crushed contrast
+        // against the cards and the smoke layer in dark mode.
+        black: "#0a0a0a",
         gray: {
           50: "#f6f6f6",
           100: "#e7e7e7",

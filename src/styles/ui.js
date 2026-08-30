@@ -11,20 +11,29 @@ export const CARD =
 
 export const CARD_INTERACTIVE = `${CARD} transition-colors duration-200 hover:border-blue-800/50 dark:hover:border-blue-400/50`;
 
+/**
+ * Type scale. Only three sizes carry meaning:
+ *   BODY  15px (16px from `sm`)  — anything meant to be read
+ *   META  13px                   — dates, counters, secondary metadata
+ *   EYEBROW 11px                 — uppercase micro-labels only
+ * Nothing below 11px: 10px text was unreadable on real screens.
+ */
 export const EYEBROW =
   "text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-400";
 
 export const TITLE = "font-bold text-gray-900 dark:text-white";
 
-export const BODY = "text-sm leading-relaxed text-gray-700 dark:text-gray-300";
+export const BODY =
+  "text-[15px] leading-[1.6] text-gray-700 dark:text-gray-300 sm:text-base";
 
-export const META = "text-xs text-gray-600 dark:text-gray-400";
+// gray-400 on a dark card sits under 4.5:1; gray-300 keeps small text legible.
+export const META = "text-[13px] leading-normal text-gray-600 dark:text-gray-300";
 
 export const CHIP =
-  "inline-flex items-center rounded-full border border-gray-200 bg-gray-100/80 px-2.5 py-1 text-[11px] font-medium leading-none text-gray-700 dark:border-gray-800 dark:bg-gray-800/60 dark:text-gray-200";
+  "inline-flex items-center rounded-full border border-gray-200 bg-gray-100/80 px-2.5 py-1 text-xs font-medium leading-none text-gray-700 dark:border-gray-800 dark:bg-gray-800/60 dark:text-gray-200";
 
 export const CHIP_ACCENT =
-  "inline-flex items-center rounded-full border border-blue-800/25 bg-blue-50 px-2.5 py-1 text-[11px] font-semibold leading-none text-blue-900 dark:border-blue-400/25 dark:bg-blue-950/60 dark:text-blue-300";
+  "inline-flex items-center rounded-full border border-blue-800/25 bg-blue-50 px-2.5 py-1 text-xs font-semibold leading-none text-blue-900 dark:border-blue-400/25 dark:bg-blue-950/60 dark:text-blue-300";
 
 export const BTN =
   "inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 sm:px-5";

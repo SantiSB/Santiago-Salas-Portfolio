@@ -56,13 +56,14 @@ const linkActive = "text-blue-900 font-semibold dark:text-blue-400";
     <a
       href={altPath}
       hreflang={target}
+      data-lang-switch={target}
       aria-label={t(UI.nav.switchLang, lang)}
       class={`rounded-full border border-blue-800/30 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-blue-900 transition-colors hover:border-blue-800 dark:border-blue-400/30 dark:text-blue-400 dark:hover:border-blue-400 ${FOCUS}`}
     >
       {target}
     </a>
 
-    <ThemeIcon />
+    <ThemeIcon lang={lang} />
 
     <button
       id="menu-toggle"
@@ -159,6 +160,19 @@ const linkActive = "text-blue-900 font-semibold dark:text-blue-400";
   };
 
   window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Using the EN/ES switch is an explicit choice, so it is remembered.
+  // The detection script in Layout only ever acts when nothing is stored.
+  document.addEventListener("click", (event) => {
+    const target = (event.target as HTMLElement)?.closest?.("[data-lang-switch]");
+    const value = target?.getAttribute("data-lang-switch");
+    if (value !== "en" && value !== "es") return;
+    try {
+      localStorage.setItem("preferred-lang", value);
+    } catch {
+      /* private mode: the switch still works, it just isn't remembered */
+    }
+  });
 
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;

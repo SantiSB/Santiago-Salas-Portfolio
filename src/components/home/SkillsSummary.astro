@@ -3,7 +3,7 @@ import { t, UI, route } from "../../i18n";
 import { CAPABILITIES_SUMMARY } from "../../data/capabilities";
 import SectionHeading from "../ui/SectionHeading.astro";
 import ArrowLink from "../ui/ArrowLink.astro";
-import { CARD } from "../../styles/ui";
+import { CARD, BODY } from "../../styles/ui";
 
 interface Props {
   lang: "en" | "es";
@@ -31,14 +31,8 @@ const { lang } = Astro.props;
           <dt class="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-900 dark:text-blue-400">
             {t(group.title, lang)}
           </dt>
-          <dd class="mt-1.5 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+          <dd class={`mt-1.5 ${BODY}`}>
             {group.items.map((item) => t(item, lang)).join(" · ")}
-            {group.total > group.items.length && (
-              <span class="text-gray-600 dark:text-gray-400">
-                {" "}
-                +{group.total - group.items.length}
-              </span>
-            )}
           </dd>
         </div>
       ))

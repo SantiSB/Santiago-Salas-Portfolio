@@ -32,7 +32,8 @@ const jsonLd = {
   url: new URL(workUrl(work.slug, lang), SITE.url).href,
   inLanguage: lang,
   author: { "@type": "Person", name: SITE.fullName, url: SITE.url },
-  keywords: work.tech.join(", "),
+  // tech entries can be bilingual objects, so they have to be resolved first
+  keywords: work.tech.map((tech: any) => t(tech, lang)).join(", "),
 };
 ---
 
@@ -44,6 +45,7 @@ const jsonLd = {
   path={workUrl(work.slug, lang)}
   altPath={workUrl(work.slug, otherLang(lang))}
   jsonLd={jsonLd}
+  ogType="article"
 >
   <article class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
     <PageNav
@@ -68,7 +70,7 @@ const jsonLd = {
       <p class="mt-2 text-lg font-semibold text-gray-900 dark:text-white sm:text-xl">
         {t(work.headline, lang)}
       </p>
-      <p class={`mt-3 ${BODY} sm:text-base`}>{t(work.summary, lang)}</p>
+      <p class={`mt-3 ${BODY}`}>{t(work.summary, lang)}</p>
     </header>
 
     <Media
@@ -76,6 +78,7 @@ const jsonLd = {
       name={name}
       lang={lang}
       eager
+      size="lg"
       transitionName={`media-${work.slug}`}
       class={`mt-6 aspect-[16/9] w-full rounded-xl border border-gray-200 dark:border-gray-800 sm:aspect-[21/9]`}
     />
@@ -84,15 +87,19 @@ const jsonLd = {
       <div class="min-w-0 space-y-7">
         {
           work.story.map((block: any) => (
-            <section class="reveal">
-              <h2 class={EYEBROW}>{t(block.label, lang)}</h2>
+            <section class="reveal border-t border-gray-200 pt-5 first:border-0 first:pt-0 dark:border-gray-800">
+              <h2
+                class={`${EYEBROW} text-blue-800 dark:text-blue-400`}
+              >
+                {t(block.label, lang)}
+              </h2>
               {block.body && (
-                <p class={`mt-2 ${BODY} sm:text-base`}>{t(block.body, lang)}</p>
+                <p class={`mt-2 ${BODY}`}>{t(block.body, lang)}</p>
               )}
               {block.items && (
                 <ul class="mt-2 space-y-2">
                   {block.items.map((item: any) => (
-                    <li class={`relative pl-4 ${BODY} sm:text-base`}>
+                    <li class={`relative pl-4 ${BODY}`}>
                       <span
                         aria-hidden="true"
                         class="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-blue-700/60 dark:bg-blue-400/60"
@@ -112,13 +119,13 @@ const jsonLd = {
           <dl class="space-y-3">
             <div>
               <dt class={EYEBROW}>{t(UI.labels.role, lang)}</dt>
-              <dd class="mt-0.5 text-sm text-gray-800 dark:text-gray-200">
+              <dd class="mt-0.5 text-[15px] text-gray-800 dark:text-gray-200">
                 {t(work.role, lang)}
               </dd>
             </div>
             <div>
               <dt class={EYEBROW}>{t(UI.labels.period, lang)}</dt>
-              <dd class="mt-0.5 text-sm text-gray-800 dark:text-gray-200">
+              <dd class="mt-0.5 text-[15px] text-gray-800 dark:text-gray-200">
                 {t(work.period, lang)}
               </dd>
             </div>
@@ -131,9 +138,9 @@ const jsonLd = {
           <p class={`mt-5 ${EYEBROW}`}>{t(UI.labels.stack, lang)}</p>
           <ul class="mt-2 flex flex-wrap gap-1.5">
             {
-              work.tech.map((tech: string) => (
+              work.tech.map((tech: any) => (
                 <li>
-                  <Chip>{tech}</Chip>
+                  <Chip>{t(tech, lang)}</Chip>
                 </li>
               ))
             }
@@ -167,7 +174,7 @@ const jsonLd = {
             class={`group flex flex-col rounded-lg p-3 transition-colors hover:bg-gray-100 dark:hover:bg-gray-900 ${FOCUS}`}
           >
             <span class={META}>← {t(UI.actions.previous, lang)}</span>
-            <span class="text-sm font-semibold text-gray-900 dark:text-white">
+            <span class="text-[15px] font-semibold text-gray-900 dark:text-white">
               {t(previous.name, lang)}
             </span>
           </a>
@@ -182,7 +189,7 @@ const jsonLd = {
             class={`group flex flex-col rounded-lg p-3 text-right transition-colors hover:bg-gray-100 dark:hover:bg-gray-900 ${FOCUS}`}
           >
             <span class={META}>{t(UI.actions.next, lang)} →</span>
-            <span class="text-sm font-semibold text-gray-900 dark:text-white">
+            <span class="text-[15px] font-semibold text-gray-900 dark:text-white">
               {t(next.name, lang)}
             </span>
           </a>

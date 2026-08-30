@@ -78,8 +78,9 @@ export const UI = {
     previous: { en: "Previous", es: "Anterior" },
   },
   labels: {
-    level: { en: "Level", es: "Nivel" },
-    unlocked: { en: "Unlocked", es: "Desbloqueado" },
+    // "Stage" rather than "Level": career progression, not a game.
+    level: { en: "Stage", es: "Etapa" },
+    unlocked: { en: "Key technologies", es: "Tecnologías clave" },
     ownProduct: { en: "Own product", es: "Creación propia" },
     featuredProjects: {
       en: "Featured projects",
@@ -89,27 +90,19 @@ export const UI = {
     period: { en: "Period", es: "Periodo" },
     stack: { en: "Technologies", es: "Tecnologías" },
     context: { en: "Context", es: "Contexto" },
-    placeholderNote: {
-      en: "Screenshot coming soon",
-      es: "Captura próximamente",
-    },
   },
   home: {
     pillars: {
       title: {
-        en: "Frontend is the specialty. Product and AI are the leverage.",
-        es: "Frontend es la especialidad. Producto e IA son la palanca.",
+        en: "Frontend is my specialty. Product and AI expand my impact.",
+        es: "Frontend es mi especialidad. Producto e IA amplían mi impacto.",
       },
     },
     path: {
-      eyebrow: { en: "The path", es: "El recorrido" },
       title: {
-        en: "Four levels, one direction",
-        es: "Cuatro niveles, una dirección",
+        en: "Four stages, one direction",
+        es: "Cuatro etapas, una dirección",
       },
-    },
-    own: {
-      eyebrow: { en: "Own product", es: "Creación propia" },
     },
     work: {
       eyebrow: { en: "Selection", es: "Selección" },
@@ -135,8 +128,8 @@ export const UI = {
     eyebrow: { en: "Career", es: "Trayectoria" },
     title: { en: "Work experience", es: "Experiencia laboral" },
     intro: {
-      en: "Four stages, each one unlocking a new layer: from building interfaces from scratch to modernizing enterprise systems.",
-      es: "Cuatro etapas, cada una desbloqueando una capa nueva: desde construir interfaces desde cero hasta modernizar sistemas enterprise.",
+      en: "Four stages, one direction: from building interfaces from scratch to modernizing enterprise systems that can't stop running.",
+      es: "Cuatro etapas, una dirección: desde construir interfaces desde cero hasta modernizar sistemas enterprise que no pueden detenerse.",
     },
     bridge: {
       en: "From building products for others to creating my own",
@@ -192,12 +185,12 @@ export const UI = {
       es: "Disponible para el siguiente reto",
     },
     body: {
-      en: "I'm looking for teams where I can contribute from my experience in frontend, product and applied AI, helping build and evolve high-impact digital products.",
-      es: "Busco equipos donde pueda aportar desde mi experiencia en frontend, producto e IA aplicada, participando en la construcción y evolución de productos digitales de alto impacto.",
+      en: "I'm looking for remote opportunities where I can contribute through frontend engineering, product thinking and applied AI, while taking ownership of complex digital products.",
+      es: "Busco oportunidades remotas donde pueda aportar desde el frontend engineering, el pensamiento de producto y la IA aplicada, asumiendo la responsabilidad de productos digitales complejos.",
     },
     roles: {
-      en: "Open to remote roles as Senior Frontend Engineer, Frontend Lead, Technical Lead or Product Engineer.",
-      es: "Abierto a oportunidades remotas como Senior Frontend Engineer, Frontend Lead, Technical Lead o Product Engineer.",
+      en: "Frontend Developer · Frontend Engineer · Product Engineering",
+      es: "Frontend Developer · Frontend Engineer · Product Engineering",
     },
     email: { en: "Email", es: "Correo" },
     phone: { en: "Phone", es: "Teléfono" },

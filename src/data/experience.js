@@ -136,8 +136,8 @@ export const EXPERIENCE = [
     role: { en: "Senior Frontend Developer", es: "Senior Frontend Developer" },
     dates: { en: "May 2025 – Aug 2026", es: "Mayo 2025 – Agosto 2026" },
     concept: {
-      en: "Consolidating as a senior engineer inside a complex enterprise ecosystem.",
-      es: "Me consolidé como senior trabajando en un ecosistema enterprise complejo.",
+      en: "Evolving a platform that thousands of customers use every day, without stopping it.",
+      es: "Evolucionar una plataforma que miles de clientes usan cada día, sin detenerla.",
     },
     bullets: [
       {

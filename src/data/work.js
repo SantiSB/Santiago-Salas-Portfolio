@@ -7,8 +7,12 @@
  *   { type: "image",   src, alt }
  *   { type: "video",   src, poster, alt }          // short, muted, no autoplay loop by default
  *   { type: "gallery", items: [{ src, alt }] }
- *   { type: "placeholder" }                        // branded fallback, no invented screenshots
- * Replacing a placeholder with a real screenshot is a one-line change here.
+ *   { type: "concept", key }                       // own HTML/SVG drawing, never a fake UI
+ *   { type: "placeholder" }                        // branded fallback
+ *
+ * Order of preference: a real, publishable screenshot first; a conceptual
+ * drawing second; the neutral placeholder last. Promoting a project to a real
+ * screenshot is a one-line change here — no component touches required.
  */
 export const WORK = [
   {
@@ -30,7 +34,9 @@ export const WORK = [
       en: "Own product · Ticketing & event operations",
       es: "Creación propia · Ticketing y operación de eventos",
     },
-    media: { type: "placeholder" },
+    // TODO(asset): replace with a real PASSTIX screenshot when one is available.
+    // See the header comment in components/media/visuals/PasstixVisual.astro.
+    media: { type: "concept", key: "passtix" },
     tech: [
       "React",
       "TypeScript",
@@ -169,7 +175,8 @@ export const WORK = [
       en: "Enterprise SaaS · Cybersecurity & compliance",
       es: "SaaS enterprise · Ciberseguridad y cumplimiento",
     },
-    media: { type: "placeholder" },
+    // The product is private: a conceptual drawing on purpose, never a capture.
+    media: { type: "concept", key: "apptega" },
     tech: [
       "React",
       "TypeScript",
@@ -274,8 +281,8 @@ export const WORK = [
             es: "Cómo evolucionar software que ya está en producción, sin detener el producto y sin una reescritura total.",
           },
           {
-            en: "Seniority here meant balancing speed, maintainability and continuity — rarely all three at once.",
-            es: "Ser senior aquí significó equilibrar velocidad, mantenibilidad y continuidad; rara vez las tres a la vez.",
+            en: "Every decision here is a trade-off between speed, maintainability and continuity — you rarely get all three.",
+            es: "Cada decisión aquí es un equilibrio entre velocidad, mantenibilidad y continuidad; rara vez se consiguen las tres.",
           },
         ],
       },
@@ -311,7 +318,8 @@ export const WORK = [
       en: "Internal innovation MVP · Applied AI",
       es: "MVP interno de innovación · IA aplicada",
     },
-    media: { type: "placeholder" },
+    // Internal MVP: the pipeline is the story, so the pipeline is the image.
+    media: { type: "concept", key: "ai-flow" },
     tech: [
       "LLMs",
       "Prompt engineering",

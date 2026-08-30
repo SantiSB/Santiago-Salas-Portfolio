@@ -20,7 +20,7 @@ const secondaryLink = `text-sm font-medium text-gray-700 underline-offset-4 tran
     href={SITE.linkedin}
     target="_blank"
     rel="noopener noreferrer"
-    class={`rise inline-flex items-center gap-2 rounded-full border border-blue-800/25 bg-white/70 px-3 py-1 text-xs font-medium text-blue-900 backdrop-blur-sm transition-colors hover:border-blue-800/60 dark:border-blue-400/25 dark:bg-blue-950/40 dark:text-blue-300 dark:hover:border-blue-400/60 ${FOCUS}`}
+    class={`rise inline-flex items-center gap-2 rounded-full border border-blue-800/25 bg-white/70 px-3 py-1 text-[13px] font-medium text-blue-900 backdrop-blur-sm transition-colors hover:border-blue-800/60 dark:border-blue-400/25 dark:bg-blue-950/40 dark:text-blue-300 dark:hover:border-blue-400/60 ${FOCUS}`}
   >
     <span aria-hidden="true" class="size-1.5 rounded-full bg-emerald-500"></span>
     {t(HERO.badge, lang)}
@@ -35,9 +35,9 @@ const secondaryLink = `text-sm font-medium text-gray-700 underline-offset-4 tran
       <span class="wave" role="img" aria-label={lang === "es" ? "Saludo" : "Waving hand"}>👋</span>
     </span>
     <span
-      class="text-xs font-semibold uppercase tracking-[0.2em] text-gray-700 dark:text-gray-300 sm:text-sm"
+      class="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-700 dark:text-gray-300 sm:text-[13px]"
     >
-      {SITE.role}
+      {t(SITE.positioning, lang)}
     </span>
   </h1>
 
@@ -47,7 +47,7 @@ const secondaryLink = `text-sm font-medium text-gray-700 underline-offset-4 tran
   >
     {
       HERO.stack.map((item) => (
-        <li class="rounded-full border border-blue-800/20 bg-white/60 px-3 py-1 text-[11px] font-medium text-blue-900 backdrop-blur-sm dark:border-blue-400/20 dark:bg-blue-950/30 dark:text-blue-300 sm:text-xs">
+        <li class="rounded-full border border-blue-800/20 bg-white/60 px-3 py-1 text-xs font-medium text-blue-900 backdrop-blur-sm dark:border-blue-400/20 dark:bg-blue-950/30 dark:text-blue-300 sm:text-[13px]">
           {t(item, lang)}
         </li>
       ))
@@ -62,7 +62,7 @@ const secondaryLink = `text-sm font-medium text-gray-700 underline-offset-4 tran
   </p>
 
   <p
-    class="rise max-w-[62ch] text-pretty text-sm leading-relaxed text-gray-700 dark:text-gray-300 sm:text-base"
+    class="rise max-w-[62ch] text-pretty text-[15px] leading-[1.6] text-gray-700 dark:text-gray-300 sm:text-[17px]"
     style="animation-delay:240ms"
   >
     {t(HERO.support, lang)}

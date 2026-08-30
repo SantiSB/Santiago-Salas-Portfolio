@@ -28,12 +28,12 @@ const { lang } = Astro.props;
           class="mt-1 size-3.5 shrink-0 rounded-full border-2 border-blue-800 bg-gray-50 dark:border-blue-400 dark:bg-black sm:mb-3"
         />
         <div class="min-w-0 sm:pr-2">
-          <p class="text-sm font-bold text-gray-900 dark:text-white">
+          <p class="text-[15px] font-bold text-gray-900 dark:text-white">
             <span class="text-blue-800 dark:text-blue-400">{step.n}</span>
             <span class="mx-1 text-gray-400 dark:text-gray-600">—</span>
             {t(step.title, lang)}
           </p>
-          <p class="mt-1 text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+          <p class="mt-1 text-[13px] leading-relaxed text-gray-600 dark:text-gray-300">
             {step.keywords.map((keyword) => t(keyword, lang)).join(" · ")}
           </p>
         </div>

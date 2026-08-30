@@ -1,0 +1,136 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ *  PASSTIX — TEMPORARY VISUAL. REPLACE WITH A REAL SCREENSHOT.
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ *  There is no PASSTIX screenshot in the repository yet, and nothing here
+ *  invents one: this is a typographic product plate (wordmark + the three
+ *  narrative stages + an abstract QR mark), never a fake interface.
+ *
+ *  TO REPLACE — a one-line change, no component edits:
+ *    1. Drop the image in  public/images/projects/passtix.webp
+ *       (best candidates: event dashboard, checkout, QR ticket, door scanner)
+ *    2. In src/data/work.js, on the `passtix` entry, swap
+ *         media: { type: "concept", key: "passtix" }
+ *       for
+ *         media: {
+ *           type: "image",
+ *           src: "/images/projects/passtix.webp",
+ *           alt: { en: "PASSTIX …", es: "PASSTIX …" },
+ *         }
+ *       For two or three shots use { type: "gallery", items: [...] } instead —
+ *       Media.astro already supports it.
+ *  Nothing else references this file once the data says `image`.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+import VisualFrame from "./VisualFrame.astro";
+import { t } from "../../../i18n";
+
+interface Props {
+  lang: "en" | "es";
+  size?: "sm" | "lg";
+}
+
+const { lang, size = "sm" } = Astro.props;
+const big = size === "lg";
+
+const copy = {
+  label: {
+    en: "PASSTIX — ticketing and event operations product: from problem and validation to MVP, and from MVP to live operation.",
+    es: "PASSTIX — producto de ticketing y operación de eventos: del problema y la validación al MVP, y del MVP a la operación real.",
+  },
+  kind: { en: "Own product", es: "Creación propia" },
+  domain: { en: "Ticketing & event operations", es: "Ticketing y operación de eventos" },
+};
+
+const stages = [
+  { en: "Problem", es: "Problema" },
+  { en: "Validation", es: "Validación" },
+  { en: "MVP", es: "MVP" },
+  { en: "Live operation", es: "Operación real" },
+];
+
+/** Fixed bit matrix: a QR-like mark, deterministic across builds. */
+const MARK = [
+  [1, 1, 1, 0, 1, 0, 1],
+  [1, 0, 1, 0, 0, 1, 1],
+  [1, 1, 1, 0, 1, 1, 0],
+  [0, 0, 0, 1, 0, 0, 1],
+  [1, 1, 0, 1, 1, 1, 1],
+  [1, 0, 1, 0, 1, 0, 0],
+  [1, 1, 1, 1, 0, 1, 1],
+];
+
+const micro = big ? "text-[11px]" : "text-[9px]";
+---
+
+<VisualFrame size={size} label={t(copy.label, lang)}>
+  <div class="flex items-center justify-between gap-4">
+    <div class="min-w-0">
+      <p
+        class={`font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-400 ${micro}`}
+      >
+        {t(copy.kind, lang)}
+      </p>
+      <p
+        class={`mt-2 font-bold uppercase leading-none tracking-[0.14em] text-blue-900 dark:text-blue-300 ${
+          big ? "text-5xl sm:text-6xl" : "text-2xl"
+        }`}
+      >
+        PASSTIX
+      </p>
+      <p class={`mt-2.5 text-gray-600 dark:text-gray-400 ${micro}`}>
+        {t(copy.domain, lang)}
+      </p>
+    </div>
+
+    {/* Abstract mark, not a real code: nothing here is scannable */}
+    <div
+      aria-hidden="true"
+      class={`grid shrink-0 grid-cols-7 gap-[2px] rounded-lg border border-blue-800/25 bg-white/70 p-2 dark:border-blue-400/25 dark:bg-blue-950/50 ${
+        big ? "w-32 gap-[3px] p-3" : "w-16"
+      }`}
+    >
+      {
+        MARK.flat().map((bit) => (
+          <span
+            class={`aspect-square rounded-[1px] ${
+              bit
+                ? "bg-blue-900 dark:bg-blue-300"
+                : "bg-blue-900/10 dark:bg-blue-300/10"
+            }`}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  {/* The narrative of the case study, as a progression */}
+  <ol
+    class={`flex items-center gap-1.5 border-t border-gray-300/70 dark:border-gray-700/70 ${
+      big ? "mt-8 gap-2.5 pt-6" : "mt-4 pt-3"
+    }`}
+  >
+    {
+      stages.map((stage, index) => (
+        <>
+          <li
+            class={`whitespace-nowrap rounded-full font-semibold ${micro} ${
+              big ? "px-3 py-1" : "px-2 py-0.5"
+            } ${
+              index === stages.length - 1
+                ? "bg-blue-900 text-white dark:bg-blue-300 dark:text-black"
+                : "border border-gray-300 text-gray-700 dark:border-gray-700 dark:text-gray-300"
+            }`}
+          >
+            {t(stage, lang)}
+          </li>
+          {index < stages.length - 1 && (
+            <li aria-hidden="true" class="flex-1 border-t border-dashed border-gray-400/60 dark:border-gray-600/60" />
+          )}
+        </>
+      ))
+    }
+  </ol>
+</VisualFrame>

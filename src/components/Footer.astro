@@ -11,7 +11,7 @@ interface Props {
 const { lang } = Astro.props;
 const year = new Date().getFullYear();
 
-const link = `text-sm text-gray-700 underline-offset-4 transition-colors hover:text-blue-800 hover:underline dark:text-gray-300 dark:hover:text-blue-400 ${FOCUS} rounded`;
+const link = `text-[15px] text-gray-700 underline-offset-4 transition-colors hover:text-blue-800 hover:underline dark:text-gray-300 dark:hover:text-blue-400 ${FOCUS} rounded`;
 ---
 
 <footer class="mt-auto border-t border-gray-200 dark:border-gray-800">
@@ -24,7 +24,8 @@ const link = `text-sm text-gray-700 underline-offset-4 transition-colors hover:t
         <span class="text-base font-semibold text-blue-900 dark:text-blue-400"
           >{SITE.fullName}</span
         >
-        <span class={META}>{SITE.role} · {t(SITE.location, lang)}</span>
+        <span class={META}>{t(SITE.positioning, lang)}</span>
+        <span class={META}>{t(SITE.location, lang)}</span>
       </span>
     </a>
 

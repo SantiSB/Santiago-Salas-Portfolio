@@ -14,11 +14,8 @@ const { lang } = Astro.props;
 
 <section class="mx-auto w-full max-w-[1120px] px-4 py-8 sm:py-12">
   <div class="reveal flex flex-wrap items-end justify-between gap-4">
-    <SectionHeading
-      lang={lang}
-      eyebrow={UI.home.path.eyebrow}
-      title={UI.home.path.title}
-    />
+    {/* No eyebrow here: the title already names the section. */}
+    <SectionHeading lang={lang} title={UI.home.path.title} />
     <ArrowLink href={route("experience", lang)}>
       {t(UI.actions.seeFullPath, lang)}
     </ArrowLink>
@@ -37,7 +34,7 @@ const { lang } = Astro.props;
             <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-600 dark:text-gray-400">
               {t(item.levelLabel, lang)}
             </p>
-            <p class="mt-0.5 truncate text-sm font-semibold text-gray-900 dark:text-white">
+            <p class="mt-0.5 truncate text-[15px] font-semibold text-gray-900 dark:text-white">
               {item.company}
             </p>
             <p class={`mt-0.5 ${META}`}>{t(item.dates, lang)}</p>

@@ -16,6 +16,7 @@ export const CAPABILITIES = [
       "TanStack Query",
       "Vite",
       "Astro",
+      { en: "Web Performance", es: "Rendimiento web" },
     ],
   },
   {
@@ -55,6 +56,8 @@ export const CAPABILITIES = [
       "React Testing Library",
       "Karate",
       { en: "Testing Strategy", es: "Estrategia de testing" },
+      { en: "Accessibility", es: "Accesibilidad" },
+      { en: "Code Review", es: "Code Review" },
     ],
   },
   {
@@ -85,6 +88,7 @@ export const CAPABILITIES = [
       "Skills",
       { en: "Code Review", es: "Code Review" },
       "Testing",
+      { en: "Documentation", es: "Documentación" },
       { en: "Technical Research", es: "Investigación técnica" },
     ],
   },
@@ -101,20 +105,21 @@ export const CAPABILITIES = [
     ],
   },
   {
-    // Collaboration shown as things actually done in a team, not adjectives
+    // Things actually done in a team, never adjectives ("team player", etc.)
     id: "collaboration",
     title: {
-      en: "Collaboration & Leadership",
-      es: "Colaboración y liderazgo",
+      en: "Collaboration & Ownership",
+      es: "Colaboración y ownership",
     },
     items: [
       { en: "Stakeholder Alignment", es: "Alineación con stakeholders" },
-      { en: "Estimations", es: "Estimaciones" },
-      { en: "Refinements", es: "Refinamientos" },
-      { en: "Demos", es: "Demos" },
+      { en: "Estimation", es: "Estimación" },
+      { en: "Refinement", es: "Refinamiento" },
       { en: "Technical Decisions", es: "Decisiones técnicas" },
+      { en: "Demos", es: "Demos" },
       { en: "Cross-functional Work", es: "Trabajo interdisciplinario" },
       { en: "Client Communication", es: "Comunicación con clientes" },
+      { en: "End-to-end Delivery", es: "Entrega de punta a punta" },
     ],
   },
 ];
@@ -146,12 +151,12 @@ export const AI_TRACKS = [
   {
     id: "using-ai",
     title: {
-      en: "Building software using AI",
-      es: "Construir software usando IA",
+      en: "Engineering with AI",
+      es: "Ingeniería con IA",
     },
     body: {
-      en: "I use AI as an integral part of the engineering process, to increase speed, quality and analysis capacity.",
-      es: "Utilizo inteligencia artificial como parte integral del proceso de ingeniería para aumentar velocidad, calidad y capacidad de análisis.",
+      en: "I use AI throughout the engineering process to improve research, implementation, testing, documentation and problem-solving.",
+      es: "Uso IA a lo largo de todo el proceso de ingeniería para mejorar investigación, implementación, testing, documentación y resolución de problemas.",
     },
     items: [
       "Claude",
@@ -218,10 +223,13 @@ export const PROCESS = [
   },
 ];
 
-/** Condensed version for the home view: three items per group, no repetition. */
+/**
+ * Condensed version for the home view: four representative items per group.
+ * No "+N" counter on purpose — a number that isn't clickable reads like a
+ * hidden list. The full inventory is one link away, in the capabilities view.
+ */
 export const CAPABILITIES_SUMMARY = CAPABILITIES.map((group) => ({
   id: group.id,
   title: group.title,
   items: group.items.slice(0, 4),
-  total: group.items.length,
 }));

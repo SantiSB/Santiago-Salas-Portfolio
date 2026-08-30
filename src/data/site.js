@@ -1,12 +1,23 @@
 export const SITE = {
-  url: "https://santiagosalas.com",
+  // Canonical host. Everything absolute (canonical, hreflang, OG, JSON-LD,
+  // sitemap) is derived from this single value, so it must match the variant
+  // the CDN actually serves.
+  url: "https://www.santiagosalas.com",
   name: "Santiago Salas",
   fullName: "Santiago Salas Bolaños",
-  role: "Senior Frontend & Product Engineer",
+  /** Plain job title. Used for structured data and image alt text. */
+  role: "Frontend Developer",
+  /** Public positioning line: hero, footer, share previews. */
+  positioning: {
+    en: "Frontend Developer · Product Engineering · Applied AI",
+    es: "Frontend Developer · Product Engineering · IA aplicada",
+  },
   location: { en: "Colombia · Remote", es: "Colombia · Remoto" },
   email: "a.santiago.salas.b@gmail.com",
   phone: "+573113582648",
-  linkedin: "https://www.linkedin.com/in/santiagosalasbolaños",
+  // Percent-encoded: the raw "ñ" is invalid in a URL and structured-data
+  // consumers don't normalise it the way a browser address bar does.
+  linkedin: "https://www.linkedin.com/in/santiagosalasbola%C3%B1os",
   github: "https://www.github.com/SantiSB/SantiSB",
   cv: "/files/CV.pdf",
   ogImage: "/images/mockups/portfolio.webp",
@@ -17,69 +28,69 @@ export const SEO = {
   home: {
     en: {
       title:
-        "Santiago Salas — Senior Frontend & Product Engineer | React · TypeScript · Applied AI",
+        "Santiago Salas | Frontend Developer · React, TypeScript & Applied AI",
       description:
-        "Senior Frontend Engineer specialized in React and TypeScript. I build digital products end to end: frontend architecture, design systems, enterprise platforms and applied AI. Remote from Colombia.",
+        "Frontend Developer specialized in React and TypeScript, building digital products, modernizing complex platforms and applying AI to product and engineering.",
     },
     es: {
       title:
-        "Santiago Salas — Senior Frontend & Product Engineer | React · TypeScript · IA aplicada",
+        "Santiago Salas | Frontend Developer · React, TypeScript e IA aplicada",
       description:
-        "Ingeniero frontend senior especializado en React y TypeScript. Construyo productos digitales de principio a fin: arquitectura frontend, sistemas de diseño, plataformas enterprise e inteligencia artificial aplicada. Remoto desde Colombia.",
+        "Frontend Developer especializado en React y TypeScript: construyo productos digitales, modernizo plataformas complejas y aplico IA al producto y a la ingeniería.",
     },
   },
   experience: {
     en: {
-      title: "Work experience — Santiago Salas | Senior Frontend Engineer",
+      title: "Work experience — Santiago Salas | Frontend Developer",
       description:
         "Four stages of a frontend career: public data viewers at the Colombian Geological Survey, computer vision tooling at LinkedAI, applied AI at 57Blocks and enterprise modernization at Apptega.",
     },
     es: {
-      title: "Experiencia laboral — Santiago Salas | Senior Frontend Engineer",
+      title: "Experiencia laboral — Santiago Salas | Frontend Developer",
       description:
         "Cuatro etapas de una carrera frontend: visores públicos en el Servicio Geológico Colombiano, herramientas de visión computacional en LinkedAI, IA aplicada en 57Blocks y modernización enterprise en Apptega.",
     },
   },
   work: {
     en: {
-      title: "Featured projects — Santiago Salas | React & Product Engineer",
+      title: "Featured projects — Santiago Salas | Frontend Developer",
       description:
-        "Four problems explored in depth: PASSTIX, an own ticketing product; Apptega, enterprise modernization; an internal AI project assistant; and specialized annotation tooling at LinkedAI.",
+        "Five problems explored in depth: PASSTIX, an own ticketing product; Apptega, enterprise modernization; an internal AI project assistant; annotation tooling at LinkedAI; and public geoscientific viewers.",
     },
     es: {
-      title: "Proyectos destacados — Santiago Salas | React & Product Engineer",
+      title: "Proyectos destacados — Santiago Salas | Frontend Developer",
       description:
-        "Cuatro problemas explorados en profundidad: PASSTIX, un producto propio de ticketing; Apptega, modernización enterprise; un asistente interno de proyectos con IA; y herramientas de anotación en LinkedAI.",
+        "Cinco problemas explorados en profundidad: PASSTIX, un producto propio de ticketing; Apptega, modernización enterprise; un asistente interno de proyectos con IA; herramientas de anotación en LinkedAI; y visores geocientíficos públicos.",
     },
   },
   ai: {
     en: {
-      title: "Applied AI — Santiago Salas | AI Product Engineer (frontend-first)",
+      title: "Applied AI — Santiago Salas | Frontend Developer",
       description:
-        "Two ways of working with AI: building products with LLMs, RAG, embeddings, vector databases and semantic search — and building software using AI agents and tooling.",
+        "Two ways of working with AI: building products with LLMs, RAG, embeddings, vector databases and semantic search — and engineering with AI across research, implementation, testing and documentation.",
     },
     es: {
-      title: "IA aplicada — Santiago Salas | AI Product Engineer (frontend-first)",
+      title: "IA aplicada — Santiago Salas | Frontend Developer",
       description:
-        "Dos formas de trabajar con IA: construir productos con LLMs, RAG, embeddings, bases vectoriales y búsqueda semántica, y construir software usando agentes y herramientas de IA.",
+        "Dos formas de trabajar con IA: construir productos con LLMs, RAG, embeddings, bases vectoriales y búsqueda semántica, y usar IA en investigación, implementación, testing y documentación.",
     },
   },
   skills: {
     en: {
       title: "Capabilities — Santiago Salas | React, TypeScript, Architecture",
       description:
-        "Full capability inventory: frontend engineering, UI and design systems, architecture, quality and testing, applied AI, AI-assisted development and product.",
+        "Full capability inventory: frontend engineering, UI and design systems, architecture, quality and performance, applied AI, AI-assisted development, product and ownership.",
     },
     es: {
       title: "Capacidades — Santiago Salas | React, TypeScript, Arquitectura",
       description:
-        "Inventario completo de capacidades: frontend engineering, UI y sistemas de diseño, arquitectura, calidad y testing, IA aplicada, desarrollo asistido por IA y producto.",
+        "Inventario completo de capacidades: frontend engineering, UI y sistemas de diseño, arquitectura, calidad y rendimiento, IA aplicada, desarrollo asistido por IA, producto y ownership.",
     },
   },
 };
 
 export const HERO = {
-  badge: { en: "Available to work", es: "Disponible para trabajar" },
+  badge: { en: "Open to opportunities", es: "Abierto a oportunidades" },
   stack: [
     "React",
     "TypeScript",
@@ -91,8 +102,8 @@ export const HERO = {
     es: "Convierto problemas complejos en productos digitales que las personas usan y por los que están dispuestas a pagar.",
   },
   support: {
-    en: "Frontend engineer specialized in React and TypeScript, building products from scratch, modernizing complex platforms and integrating AI into both products and the development process.",
-    es: "Ingeniero frontend especializado en React y TypeScript: construyo productos desde cero, modernizo plataformas complejas e integro IA tanto en el producto como en el proceso de desarrollo.",
+    en: "React and TypeScript are my craft. I build products from scratch, modernize platforms that can't stop running, and bring AI into both the product and the way it gets built.",
+    es: "React y TypeScript son mi oficio. Construyo productos desde cero, modernizo plataformas que no pueden detenerse y llevo la IA tanto al producto como a la forma de construirlo.",
   },
 };
 
@@ -110,16 +121,16 @@ export const PILLARS = [
     key: "ai",
     title: { en: "Applied AI", es: "IA aplicada" },
     body: {
-      en: "I integrate AI into products, and use it to speed up research, development, testing and problem solving.",
-      es: "Integro IA en productos y la utilizo para acelerar investigación, desarrollo, testing y resolución de problemas.",
+      en: "I integrate AI into products and use it to accelerate research, development, testing and problem-solving.",
+      es: "Integro IA en los productos y la uso para acelerar investigación, desarrollo, testing y resolución de problemas.",
     },
   },
   {
     key: "product",
     title: { en: "Product", es: "Producto" },
     body: {
-      en: "I move from problem and validation to MVP, prioritization, building and iterating with users.",
-      es: "Me muevo desde el problema y la validación hasta el MVP, priorización, construcción e iteración con usuarios.",
+      en: "I move from problem discovery and validation to MVP definition, prioritization, delivery and iteration with users.",
+      es: "Voy desde el descubrimiento y la validación del problema hasta la definición del MVP, la priorización, la entrega y la iteración con usuarios.",
     },
   },
 ];

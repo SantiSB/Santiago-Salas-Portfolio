@@ -1,0 +1,137 @@
+---
+/**
+ * AI Project Management Assistant — conceptual visual, NOT a screenshot.
+ *
+ * Draws the pipeline described in the case study so the project reads as an AI
+ * system rather than "an app that calls ChatGPT": real inputs on top, a
+ * retrieval + LLM core in the middle, operational artefacts at the bottom.
+ * Every term here already exists in the project's `tech` list and story.
+ */
+import VisualFrame from "./VisualFrame.astro";
+import { t } from "../../../i18n";
+
+interface Props {
+  lang: "en" | "es";
+  size?: "sm" | "lg";
+}
+
+const { lang, size = "sm" } = Astro.props;
+const big = size === "lg";
+
+const copy = {
+  label: {
+    en: "Conceptual diagram: meetings, audio and documents are turned into project knowledge through speech-to-text, embeddings and retrieval, and an LLM produces documentation, planning and tasks.",
+    es: "Diagrama conceptual: reuniones, audio y documentos se convierten en conocimiento de proyecto mediante speech-to-text, embeddings y recuperación, y un LLM produce documentación, planificación y tareas.",
+  },
+  sources: { en: "Sources", es: "Fuentes" },
+  core: { en: "Project knowledge", es: "Conocimiento del proyecto" },
+  outputs: { en: "Outputs", es: "Salidas" },
+  human: { en: "The system proposes · the team decides", es: "El sistema propone · el equipo decide" },
+};
+
+const sources = [
+  { en: "Meetings", es: "Reuniones" },
+  { en: "Audio", es: "Audio" },
+  { en: "Documents", es: "Documentos" },
+];
+
+const core = [
+  "Speech-to-text",
+  "Embeddings",
+  { en: "Semantic search", es: "Búsqueda semántica" },
+  "RAG",
+];
+
+const outputs = [
+  { en: "Documentation", es: "Documentación" },
+  { en: "Planning", es: "Planificación" },
+  { en: "Tasks", es: "Tareas" },
+];
+
+const micro = big ? "text-[11px]" : "text-[9px]";
+const small = big ? "text-sm" : "text-[11px]";
+const node = `flex-1 rounded-md border text-center leading-tight ${
+  big ? "px-3 py-3" : "px-2 py-1.5"
+}`;
+const gap = big ? "gap-3" : "gap-1.5";
+const arrowPad = big ? "py-4" : "py-1.5";
+---
+
+<VisualFrame size={size} label={t(copy.label, lang)}>
+  <p class={`font-semibold uppercase tracking-[0.16em] text-gray-600 dark:text-gray-400 ${micro}`}>
+    {t(copy.sources, lang)}
+  </p>
+  <ul class={`flex ${big ? "mt-3" : "mt-1.5"} ${gap}`}>
+    {
+      sources.map((item) => (
+        <li
+          class={`${node} border-gray-300 bg-white/60 text-gray-800 dark:border-gray-700 dark:bg-white/[0.04] dark:text-gray-200 ${micro}`}
+        >
+          {t(item, lang)}
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class={`flex justify-center ${arrowPad}`} aria-hidden="true">
+    <svg
+      viewBox="0 0 40 16"
+      class={`${big ? "h-5" : "h-3.5"} fill-none stroke-current stroke-[1.5] text-blue-700/60 dark:text-blue-400/60`}
+    >
+      <path d="M8 1v6q0 4 4 4h16q4 0 4-4V1" />
+      <path d="M20 8v6m0 0-3-3m3 3 3-3" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+
+  {/* The core: retrieval first, generation second */}
+  <div
+    class={`rounded-lg border border-blue-800/35 bg-white/70 dark:border-blue-400/35 dark:bg-blue-950/40 ${big ? "p-5" : "p-2.5"}`}
+  >
+    <div class="flex items-baseline justify-between gap-2">
+      <p class={`font-bold text-blue-900 dark:text-blue-300 ${small}`}>LLM + {t(copy.core, lang)}</p>
+      <span
+        class={`shrink-0 font-semibold uppercase tracking-[0.16em] text-blue-800/70 dark:text-blue-400/70 ${micro}`}
+      >
+        Dify · n8n
+      </span>
+    </div>
+    <ul class={`flex flex-wrap ${big ? "mt-3 gap-1.5" : "mt-1.5 gap-1"}`}>
+      {
+        core.map((item) => (
+          <li
+            class={`rounded-full bg-blue-100/70 font-medium text-blue-900 dark:bg-blue-400/15 dark:text-blue-200 ${big ? "px-3 py-1" : "px-2 py-0.5"} ${micro}`}
+          >
+            {t(item, lang)}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class={`flex justify-center ${arrowPad}`} aria-hidden="true">
+    <svg
+      viewBox="0 0 40 16"
+      class={`${big ? "h-5" : "h-3.5"} fill-none stroke-current stroke-[1.5] text-blue-700/60 dark:text-blue-400/60`}
+    >
+      <path d="M20 1v4" stroke-linecap="round" />
+      <path d="M8 15V9q0-4 4-4h16q4 0 4 4v6" />
+      <path d="M8 15l-2-3m2 3 2-3M20 15l-2-3m2 3 2-3M32 15l-2-3m2 3 2-3" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+
+  <ul class={`flex ${gap}`}>
+    {
+      outputs.map((item) => (
+        <li
+          class={`${node} border-blue-800/30 bg-blue-50/80 font-semibold text-blue-900 dark:border-blue-400/30 dark:bg-blue-950/60 dark:text-blue-200 ${micro}`}
+        >
+          {t(item, lang)}
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class={`text-center text-gray-600 dark:text-gray-400 ${big ? "mt-4" : "mt-2"} ${micro}`}>
+    {t(copy.human, lang)}
+  </p>
+</VisualFrame>

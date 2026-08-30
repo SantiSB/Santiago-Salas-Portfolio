@@ -17,7 +17,7 @@ export default function SkillsToolbox({ lang = "en" }) {
   const shown = groups.reduce((sum, group) => sum + group.items.length, 0);
 
   const filterClass = (isActive) =>
-    `rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${FOCUS} ${
+    `rounded-full border px-3 py-1.5 text-[13px] font-semibold transition-colors ${FOCUS} ${
       isActive
         ? "border-blue-800 bg-blue-900 text-white dark:border-blue-400 dark:bg-blue-400 dark:text-black"
         : "border-gray-300 text-gray-700 hover:border-blue-800/50 hover:text-blue-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-blue-400/50 dark:hover:text-blue-300"
@@ -53,7 +53,7 @@ export default function SkillsToolbox({ lang = "en" }) {
 
       <p
         aria-live="polite"
-        className="mt-3 text-xs text-gray-600 dark:text-gray-400"
+        className="mt-3 text-[13px] text-gray-600 dark:text-gray-300"
       >
         {shown} / {total} {t(UI.skillsView.count, lang)}
       </p>
