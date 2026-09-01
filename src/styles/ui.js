@@ -18,8 +18,11 @@ export const CARD_INTERACTIVE = `${CARD} transition-colors duration-200 hover:bo
  *   EYEBROW 11px                 — uppercase micro-labels only
  * Nothing below 11px: 10px text was unreadable on real screens.
  */
+// gray-400 is #888888 in this palette: 4.11 against the dark cards, under the
+// 4.5 WCAG asks of 11px text. gray-300 (#b0b0b0) lands at 6.71 and still reads
+// as a secondary label.
 export const EYEBROW =
-  "text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-400";
+  "text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-600 dark:text-gray-300";
 
 export const TITLE = "font-bold text-gray-900 dark:text-white";
 

@@ -55,6 +55,28 @@
   transform: none;
 }
 
+/* The particle canvas starts on the idle queue, so it fades in rather than
+   appearing at once. Opacity lives here (not in Tailwind classes) because the
+   canvas has to be transparent until its first frame exists. */
+#smoke-canvas {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+#smoke-canvas[data-ready] {
+  opacity: 0.95;
+}
+.dark #smoke-canvas[data-ready] {
+  opacity: 0.5;
+}
+
+/* Sections well below the fold are laid out and painted when the visitor
+   scrolls near them, not during the first screen. The hero and the block after
+   it are excluded: one of them always holds the LCP element. */
+main > section:nth-of-type(n+3) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
 /* Horizontal card rail (mobile): user-driven scroll, never automatic. */
 .rail {
   scrollbar-width: none;
@@ -131,6 +153,10 @@ dialog::backdrop {
   .theme-transition *::before,
   .theme-transition *::after {
     transition: none !important;
+  }
+
+  #smoke-canvas {
+    transition: none;
   }
 
   /* Astro view transitions */

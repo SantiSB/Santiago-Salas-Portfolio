@@ -5,10 +5,17 @@
  *
  * Keep each entry compact: 2–3 bullets and 6–8 representative capabilities.
  * The full technology inventory belongs to the capabilities view.
+ *
+ * `summary` is the one-liner the home card shows; `concept` heads the same
+ * entry on the experience view, where it introduces the bullets below it.
  */
 export const EXPERIENCE = [
   {
     id: "sgc",
+    summary: {
+      en: "Built public viewers from scratch to explore large volumes of seismic and volcanic data.",
+      es: "Construí desde cero visores públicos para explorar grandes volúmenes de datos sísmicos y volcánicos.",
+    },
     level: "01",
     levelLabel: { en: "Foundations", es: "Fundamentos" },
     company: "Servicio Geológico Colombiano",
@@ -46,6 +53,10 @@ export const EXPERIENCE = [
   },
   {
     id: "linkedai",
+    summary: {
+      en: "Built specialized graphic tooling for annotating, segmenting and reviewing computer vision datasets.",
+      es: "Desarrollé herramientas gráficas especializadas para anotación, segmentación y revisión de datasets de visión computacional.",
+    },
     level: "02",
     levelLabel: { en: "Technical depth", es: "Profundidad técnica" },
     company: "LinkedAI",
@@ -85,6 +96,10 @@ export const EXPERIENCE = [
   },
   {
     id: "57blocks",
+    summary: {
+      en: "Turned ideas into working products across web, mobile and AI for international clients.",
+      es: "Convertí ideas en productos funcionales, trabajando entre web, mobile e inteligencia artificial para clientes internacionales.",
+    },
     level: "03",
     levelLabel: { en: "Adaptability + AI", es: "Adaptabilidad + IA" },
     company: "57Blocks",
@@ -127,6 +142,10 @@ export const EXPERIENCE = [
   },
   {
     id: "apptega",
+    summary: {
+      en: "Modernized an enterprise SaaS platform in production, evolving features toward React without stopping it.",
+      es: "Modernicé una plataforma SaaS enterprise en producción, evolucionando funcionalidades hacia React sin detener su operación.",
+    },
     level: "04",
     levelLabel: { en: "Enterprise complexity", es: "Complejidad enterprise" },
     company: "Cafeto Software / Apptega",

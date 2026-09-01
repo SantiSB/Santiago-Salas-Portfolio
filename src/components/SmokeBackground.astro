@@ -29,7 +29,7 @@
 >
   <canvas
     id="smoke-canvas"
-    class="block h-[calc(100%+100px)] w-full opacity-95 [transform:translateZ(0)] [backface-visibility:hidden] dark:opacity-50"
+    class="block h-[calc(100%+100px)] w-full [transform:translateZ(0)] [backface-visibility:hidden]"
   ></canvas>
 </div>
 
@@ -272,7 +272,28 @@
     cancelAnimationFrame(raf);
     if (document.hidden) return;
     then = Date.now();
-    whenTextureReady(animate);
+    whenTextureReady(() => {
+      animate();
+      canvas?.setAttribute("data-ready", "");
+    });
+  }
+
+  /**
+   * Total Blocking Time is measured between FCP and interactive, and this loop
+   * is pure rasterisation — nothing the visitor is waiting on. Handing the
+   * first start to the idle queue keeps ~330 ms of it out of that window.
+   * Later binds (view transitions) start immediately: the page is long done.
+   */
+  let firstStart = true;
+  function startWhenIdle() {
+    if (!firstStart) return start();
+    firstStart = false;
+
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(() => start(), { timeout: 1500 });
+    } else {
+      setTimeout(start, 300);
+    }
   }
 
   // A hidden tab has no background to paint: stop the loop instead of burning
@@ -295,7 +316,7 @@
     ctx = canvas.getContext("2d");
     sizeCanvas();
     seedParticles();
-    start();
+    startWhenIdle();
   }
 
   // The theme toggle only flips a class on <html> and emits no event, so the
