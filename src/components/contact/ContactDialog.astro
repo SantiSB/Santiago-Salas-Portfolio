@@ -86,7 +86,11 @@ const row = `flex items-center gap-3 rounded-lg border border-gray-200 bg-white/
       <a href={`mailto:${SITE.email}`} class={BTN_PRIMARY}>
         {t(UI.contact.email, lang)}
       </a>
-      <a href={SITE.cv} download="Santiago_Salas_CV.pdf" class={BTN_SECONDARY}>
+      <a
+        href={t(SITE.cv, lang)}
+        download={`Santiago_Salas_CV_${lang.toUpperCase()}.pdf`}
+        class={BTN_SECONDARY}
+      >
         <DownloadCV class="size-4 fill-none" />
         {t(UI.actions.downloadCv, lang)}
       </a>

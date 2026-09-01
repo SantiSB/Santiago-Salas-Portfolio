@@ -19,7 +19,12 @@ export const SITE = {
   // consumers don't normalise it the way a browser address bar does.
   linkedin: "https://www.linkedin.com/in/santiagosalasbola%C3%B1os",
   github: "https://www.github.com/SantiSB/SantiSB",
-  cv: "/files/CV.pdf",
+  // One CV per language, served straight from public/files. The visitor gets
+  // the version written in the language they are reading the site in.
+  cv: {
+    en: "/files/Santiago_Salas_CV_Frontend_Developer_EN_2026_v2.pdf",
+    es: "/files/Santiago_Salas_CV_Frontend_Developer_ES_2026_v2.pdf",
+  },
   ogImage: "/images/mockups/portfolio.webp",
 };
 

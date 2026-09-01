@@ -3,12 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import PageNav from "../components/ui/PageNav.astro";
 import ExperienceTimeline from "../components/experience/ExperienceTimeline.astro";
-import ProcessFlow from "../components/process/ProcessFlow.astro";
-import ArrowLink from "../components/ui/ArrowLink.astro";
 import ContactCta from "../components/contact/ContactCta.astro";
 import { SEO } from "../data/site";
-import { ROUTES, UI, t, otherLang, workUrl, route } from "../i18n";
-import { CARD } from "../styles/ui";
+import { ROUTES, UI, otherLang, route } from "../i18n";
 
 interface Props {
   lang: "en" | "es";
@@ -51,27 +48,6 @@ const meta = SEO.experience[lang];
       <ExperienceTimeline lang={lang} />
     </div>
 
-    {/* Bridge from employment to own product, plus the way into the projects */}
-    <div
-      class={`reveal mt-8 flex flex-col gap-4 p-5 sm:p-6 ${CARD} border-blue-800/25 dark:border-blue-400/25`}
-    >
-      <ArrowLink href={workUrl("passtix", lang)} class="text-base">
-        {t(UI.experienceView.bridge, lang)}
-      </ArrowLink>
-      <ArrowLink href={route("work", lang)}>
-        {t(UI.experienceView.toProjects, lang)}
-      </ArrowLink>
-    </div>
-
-    <div class="mt-12 sm:mt-16">
-      <SectionHeading
-        lang={lang}
-        eyebrow={UI.experienceView.process.eyebrow}
-        title={UI.experienceView.process.title}
-        class="reveal mb-6"
-      />
-      <ProcessFlow lang={lang} />
-    </div>
   </div>
 
   <ContactCta lang={lang} />

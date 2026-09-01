@@ -3,20 +3,20 @@
  * Single media surface for every card and detail view.
  *
  * Accepts, via the `media` prop:
- *   { type: "image",   src, alt, width, height }
+ *   { type: "image",   src, alt }   // src is an imported asset: Astro emits
+ *                                   // AVIF/WebP at several widths from it
  *   { type: "mockup",  src, alt }                  // same as image, semantic hint only
  *   { type: "video",   src, poster, alt }          // muted, controls, never autoplays
  *   { type: "gallery", items: [{ src, alt }] }     // horizontal scroll-snap, no autoplay
- *   { type: "concept", key: "passtix" | "apptega" | "ai-flow" }
+ *   { type: "concept", key: "ai-flow" }
  *   { type: "placeholder" } | null | undefined     // branded fallback
  *
  * `concept` renders a hand-built HTML/SVG drawing from ./visuals — never a
  * screenshot, never an invented interface. Real screenshots always win: swap
  * the `media` object in the data file and nothing else changes.
  */
+import { Picture } from "astro:assets";
 import { t } from "../../i18n";
-import PasstixVisual from "./visuals/PasstixVisual.astro";
-import ApptegaVisual from "./visuals/ApptegaVisual.astro";
 import AiFlowVisual from "./visuals/AiFlowVisual.astro";
 
 interface Props {
@@ -29,6 +29,14 @@ interface Props {
   eager?: boolean;
   /** `lg` is for full-width surfaces (detail hero, home own-product block). */
   size?: "sm" | "lg";
+  /**
+   * How wide this surface actually renders, per breakpoint. It must describe
+   * the real slot — a generic `100vw` makes the browser download a hero-sized
+   * image for a thumbnail — so every call site passes its own.
+   */
+  sizes?: string;
+  /** Candidate widths to emit. Never above the source, which is never upscaled. */
+  widths?: number[];
 }
 
 const {
@@ -40,6 +48,8 @@ const {
   transitionName,
   eager = false,
   size = "sm",
+  sizes = "100vw",
+  widths = [280, 560, 840],
 } = Astro.props;
 
 const type = media?.type ?? "placeholder";
@@ -71,22 +81,26 @@ const patternId = `pattern-${slug}-${variant}`;
 
 <div class={`relative overflow-hidden ${className}`} style={style}>
   {
+    /* `fallbackFormat` matters: left to its default the <img> would be PNG,
+       heavier than the source and pointless — anything reaching that fallback
+       already supports WebP. */
     (type === "image" || type === "mockup") && (
-      <img
+      <Picture
         src={media.src}
         alt={label}
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        widths={widths}
+        sizes={sizes}
         loading={loading}
         decoding="async"
         fetchpriority={eager ? "high" : undefined}
-        width={media.width ?? 1200}
-        height={media.height ?? 675}
+        pictureAttributes={{ class: "block h-full w-full" }}
         class="h-full w-full object-cover"
       />
     )
   }
 
-  {type === "concept" && media.key === "passtix" && <PasstixVisual lang={lang} size={size} />}
-  {type === "concept" && media.key === "apptega" && <ApptegaVisual lang={lang} size={size} />}
   {type === "concept" && media.key === "ai-flow" && <AiFlowVisual lang={lang} size={size} />}
 
   {

@@ -29,7 +29,11 @@ const { lang } = Astro.props;
         {t(UI.actions.contact, lang)}
         <span aria-hidden="true">→</span>
       </button>
-      <a href={SITE.cv} download="Santiago_Salas_CV.pdf" class={BTN_SECONDARY}>
+      <a
+        href={t(SITE.cv, lang)}
+        download={`Santiago_Salas_CV_${lang.toUpperCase()}.pdf`}
+        class={BTN_SECONDARY}
+      >
         <DownloadCV class="size-4 fill-none" />
         {t(UI.actions.downloadCv, lang)}
       </a>

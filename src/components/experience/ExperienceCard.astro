@@ -1,6 +1,5 @@
 ---
 import { t, UI, workUrl } from "../../i18n";
-import Media from "../media/Media.astro";
 import Chip from "../ui/Chip.astro";
 import ArrowLink from "../ui/ArrowLink.astro";
 import { CARD_INTERACTIVE, EYEBROW, BODY, META, FOCUS } from "../../styles/ui";
@@ -15,85 +14,79 @@ const levelText = `${t(UI.labels.level, lang)} ${item.level} · ${t(item.levelLa
 ---
 
 <article class={`reveal overflow-hidden ${CARD_INTERACTIVE}`}>
-  <div class="grid lg:grid-cols-[minmax(0,1fr)_260px]">
-    <div class="p-5 sm:p-6">
-      <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-        <Chip accent>{levelText}</Chip>
-        <time class={`ml-auto ${META}`}>{t(item.dates, lang)}</time>
-      </div>
-
-      <h3 class="mt-3 text-lg font-bold text-gray-900 dark:text-white sm:text-xl">
-        {item.company}
-      </h3>
-      <p class="text-[15px] font-medium text-gray-700 dark:text-gray-300">
-        {t(item.role, lang)}
-        {
-          item.clients && (
-            <span class={`block ${META}`}>{t(item.clients, lang)}</span>
-          )
-        }
-      </p>
-
-      <p class="mt-3 text-sm font-semibold text-blue-800 dark:text-blue-400 sm:text-base">
-        {t(item.concept, lang)}
-      </p>
-
-      <ul class="mt-3 space-y-1.5">
-        {
-          item.bullets.map((bullet: any) => (
-            <li class={`relative pl-4 ${BODY}`}>
-              <span
-                aria-hidden="true"
-                class="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-blue-700/60 dark:bg-blue-400/60"
-              />
-              {t(bullet, lang)}
-            </li>
-          ))
-        }
-      </ul>
-
-      <p class={`mt-5 ${EYEBROW}`}>{t(UI.labels.unlocked, lang)}</p>
-      <ul class="mt-2 flex flex-wrap gap-1.5">
-        {
-          item.unlocked.map((tech: any) => (
-            <li>
-              <Chip>{t(tech, lang)}</Chip>
-            </li>
-          ))
-        }
-      </ul>
-
-      <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
-        {
-          item.relatedWork && (
-            <ArrowLink href={workUrl(item.relatedWork, lang)} class="text-base">
-              {t(UI.actions.seeRelatedProject, lang)}
-            </ArrowLink>
-          )
-        }
-        {/* Secondary, and only when the site actually exists */}
-        {
-          item.link && (
-            <a
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={`text-[13px] text-gray-600 underline-offset-4 transition-colors hover:text-blue-800 hover:underline dark:text-gray-400 dark:hover:text-blue-400 ${FOCUS} rounded`}
-            >
-              {t(UI.actions.companySite, lang)} ↗
-            </a>
-          )
-        }
-      </div>
+  {/* Text only on purpose: the timeline reads as a career, not as a gallery.
+      Project imagery lives in the work cases. */}
+  <div class="p-5 sm:p-6">
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+      <Chip accent>{levelText}</Chip>
+      <time class={`ml-auto ${META}`}>{t(item.dates, lang)}</time>
     </div>
 
-    {/* Hidden on small screens on purpose: keeps the timeline short on mobile. */}
-    <Media
-      media={item.image ? { type: "image", src: item.image } : { type: "placeholder" }}
-      name={item.company}
-      lang={lang}
-      alt={`${item.company} — ${t(item.role, lang)}`}
-      class="hidden border-gray-200 dark:border-gray-800 lg:block lg:border-l"
-    />
+    <h3 class="mt-3 text-lg font-bold text-gray-900 dark:text-white sm:text-xl">
+      {item.company}
+    </h3>
+    <p class="text-[15px] font-medium text-gray-700 dark:text-gray-300">
+      {t(item.role, lang)}
+      {
+        item.clients && (
+          <span class={`block ${META}`}>{t(item.clients, lang)}</span>
+        )
+      }
+    </p>
+
+    <p class="mt-3 text-sm font-semibold text-blue-800 dark:text-blue-400 sm:text-base">
+      {t(item.concept, lang)}
+    </p>
+
+    <ul class="mt-3 space-y-1.5">
+      {
+        item.bullets.map((bullet: any) => (
+          <li class={`relative pl-4 ${BODY}`}>
+            <span
+              aria-hidden="true"
+              class="absolute left-0 top-[0.6em] size-1.5 rounded-full bg-blue-700/60 dark:bg-blue-400/60"
+            />
+            {t(bullet, lang)}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class={`mt-5 ${EYEBROW}`}>{t(UI.labels.unlocked, lang)}</p>
+    <ul class="mt-2 flex flex-wrap gap-1.5">
+      {
+        item.unlocked.map((tech: any) => (
+          <li>
+            <Chip>{t(tech, lang)}</Chip>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
+      {
+        item.relatedWork && (
+          <ArrowLink href={workUrl(item.relatedWork, lang)} class="text-base">
+            {t(UI.actions.seeRelatedProject, lang)}
+          </ArrowLink>
+        )
+      }
+      {/* Secondary, and only for sites that actually exist. An entry can name
+          more than one — the employer and the product it was assigned to.
+          Without a label it falls back to the generic "company site"; `href`
+          may be bilingual, and plain strings pass through `t` untouched. */}
+      {
+        (item.links ?? []).map((link: any) => (
+          <a
+            href={t(link.href, lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`text-[13px] text-gray-600 underline-offset-4 transition-colors hover:text-blue-800 hover:underline dark:text-gray-400 dark:hover:text-blue-400 ${FOCUS} rounded`}
+          >
+            {t(link.label, lang) || t(UI.actions.companySite, lang)} ↗
+          </a>
+        ))
+      }
+    </div>
   </div>
 </article>

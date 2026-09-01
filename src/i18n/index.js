@@ -62,7 +62,6 @@ export const UI = {
       en: "See featured project",
       es: "Ver proyecto destacado",
     },
-    seeAiProject: { en: "See the AI project", es: "Ver proyecto de IA" },
     companySite: { en: "Company site", es: "Sitio de la empresa" },
     moreOnAi: { en: "More on applied AI", es: "Más sobre IA aplicada" },
     allCapabilities: {
@@ -99,10 +98,8 @@ export const UI = {
       },
     },
     path: {
-      title: {
-        en: "Four stages, one direction",
-        es: "Cuatro etapas, una dirección",
-      },
+      eyebrow: { en: "Career", es: "Trayectoria" },
+      title: { en: "Work experience", es: "Experiencia laboral" },
     },
     work: {
       eyebrow: { en: "Selection", es: "Selección" },
@@ -130,18 +127,6 @@ export const UI = {
     intro: {
       en: "Four stages, one direction: from building interfaces from scratch to modernizing enterprise systems that can't stop running.",
       es: "Cuatro etapas, una dirección: desde construir interfaces desde cero hasta modernizar sistemas enterprise que no pueden detenerse.",
-    },
-    bridge: {
-      en: "From building products for others to creating my own",
-      es: "De trabajar en productos a crear uno propio",
-    },
-    toProjects: {
-      en: "Explore the featured projects in depth",
-      es: "Explora los proyectos destacados en profundidad",
-    },
-    process: {
-      eyebrow: { en: "Method", es: "Método" },
-      title: { en: "How I work", es: "Cómo trabajo" },
     },
   },
   workView: {

@@ -80,7 +80,9 @@ const jsonLd = {
       eager
       size="lg"
       transitionName={`media-${work.slug}`}
-      class={`mt-6 aspect-[16/9] w-full rounded-xl border border-gray-200 dark:border-gray-800 sm:aspect-[21/9]`}
+      sizes="(min-width: 1200px) 1120px, 100vw"
+      widths={[640, 960, 1200]}
+      class="mt-6 aspect-[16/9] w-full rounded-xl border border-gray-200 dark:border-gray-800 sm:aspect-[21/9]"
     />
 
     <div class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-10">
@@ -151,7 +153,8 @@ const jsonLd = {
               <ul class="mt-5 space-y-2">
                 {work.links.map((item: any) => (
                   <li>
-                    <ArrowLink href={item.href} external>
+                    {/* `href` may be bilingual; plain strings pass through */}
+                    <ArrowLink href={t(item.href, lang)} external>
                       {t(item.label, lang)}
                     </ArrowLink>
                   </li>

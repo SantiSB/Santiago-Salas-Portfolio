@@ -81,9 +81,29 @@ const label = lang === "es" ? "Cambiar tema" : "Toggle theme";
       button.setAttribute("aria-pressed", String(isDark()));
     };
 
+    // The colour transition is enabled only around the switch itself, then
+    // dropped again — see `.theme-transition` in styles/global.css.
+    const root = document.documentElement;
+    let settle = 0;
+
+    const withTransition = (change: () => void) => {
+      const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (still) return change();
+
+      root.classList.add("theme-transition");
+      change();
+      window.clearTimeout(settle);
+      settle = window.setTimeout(
+        () => root.classList.remove("theme-transition"),
+        320
+      );
+    };
+
     button.addEventListener("click", () => {
       const next = isDark() ? "light" : "dark";
-      document.documentElement.classList.toggle("dark", next === "dark");
+      withTransition(() => {
+        root.classList.toggle("dark", next === "dark");
+      });
       localStorage.setItem("color-theme", next);
       syncIcons();
     });

@@ -41,8 +41,7 @@ export const EXPERIENCE = [
       { en: "Data visualization", es: "Visualización de datos" },
       "REST APIs",
     ],
-    link: "https://www.sgc.gov.co/",
-    image: "/images/projects/sgc.webp",
+    links: [{ href: "https://www.sgc.gov.co/" }],
     relatedWork: "sgc-viewers",
   },
   {
@@ -81,8 +80,7 @@ export const EXPERIENCE = [
       { en: "Computer vision", es: "Visión computacional" },
     ],
     // No external CTA: the public LinkedAI site is no longer available
-    link: "",
-    image: "/images/projects/linkedai.webp",
+    links: [],
     relatedWork: "linkedai",
   },
   {
@@ -124,8 +122,7 @@ export const EXPERIENCE = [
       "Dify",
       "n8n",
     ],
-    link: "https://www.57blocks.com/",
-    image: "/images/projects/presidium.webp",
+    links: [{ href: "https://www.57blocks.com/" }],
     relatedWork: "ai-project-management",
   },
   {
@@ -163,8 +160,18 @@ export const EXPERIENCE = [
       "Bounded Contexts",
       "Claude",
     ],
-    link: "https://www.apptega.com/",
-    image: null,
+    // Two sites here: Cafeto is the employer, Apptega the product worked on.
+    // Cafeto has no /en/ route — its root is the English version.
+    links: [
+      {
+        label: "Cafeto Software",
+        href: {
+          en: "https://cafetosoftware.com/",
+          es: "https://cafetosoftware.com/es/outsourced-software-development-company-nearshore-outsourcing-espanol/",
+        },
+      },
+      { label: "Apptega", href: "https://www.apptega.com/" },
+    ],
     relatedWork: "apptega",
   },
 ];

@@ -12,6 +12,8 @@ interface Props {
   /** `horizontal` puts the media beside the text on large screens. */
   layout?: "vertical" | "horizontal";
   withTransition?: boolean;
+  /** Real rendered width of the thumbnail, per breakpoint. See Media.astro. */
+  sizes?: string;
   class?: string;
 }
 
@@ -21,6 +23,7 @@ const {
   variant = "compact",
   layout = "vertical",
   withTransition = true,
+  sizes = "(min-width: 1024px) 548px, 100vw",
   class: className = "",
 } = Astro.props;
 
@@ -28,6 +31,9 @@ const href = workUrl(work.slug, lang);
 const name = t(work.name, lang);
 const isFull = variant === "full";
 const isRow = layout === "horizontal";
+const mediaClass = `aspect-[16/9] shrink-0 border-b border-gray-200 dark:border-gray-800 ${
+  isRow ? "lg:aspect-auto lg:w-[46%] lg:border-b-0 lg:border-r" : ""
+}`;
 ---
 
 <a
@@ -40,11 +46,8 @@ const isRow = layout === "horizontal";
     lang={lang}
     size={isRow ? "lg" : "sm"}
     transitionName={withTransition ? `media-${work.slug}` : undefined}
-    class={`aspect-[16/9] shrink-0 border-b border-gray-200 dark:border-gray-800 ${
-      isRow
-        ? "lg:aspect-auto lg:w-[46%] lg:border-b-0 lg:border-r"
-        : ""
-    }`}
+    sizes={sizes}
+    class={mediaClass}
   />
 
   <div

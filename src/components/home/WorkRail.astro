@@ -27,12 +27,16 @@ const { lang } = Astro.props;
 
   {/* Mobile: user-driven horizontal rail with snap. Never moves on its own. */}
   <ul
-    class="rail reveal -mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0"
+    class="rail reveal -mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 lg:grid-cols-4"
   >
     {
-      OTHER_WORK.slice(0, 3).map((work) => (
+      OTHER_WORK.map((work) => (
         <li class="w-[82%] shrink-0 snap-start sm:w-[60%] md:w-auto">
-          <WorkCard work={work} lang={lang} />
+          <WorkCard
+            work={work}
+            lang={lang}
+            sizes="(min-width: 1024px) 260px, (min-width: 768px) 46vw, 82vw"
+          />
         </li>
       ))
     }

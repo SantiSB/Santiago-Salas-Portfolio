@@ -170,65 +170,18 @@ export const AI_TRACKS = [
   },
 ];
 
-/** Compact five-step flow: horizontal on desktop, vertical on mobile. */
-export const PROCESS = [
-  {
-    n: "01",
-    title: { en: "Understand", es: "Entender" },
-    keywords: [
-      { en: "Problem", es: "Problema" },
-      { en: "User", es: "Usuario" },
-      { en: "Goal", es: "Objetivo" },
-      { en: "Constraints", es: "Restricciones" },
-    ],
-  },
-  {
-    n: "02",
-    title: { en: "Validate", es: "Validar" },
-    keywords: [
-      { en: "Demo", es: "Demo" },
-      { en: "Prototype", es: "Prototipo" },
-      { en: "MVP", es: "MVP" },
-    ],
-  },
-  {
-    n: "03",
-    title: { en: "Design", es: "Diseñar" },
-    keywords: [
-      { en: "Flows", es: "Flujos" },
-      { en: "Requirements", es: "Requerimientos" },
-      { en: "Architecture", es: "Arquitectura" },
-      { en: "Decisions", es: "Decisiones" },
-    ],
-  },
-  {
-    n: "04",
-    title: { en: "Build", es: "Construir" },
-    keywords: [
-      "UX",
-      { en: "Quality", es: "Calidad" },
-      "Testing",
-      { en: "Performance", es: "Rendimiento" },
-    ],
-  },
-  {
-    n: "05",
-    title: { en: "Iterate", es: "Iterar" },
-    keywords: [
-      { en: "Users", es: "Usuarios" },
-      { en: "Metrics", es: "Métricas" },
-      { en: "Learning", es: "Aprendizaje" },
-      { en: "Evolution", es: "Evolución" },
-    ],
-  },
-];
-
 /**
- * Condensed version for the home view: four representative items per group.
- * No "+N" counter on purpose — a number that isn't clickable reads like a
- * hidden list. The full inventory is one link away, in the capabilities view.
+ * Condensed version for the home view: three groups, four representative items
+ * each. The three are the ones the pillars above them already name — frontend,
+ * applied AI and product — so the home tells one story instead of dumping the
+ * inventory. No "+N" counter on purpose: a number that isn't clickable reads
+ * like a hidden list. The full inventory is one link away.
  */
-export const CAPABILITIES_SUMMARY = CAPABILITIES.map((group) => ({
+const HOME_GROUPS = ["frontend", "ai", "product"];
+
+export const CAPABILITIES_SUMMARY = CAPABILITIES.filter((group) =>
+  HOME_GROUPS.includes(group.id)
+).map((group) => ({
   id: group.id,
   title: group.title,
   items: group.items.slice(0, 4),

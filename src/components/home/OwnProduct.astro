@@ -1,8 +1,8 @@
 ---
+import { Image } from "astro:assets";
+import passtixLogo from "../../assets/passtix-logo.webp";
 import { t, UI, workUrl } from "../../i18n";
 import { OWN_PRODUCT } from "../../data/site";
-import { getWork } from "../../data/work";
-import Media from "../media/Media.astro";
 import Chip from "../ui/Chip.astro";
 import ArrowLink from "../ui/ArrowLink.astro";
 import { CARD, EYEBROW, BODY } from "../../styles/ui";
@@ -12,7 +12,6 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-const work = getWork(OWN_PRODUCT.slug);
 const href = workUrl(OWN_PRODUCT.slug, lang);
 ---
 
@@ -21,14 +20,23 @@ const href = workUrl(OWN_PRODUCT.slug, lang);
     class={`reveal overflow-hidden ${CARD} border-blue-800/25 dark:border-blue-400/25`}
   >
     <div class="grid lg:grid-cols-2">
-      <Media
-        media={work?.media}
-        name={OWN_PRODUCT.title}
-        lang={lang}
-        size="lg"
-        transitionName={`media-${OWN_PRODUCT.slug}`}
-        class="aspect-[16/9] border-b border-gray-200 dark:border-gray-800 lg:order-2 lg:aspect-auto lg:min-h-[320px] lg:border-b-0 lg:border-l"
-      />
+      {/* The brand mark, not a screenshot: this block introduces the product,
+          and the case study keeps its own visual. `contain` because a logo must
+          never be cropped. */}
+      <div
+        class="flex aspect-[16/9] items-center justify-center border-b border-gray-200 bg-gradient-to-br from-gray-50 via-white to-blue-50 p-8 dark:border-gray-800 dark:from-gray-950 dark:via-black dark:to-blue-950/50 lg:order-2 lg:aspect-auto lg:min-h-[320px] lg:border-b-0 lg:border-l"
+      >
+        <Image
+          src={passtixLogo}
+          alt=""
+          aria-hidden="true"
+          widths={[300, 360, 600, 720]}
+          sizes="(min-width: 640px) 360px, 300px"
+          loading="lazy"
+          decoding="async"
+          class="h-auto w-full max-w-[300px] object-contain sm:max-w-[360px]"
+        />
+      </div>
 
       <div class="p-5 sm:p-7 lg:order-1 lg:flex lg:flex-col lg:justify-center">
         <p class={EYEBROW}>{t(OWN_PRODUCT.label, lang)}</p>

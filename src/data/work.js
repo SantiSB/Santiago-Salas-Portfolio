@@ -4,7 +4,8 @@
  * purpose: depth and impact over quantity.
  *
  * `media` is consumed by components/media/Media.astro and accepts:
- *   { type: "image",   src, alt }
+ *   { type: "image",   src, alt }   // src is an imported asset,
+ *                                   // so Astro can resize it
  *   { type: "video",   src, poster, alt }          // short, muted, no autoplay loop by default
  *   { type: "gallery", items: [{ src, alt }] }
  *   { type: "concept", key }                       // own HTML/SVG drawing, never a fake UI
@@ -14,6 +15,11 @@
  * drawing second; the neutral placeholder last. Promoting a project to a real
  * screenshot is a one-line change here — no component touches required.
  */
+import apptegaShot from "../assets/projects/apptega.webp";
+import linkedaiShot from "../assets/projects/linkedai.webp";
+import passtixShot from "../assets/projects/passtix.webp";
+import sgcShot from "../assets/projects/sgc.webp";
+
 export const WORK = [
   {
     slug: "passtix",
@@ -34,9 +40,14 @@ export const WORK = [
       en: "Own product · Ticketing & event operations",
       es: "Creación propia · Ticketing y operación de eventos",
     },
-    // TODO(asset): replace with a real PASSTIX screenshot when one is available.
-    // See the header comment in components/media/visuals/PasstixVisual.astro.
-    media: { type: "concept", key: "passtix" },
+    media: {
+      type: "image",
+      src: passtixShot,
+      alt: {
+        en: "PASSTIX event page with ticket types and checkout",
+        es: "Página de evento de PASSTIX con tipos de entrada y checkout",
+      },
+    },
     tech: [
       "React",
       "TypeScript",
@@ -45,7 +56,12 @@ export const WORK = [
       "Tailwind CSS",
       "Figma",
     ],
-    links: [],
+    links: [
+      {
+        label: { en: "Visit passtix.co", es: "Visitar passtix.co" },
+        href: "https://passtix.co",
+      },
+    ],
     story: [
       {
         key: "context",
@@ -175,8 +191,14 @@ export const WORK = [
       en: "Enterprise SaaS · Cybersecurity & compliance",
       es: "SaaS enterprise · Ciberseguridad y cumplimiento",
     },
-    // The product is private: a conceptual drawing on purpose, never a capture.
-    media: { type: "concept", key: "apptega" },
+    media: {
+      type: "image",
+      src: apptegaShot,
+      alt: {
+        en: "Apptega risk management dashboard",
+        es: "Dashboard de gestión de riesgos de Apptega",
+      },
+    },
     tech: [
       "React",
       "TypeScript",
@@ -188,7 +210,12 @@ export const WORK = [
       "Vitest",
       "Docker Compose",
     ],
-    links: [],
+    links: [
+      {
+        label: { en: "Visit apptega.com", es: "Visitar apptega.com" },
+        href: "https://www.apptega.com/",
+      },
+    ],
     story: [
       {
         key: "context",
@@ -458,7 +485,7 @@ export const WORK = [
     },
     media: {
       type: "image",
-      src: "/images/projects/linkedai.webp",
+      src: linkedaiShot,
       alt: {
         en: "LinkedAI annotation platform interface",
         es: "Interfaz de la plataforma de anotación de LinkedAI",
@@ -597,7 +624,7 @@ export const WORK = [
     },
     media: {
       type: "image",
-      src: "/images/projects/sgc.webp",
+      src: sgcShot,
       alt: {
         en: "Seismic activity viewer of the Colombian Geological Survey",
         es: "Visor de actividad sísmica del Servicio Geológico Colombiano",
@@ -614,7 +641,10 @@ export const WORK = [
     ],
     links: [
       {
-        label: { en: "Public viewer", es: "Visor público" },
+        label: {
+          en: "Earthquake & volcano viewer",
+          es: "Visor de sismos y volcanes",
+        },
         href: "https://www.sgc.gov.co/sismos",
       },
     ],

@@ -47,8 +47,20 @@ const featured = WORK.find((item) => item.featured);
       class="reveal"
     />
 
-    {/* Editorial grid: the own product leads, the rest follows */}
-    <div class="mt-8 grid gap-4 sm:gap-5 lg:grid-cols-3">
+    {/* Client work in a 2×2 grid, and the own product closing the page on its
+        own full-width row: it is the one that carries the most story. */}
+    <div class="mt-8 grid gap-4 sm:gap-5 lg:grid-cols-2">
+      {
+        OTHER_WORK.map((work) => (
+          <WorkCard
+            work={work}
+            lang={lang}
+            variant="full"
+            sizes="(min-width: 1024px) 548px, 100vw"
+            class="reveal"
+          />
+        ))
+      }
       {
         featured && (
           <WorkCard
@@ -56,14 +68,10 @@ const featured = WORK.find((item) => item.featured);
             lang={lang}
             variant="full"
             layout="horizontal"
-            class="reveal lg:col-span-3"
+            sizes="(min-width: 1024px) 515px, 100vw"
+            class="reveal lg:col-span-2"
           />
         )
-      }
-      {
-        OTHER_WORK.map((work) => (
-          <WorkCard work={work} lang={lang} variant="full" class="reveal" />
-        ))
       }
     </div>
 

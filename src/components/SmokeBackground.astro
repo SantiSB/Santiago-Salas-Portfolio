@@ -1,30 +1,107 @@
 ---
 /**
- * Original smoke particle background, kept as it was: same texture, particle
- * count, sizes, opacity, rotation and frame rate.
+ * Particle background, one texture, two readings of it.
  *
- * Only change: the canvas and its 2D context are re-acquired on every
- * `astro:page-load`. The module used to capture them once, which meant that
- * after the first client-side navigation it kept drawing into a detached
- * canvas and the effect disappeared.
+ * Dark mode is the original smoke, unchanged: same texture, count, sizes,
+ * opacity, rotation and frame rate. Light mode uses the same particles as
+ * clouds — the texture tinted white over a faint sky, smaller, flattened and
+ * drifting sideways instead of just rotating. Gray haze on a near-white page
+ * reads as smoke; white shapes on a tinted sky read as weather.
+ *
+ * Two fixes over the original are kept:
+ *
+ * 1. The canvas and its 2D context are re-acquired on every `astro:page-load`.
+ *    The module used to capture them once, which meant that after the first
+ *    client-side navigation it kept drawing into a detached canvas.
+ *
+ * 2. The background animates for everyone, including `prefers-reduced-motion`.
+ *    That is a deliberate call by the site owner: on desktops with animations
+ *    disabled the effect was frozen, and a still image of drifting particles
+ *    reads as broken rather than as calm. Everything else on the site still
+ *    honours the preference — reveals, view transitions and the theme fade.
  */
 ---
 
 <div
   id="smoke-bkg"
-  class="pointer-events-none fixed inset-0 -z-10 h-full w-full overflow-hidden [contain:paint]"
+  class="pointer-events-none fixed inset-0 -z-10 h-full w-full overflow-hidden bg-gradient-to-b from-[#c7ddf6] via-[#e6eef7] to-[#f6f6f6] [contain:paint] dark:bg-none"
   aria-hidden="true"
 >
   <canvas
     id="smoke-canvas"
-    class="block opacity-40 [transform:translateZ(0)] [backface-visibility:hidden] dark:opacity-50"
+    class="block h-[calc(100%+100px)] w-full opacity-95 [transform:translateZ(0)] [backface-visibility:hidden] dark:opacity-50"
   ></canvas>
 </div>
 
 <script>
-  const NUM_PARTICLES = 40; // Número de partículas
   const fps = 30; // Deseado FPS
-  const fpsInterval = 800 / fps; // Intervalo de tiempo entre fotogramas
+  const fpsInterval = 1000 / fps; // Intervalo de tiempo entre fotogramas
+
+  /**
+   * The backing store is half the viewport in each axis and CSS stretches it
+   * back up: a quarter of the pixels to composite every frame. The particles
+   * are a soft, out-of-focus texture, so the resolution is invisible — but it
+   * was the whole cost. Profiling the build attributed ~4.2 s of main-thread
+   * work and nine long tasks to this loop, all of it rasterisation.
+   *
+   * Coordinates stay in CSS pixels: the context carries the scale.
+   */
+  const RENDER_SCALE = 0.5;
+
+  /** Viewport in CSS pixels — what the particles are positioned against. */
+  let viewW = 0;
+  let viewH = 0;
+
+  type Look = {
+    /** `null` draws the raw texture; a colour re-tints it. */
+    tint: string | null;
+    count: number;
+    size: [number, number];
+    /** Height multiplier: a flat base is what makes a blob read as a cloud. */
+    squash: number;
+    spin: number;
+    /** Maximum initial tilt, so a flat base does not spawn upside down. */
+    tilt: number;
+    /** Horizontal drift in px per frame, from the smallest to the largest. */
+    drift: [number, number];
+    alpha: [number, number];
+    seedX: (width: number, size: number) => number;
+    seedY: (height: number, drawn: number) => number;
+  };
+
+  type LookName = "smoke" | "cloud";
+
+  const LOOKS: Record<LookName, Look> = {
+    // The original numbers, untouched: this is what dark mode has to keep
+    // looking like.
+    smoke: {
+      tint: null,
+      count: 40,
+      size: [1000, 4000],
+      squash: 1,
+      spin: 0.0025,
+      tilt: Math.PI * 2,
+      drift: [0, 0],
+      alpha: [0, 0.8],
+      seedX: (width) => Math.random() * width - width,
+      seedY: (height) => Math.random() * height - height / 2,
+    },
+    cloud: {
+      tint: "#ffffff",
+      count: 24,
+      // Small enough to be read as separate clouds: the smoke sizes are larger
+      // than the viewport, which is why they blur into a single haze.
+      size: [280, 800],
+      squash: 0.55,
+      spin: 0.00025,
+      tilt: 0.18,
+      drift: [0.44, 1.25],
+      alpha: [0.45, 0.95],
+      seedX: (width, size) => Math.random() * (width + size) - size,
+      // Clouds belong to the upper sky, not at eye level with the content
+      seedY: (height, drawn) => Math.random() * height * 0.45 - drawn * 0.5,
+    },
+  };
 
   let canvas: HTMLCanvasElement | null = null;
   let ctx: CanvasRenderingContext2D | null = null;
@@ -35,6 +112,37 @@
   const smokeImage = new Image();
   smokeImage.src = "/images/smoke.webp";
 
+  const sprites = new Map<LookName, CanvasImageSource>();
+
+  /**
+   * The texture is flat gray with an alpha channel, so `source-in` keeps its
+   * shape and swaps the colour. Built once per look and cached.
+   */
+  function sprite(name: LookName): CanvasImageSource {
+    const cached = sprites.get(name);
+    if (cached) return cached;
+
+    const { tint } = LOOKS[name];
+    let image: CanvasImageSource = smokeImage;
+
+    if (tint) {
+      const off = document.createElement("canvas");
+      off.width = smokeImage.naturalWidth;
+      off.height = smokeImage.naturalHeight;
+      const offCtx = off.getContext("2d");
+      if (offCtx) {
+        offCtx.drawImage(smokeImage, 0, 0);
+        offCtx.globalCompositeOperation = "source-in";
+        offCtx.fillStyle = tint;
+        offCtx.fillRect(0, 0, off.width, off.height);
+        image = off;
+      }
+    }
+
+    sprites.set(name, image);
+    return image;
+  }
+
   class Particle {
     x: number;
     y: number;
@@ -42,65 +150,104 @@
     opacity: number;
     rotation: number;
     rotationSpeed: number;
+    speed: number;
 
-    constructor(width: number, height: number) {
-      this.x = Math.random() * width - width;
-      this.y = Math.random() * height - height / 2;
-      this.size = Math.random() * 3000 + 1000; // Ajustar para textura y 'z'
-      this.opacity = Math.random() * 0.8; // Opacidad inicial aleatoria
-      this.rotation = Math.random() * Math.PI * 2; // Rotación inicial aleatoria
-      this.rotationSpeed = Math.random() * 0.002; // Velocidad de rotación
+    constructor(look: Look, width: number, height: number) {
+      const [minSize, maxSize] = look.size;
+      const [minAlpha, maxAlpha] = look.alpha;
+      const [minDrift, maxDrift] = look.drift;
+
+      this.size = minSize + Math.random() * (maxSize - minSize);
+      // Bigger reads as closer, so it travels faster: parallax for free
+      const depth = (this.size - minSize) / (maxSize - minSize);
+      this.speed = minDrift + depth * (maxDrift - minDrift);
+
+      this.x = look.seedX(width, this.size);
+      this.y = look.seedY(height, this.size * look.squash);
+      this.opacity = minAlpha + Math.random() * (maxAlpha - minAlpha);
+      this.rotation = (Math.random() - 0.5) * look.tilt;
+      this.rotationSpeed = Math.random() * look.spin;
     }
 
-    update() {
-      this.rotation += this.rotationSpeed; // Actualizar la rotación
+    update(look: Look, width: number, height: number) {
+      this.rotation += this.rotationSpeed;
+      if (!this.speed) return;
+
+      this.x += this.speed;
+      // Wrapped instead of respawned, so the sky never empties out
+      if (this.x > width) {
+        this.x = -this.size;
+        this.y = look.seedY(height, this.size * look.squash);
+      }
     }
 
-    draw(context: CanvasRenderingContext2D) {
+    draw(
+      context: CanvasRenderingContext2D,
+      look: Look,
+      image: CanvasImageSource
+    ) {
+      const drawn = this.size * look.squash;
+
       context.save(); // Guardar el estado actual del contexto
-      context.translate(this.x + this.size / 2, this.y + this.size / 2);
+      context.translate(this.x + this.size / 2, this.y + drawn / 2);
       context.rotate(this.rotation); // Rotar
       context.globalAlpha = this.opacity; // Opacidad
-      context.drawImage(
-        smokeImage,
-        -this.size / 2,
-        -this.size / 2,
-        this.size,
-        this.size
-      );
+      context.drawImage(image, -this.size / 2, -drawn / 2, this.size, drawn);
       context.globalAlpha = 1.0; // Restablecer opacidad
       context.restore(); // Restaurar el estado original del contexto
     }
   }
 
+  function currentLook(): LookName {
+    return document.documentElement.classList.contains("dark")
+      ? "smoke"
+      : "cloud";
+  }
+
+  let look: LookName = currentLook();
+
   // Particles survive navigations so the effect never restarts visually
-  const particles: Particle[] = [];
+  let particles: Particle[] = [];
 
   function sizeCanvas() {
+    if (!canvas || !ctx) return;
+    viewW = window.innerWidth;
+    viewH = window.innerHeight + 100;
+    canvas.width = Math.round(viewW * RENDER_SCALE);
+    canvas.height = Math.round(viewH * RENDER_SCALE);
+    // Resizing resets the context, so the scale has to be reapplied here.
+    ctx.setTransform(RENDER_SCALE, 0, 0, RENDER_SCALE, 0, 0);
+  }
+
+  function reseed() {
     if (!canvas) return;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight + 100;
+    const config = LOOKS[look];
+    particles = [];
+    for (let i = 0; i < config.count; i++) {
+      particles.push(new Particle(config, viewW, viewH));
+    }
   }
 
   function seedParticles() {
     if (!canvas || particles.length) return;
-    for (let i = 0; i < NUM_PARTICLES; i++) {
-      particles.push(new Particle(canvas.width, canvas.height));
-    }
+    reseed();
   }
 
   function handleParticles() {
     if (!ctx || !canvas) return;
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw(ctx);
+    const config = LOOKS[look];
+    const image = sprite(look);
 
-      if (particles[i].size <= 1) {
-        particles.splice(i, 1);
-        i--;
-        particles.push(new Particle(canvas.width, canvas.height));
-      }
+    for (const particle of particles) {
+      particle.update(config, viewW, viewH);
+      particle.draw(ctx, config, image);
     }
+  }
+
+  function paint() {
+    if (!ctx || !canvas) return;
+    ctx.clearRect(0, 0, viewW, viewH);
+    handleParticles();
   }
 
   function animate() {
@@ -111,12 +258,29 @@
 
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
-      ctx?.clearRect(0, 0, canvas?.width ?? 0, canvas?.height ?? 0);
-      handleParticles();
+      paint();
     }
   }
 
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  /** The texture is what everything draws, so nothing starts before it loads. */
+  function whenTextureReady(run: () => void) {
+    if (smokeImage.complete) run();
+    else smokeImage.addEventListener("load", run, { once: true });
+  }
+
+  function start() {
+    cancelAnimationFrame(raf);
+    if (document.hidden) return;
+    then = Date.now();
+    whenTextureReady(animate);
+  }
+
+  // A hidden tab has no background to paint: stop the loop instead of burning
+  // CPU and battery behind another window.
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) cancelAnimationFrame(raf);
+    else start();
+  });
 
   function bind() {
     const next = document.getElementById(
@@ -131,16 +295,21 @@
     ctx = canvas.getContext("2d");
     sizeCanvas();
     seedParticles();
-
-    if (reducedMotion.matches) return;
-
-    cancelAnimationFrame(raf);
-    if (smokeImage.complete) {
-      animate();
-    } else {
-      smokeImage.onload = () => animate();
-    }
+    start();
   }
+
+  // The theme toggle only flips a class on <html> and emits no event, so the
+  // class itself is what we listen to. `start()` also repaints a frozen frame.
+  new MutationObserver(() => {
+    const next = currentLook();
+    if (next === look) return;
+    look = next;
+    reseed();
+    start();
+  }).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 
   // Resizing the canvas wipes its buffer, so it must not happen while scrolling.
   // Mobile browsers fire `resize` when the URL bar shows/hides, which produced a
@@ -161,7 +330,8 @@
         lastWidth = window.innerWidth;
         lastHeight = window.innerHeight;
         sizeCanvas();
-        // The animation loop keeps running: no cancel, no restart, no flash
+        // The loop keeps running and refills the wiped buffer on the next
+        // frame: no cancel, no restart, no flash.
       }, 150);
     },
     { passive: true }

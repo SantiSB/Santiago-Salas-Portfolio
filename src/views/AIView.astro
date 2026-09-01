@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import PageNav from "../components/ui/PageNav.astro";
 import AITracks from "../components/ai/AITracks.astro";
-import ArrowLink from "../components/ui/ArrowLink.astro";
 import WorkCard from "../components/work/WorkCard.astro";
 import ContactCta from "../components/contact/ContactCta.astro";
 import { getWork } from "../data/work";
@@ -65,11 +64,6 @@ const linkedai = getWork("linkedai");
       </div>
     </div>
 
-    <div class="reveal mt-6">
-      <ArrowLink href={route("skills", lang)}>
-        {t(UI.actions.allCapabilities, lang)}
-      </ArrowLink>
-    </div>
   </div>
 
   <ContactCta lang={lang} />
