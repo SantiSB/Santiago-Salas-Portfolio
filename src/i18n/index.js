@@ -102,7 +102,7 @@ export const UI = {
       title: { en: "Work experience", es: "Experiencia laboral" },
     },
     work: {
-      eyebrow: { en: "Selection", es: "Selección" },
+      eyebrow: { en: "In depth", es: "En profundidad" },
       title: { en: "Featured projects", es: "Proyectos destacados" },
       hint: {
         en: "Swipe to see more",

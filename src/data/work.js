@@ -178,8 +178,8 @@ export const WORK = [
     name: "Apptega",
     kind: { en: "Enterprise platform", es: "Plataforma enterprise" },
     headline: {
-      en: "Modernizing an enterprise platform without stopping it",
-      es: "Modernizar una plataforma enterprise sin detenerla",
+      en: "Frontend modernization at enterprise scale.",
+      es: "Modernización frontend a escala enterprise.",
     },
     summary: {
       en: "A mature cybersecurity and compliance SaaS that had to keep evolving while it kept running.",
@@ -332,8 +332,8 @@ export const WORK = [
     name: "AI Project Management Assistant",
     kind: { en: "Internal AI MVP", es: "MVP interno de IA" },
     headline: {
-      en: "Applying AI to project management",
-      es: "Aplicar IA a la gestión de proyectos",
+      en: "Product, web, mobile and AI.",
+      es: "Producto, web, mobile e IA.",
     },
     summary: {
       en: "An internal innovation MVP that turns meetings into an always-updated project state. Not a finished commercial product.",
@@ -470,8 +470,8 @@ export const WORK = [
     name: "LinkedAI",
     kind: { en: "Product platform", es: "Plataforma de producto" },
     headline: {
-      en: "Specialized interfaces for AI training data",
-      es: "Interfaces especializadas para datos de entrenamiento de IA",
+      en: "Interfaces for computer vision training.",
+      es: "Interfaces para entrenamiento de visión computacional.",
     },
     summary: {
       en: "Graphic tooling to create, annotate, curate and review large image datasets for computer vision.",
@@ -609,8 +609,8 @@ export const WORK = [
     name: { en: "Seismic & volcanic viewers", es: "Visores sísmicos y volcánicos" },
     kind: { en: "Public product", es: "Producto público" },
     headline: {
-      en: "Geoscientific visualization built from zero",
-      es: "Visualización geocientífica construida desde cero",
+      en: "Interactive visualization of geoscientific data.",
+      es: "Visualización interactiva de datos geocientíficos.",
     },
     summary: {
       en: "The public earthquake and volcano viewers of the Colombian Geological Survey: interactive maps and large historical datasets made navigable.",
