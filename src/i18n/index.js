@@ -35,7 +35,7 @@ export const NAV = [
     id: "experience",
     label: { en: "Work experience", es: "Experiencia laboral" },
   },
-  { id: "work", label: { en: "Featured projects", es: "Proyectos destacados" } },
+  { id: "work", label: { en: "Projects", es: "Proyectos" } },
   { id: "ai", label: { en: "AI", es: "IA" } },
 ];
 
@@ -52,6 +52,7 @@ export const UI = {
   },
   actions: {
     seeExperience: { en: "See my experience", es: "Ver mi experiencia" },
+    seeProjects: { en: "See projects", es: "Ver proyectos" },
     downloadCv: { en: "Download CV", es: "Descargar CV" },
     contact: { en: "Contact", es: "Contacto" },
     seeStory: { en: "See the story", es: "Ver historia" },
@@ -59,8 +60,8 @@ export const UI = {
     seeAllProjects: { en: "See all projects", es: "Ver todos los proyectos" },
     seeFullPath: { en: "See the full path", es: "Ver recorrido completo" },
     seeRelatedProject: {
-      en: "See featured project",
-      es: "Ver proyecto destacado",
+      en: "Read the case study",
+      es: "Leer el caso de estudio",
     },
     companySite: { en: "Company site", es: "Sitio de la empresa" },
     moreOnAi: { en: "More on applied AI", es: "Más sobre IA aplicada" },
@@ -80,10 +81,10 @@ export const UI = {
     // "Stage" rather than "Level": career progression, not a game.
     level: { en: "Stage", es: "Etapa" },
     unlocked: { en: "Key technologies", es: "Tecnologías clave" },
-    ownProduct: { en: "Own product", es: "Creación propia" },
+    ownProduct: { en: "Co-founded product", es: "Producto cofundado" },
     featuredProjects: {
-      en: "Featured projects",
-      es: "Proyectos destacados",
+      en: "Projects",
+      es: "Proyectos",
     },
     role: { en: "Role", es: "Rol" },
     period: { en: "Period", es: "Periodo" },
@@ -93,8 +94,8 @@ export const UI = {
   home: {
     pillars: {
       title: {
-        en: "Frontend is my specialty. Product and AI expand my impact.",
-        es: "Frontend es mi especialidad. Producto e IA amplían mi impacto.",
+        en: "Frontend engineering is the core. Product and AI widen its reach.",
+        es: "La ingeniería frontend es el núcleo. Producto e IA amplían su alcance.",
       },
     },
     path: {
@@ -102,8 +103,8 @@ export const UI = {
       title: { en: "Work experience", es: "Experiencia laboral" },
     },
     work: {
-      eyebrow: { en: "In depth", es: "En profundidad" },
-      title: { en: "Featured projects", es: "Proyectos destacados" },
+      eyebrow: { en: "Case studies", es: "Casos de estudio" },
+      title: { en: "Projects", es: "Proyectos" },
       hint: {
         en: "Swipe to see more",
         es: "Desliza para ver más",
@@ -112,8 +113,8 @@ export const UI = {
     ai: {
       eyebrow: { en: "Applied AI", es: "IA aplicada" },
       title: {
-        en: "Two ways of working with AI",
-        es: "Dos formas de trabajar con IA",
+        en: "AI in products, and AI in my engineering",
+        es: "IA en los productos y en mi ingeniería",
       },
     },
     skills: {
@@ -125,16 +126,17 @@ export const UI = {
     eyebrow: { en: "Career", es: "Trayectoria" },
     title: { en: "Work experience", es: "Experiencia laboral" },
     intro: {
-      en: "Four stages, one direction: from building interfaces from scratch to modernizing enterprise systems that can't stop running.",
-      es: "Cuatro etapas, una dirección: desde construir interfaces desde cero hasta modernizar sistemas enterprise que no pueden detenerse.",
+      en: "Four jobs, in order, and PASSTIX alongside them: from public data viewers built from scratch to a full-time seat on an enterprise SaaS platform.",
+      es: "Cuatro empleos en orden cronológico y PASSTIX en paralelo: desde visores públicos de datos construidos desde cero hasta un puesto de tiempo completo en una plataforma SaaS empresarial.",
     },
+    ventureEyebrow: { en: "Alongside", es: "En paralelo" },
   },
   workView: {
-    eyebrow: { en: "In depth", es: "En profundidad" },
-    title: { en: "Featured projects", es: "Proyectos destacados" },
+    eyebrow: { en: "Case studies", es: "Casos de estudio" },
+    title: { en: "Projects", es: "Proyectos" },
     intro: {
-      en: "Five projects, five kinds of complexity: an own product, an enterprise platform, an internal AI MVP, specialized tooling for computer vision and a public product built from zero.",
-      es: "Cinco proyectos y cinco tipos de complejidad: un producto propio, una plataforma enterprise, un MVP interno de IA, herramientas especializadas para visión computacional y un producto público construido desde cero.",
+      en: "Five case studies, each with the context, the problem, what was mine to own and the decisions behind it. Team decisions are described as team decisions.",
+      es: "Cinco casos de estudio, cada uno con el contexto, el problema, lo que me correspondió y las decisiones detrás. Las decisiones de equipo se describen como tales.",
     },
     toExperience: {
       en: "See where each one comes from",
@@ -144,23 +146,23 @@ export const UI = {
   aiView: {
     eyebrow: { en: "Applied AI", es: "IA aplicada" },
     title: {
-      en: "Two ways of working with AI",
-      es: "Dos formas de trabajar con IA",
+      en: "AI in products, and AI in my engineering",
+      es: "IA en los productos y en mi ingeniería",
     },
     intro: {
-      en: "I don't position myself as a machine learning researcher. My strength is the layer that turns AI capabilities into usable products — and the one that uses AI to build better software.",
-      es: "No me posiciono como investigador de machine learning. Mi fortaleza está en la capa que convierte capacidades de IA en productos utilizables, y en usar IA para construir mejor software.",
+      en: "I'm a frontend engineer who integrates models into product experiences and uses coding agents at work. I don't research or train models. Two different things, kept apart here.",
+      es: "Soy ingeniero frontend: integro modelos en experiencias de producto y uso agentes de código en mi trabajo. No investigo ni entreno modelos. Son dos cosas distintas y aquí las mantengo separadas.",
     },
   },
   skillsView: {
     eyebrow: { en: "Toolbox", es: "Herramientas" },
     title: { en: "Capabilities", es: "Capacidades" },
     intro: {
-      en: "The full inventory, grouped by area. Filter to see what fits what you need.",
-      es: "El inventario completo, agrupado por área. Filtra para ver lo que encaja con lo que necesitas.",
+      en: "Grouped by specialty, each with where I applied it. Only what I have used in real work.",
+      es: "Agrupado por especialidad, cada grupo con el lugar donde lo apliqué. Solo lo que he usado en trabajo real.",
     },
+    where: { en: "Applied at", es: "Aplicado en" },
     all: { en: "All", es: "Todo" },
-    count: { en: "capabilities", es: "capacidades" },
   },
   contact: {
     title: { en: "Let's talk", es: "Hablemos" },
@@ -170,12 +172,12 @@ export const UI = {
       es: "Disponible para el siguiente reto",
     },
     body: {
-      en: "I'm looking for remote opportunities where I can contribute through frontend engineering, product thinking and applied AI, while taking ownership of complex digital products.",
-      es: "Busco oportunidades remotas donde pueda aportar desde el frontend engineering, el pensamiento de producto y la IA aplicada, asumiendo la responsabilidad de productos digitales complejos.",
+      en: "I'm looking for remote senior frontend roles on complex products, where architecture, state, performance and product judgment matter.",
+      es: "Busco roles senior de frontend, en remoto, en productos complejos donde importen la arquitectura, el estado, el rendimiento y el criterio de producto.",
     },
     roles: {
-      en: "Frontend Developer · Frontend Engineer · Product Engineering",
-      es: "Frontend Developer · Frontend Engineer · Product Engineering",
+      en: "Senior Frontend Engineer · Frontend Architecture · Product Engineering",
+      es: "Senior Frontend Engineer · Arquitectura frontend · Product Engineering",
     },
     email: { en: "Email", es: "Correo" },
     phone: { en: "Phone", es: "Teléfono" },

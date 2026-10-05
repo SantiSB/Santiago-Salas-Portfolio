@@ -5,7 +5,8 @@
  * Draws the pipeline described in the case study so the project reads as an AI
  * system rather than "an app that calls ChatGPT": real inputs on top, a
  * retrieval + LLM core in the middle, operational artefacts at the bottom.
- * Every term here already exists in the project's `tech` list and story.
+ * Every term here already exists in the case study: meetings and documents in,
+ * Dify workflows in the middle, documentation, planning and tracking out.
  */
 import VisualFrame from "./VisualFrame.astro";
 import { t } from "../../../i18n";
@@ -20,32 +21,30 @@ const big = size === "lg";
 
 const copy = {
   label: {
-    en: "Conceptual diagram: meetings, audio and documents are turned into project knowledge through speech-to-text, embeddings and retrieval, and an LLM produces documentation, planning and tasks.",
-    es: "Diagrama conceptual: reuniones, audio y documentos se convierten en conocimiento de proyecto mediante speech-to-text, embeddings y recuperación, y un LLM produce documentación, planificación y tareas.",
+    en: "Conceptual diagram: meetings and documents go into AI workflows built with Dify, which produce project documentation, planning and tracking.",
+    es: "Diagrama conceptual: reuniones y documentos entran a flujos de IA construidos con Dify, que producen documentación, planificación y seguimiento del proyecto.",
   },
   sources: { en: "Sources", es: "Fuentes" },
-  core: { en: "Project knowledge", es: "Conocimiento del proyecto" },
+  core: { en: "AI workflows", es: "Flujos de IA" },
   outputs: { en: "Outputs", es: "Salidas" },
-  human: { en: "The system proposes · the team decides", es: "El sistema propone · el equipo decide" },
+  architecture: { en: "Initial architecture: hexagonal principles", es: "Arquitectura inicial: principios hexagonales" },
 };
 
 const sources = [
   { en: "Meetings", es: "Reuniones" },
-  { en: "Audio", es: "Audio" },
   { en: "Documents", es: "Documentos" },
 ];
 
 const core = [
-  "Speech-to-text",
-  "Embeddings",
-  { en: "Semantic search", es: "Búsqueda semántica" },
-  "RAG",
+  { en: "Work with documents", es: "Trabajar con documentos" },
+  { en: "Generate content", es: "Generar contenido" },
+  { en: "Query project information", es: "Consultar información del proyecto" },
 ];
 
 const outputs = [
   { en: "Documentation", es: "Documentación" },
   { en: "Planning", es: "Planificación" },
-  { en: "Tasks", es: "Tareas" },
+  { en: "Tracking", es: "Seguimiento" },
 ];
 
 const micro = big ? "text-[11px]" : "text-[9px]";
@@ -88,11 +87,11 @@ const arrowPad = big ? "py-4" : "py-1.5";
     class={`rounded-lg border border-blue-800/35 bg-white/70 dark:border-blue-400/35 dark:bg-blue-950/40 ${big ? "p-5" : "p-2.5"}`}
   >
     <div class="flex items-baseline justify-between gap-2">
-      <p class={`font-bold text-blue-900 dark:text-blue-300 ${small}`}>LLM + {t(copy.core, lang)}</p>
+      <p class={`font-bold text-blue-900 dark:text-blue-300 ${small}`}>{t(copy.core, lang)}</p>
       <span
         class={`shrink-0 font-semibold uppercase tracking-[0.16em] text-blue-800/70 dark:text-blue-400/70 ${micro}`}
       >
-        Dify · n8n
+        Dify
       </span>
     </div>
     <ul class={`flex flex-wrap ${big ? "mt-3 gap-1.5" : "mt-1.5 gap-1"}`}>
@@ -132,6 +131,6 @@ const arrowPad = big ? "py-4" : "py-1.5";
   </ul>
 
   <p class={`text-center text-gray-600 dark:text-gray-400 ${big ? "mt-4" : "mt-2"} ${micro}`}>
-    {t(copy.human, lang)}
+    {t(copy.architecture, lang)}
   </p>
 </VisualFrame>

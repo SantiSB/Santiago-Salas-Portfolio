@@ -3,9 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import PageNav from "../components/ui/PageNav.astro";
 import ExperienceTimeline from "../components/experience/ExperienceTimeline.astro";
+import ExperienceCard from "../components/experience/ExperienceCard.astro";
 import ContactCta from "../components/contact/ContactCta.astro";
 import { SEO } from "../data/site";
-import { ROUTES, UI, otherLang, route } from "../i18n";
+import { VENTURE } from "../data/experience";
+import { ROUTES, UI, t, otherLang, route } from "../i18n";
 
 interface Props {
   lang: "en" | "es";
@@ -46,6 +48,15 @@ const meta = SEO.experience[lang];
 
     <div class="mt-8 sm:mt-10">
       <ExperienceTimeline lang={lang} />
+    </div>
+
+    {/* PASSTIX runs alongside the last job rather than after it, so it is not
+        one more stage of the timeline. */}
+    <div class="mt-10 sm:mt-12">
+      <h2 class="reveal mb-4 text-lg font-bold text-blue-900 dark:text-blue-400 sm:text-xl">
+        {t(UI.experienceView.ventureEyebrow, lang)}
+      </h2>
+      <ExperienceCard item={VENTURE} lang={lang} />
     </div>
 
   </div>

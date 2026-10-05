@@ -10,7 +10,10 @@ interface Props {
 }
 
 const { item, lang } = Astro.props;
-const levelText = `${t(UI.labels.level, lang)} ${item.level} · ${t(item.levelLabel, lang)}`;
+// A card outside the timeline (PASSTIX) has no stage number, only its label.
+const levelText = item.level
+  ? `${t(UI.labels.level, lang)} ${item.level} · ${t(item.levelLabel, lang)}`
+  : t(item.levelLabel, lang);
 ---
 
 <article class={`reveal overflow-hidden ${CARD_INTERACTIVE}`}>

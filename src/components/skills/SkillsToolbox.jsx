@@ -13,9 +13,6 @@ export default function SkillsToolbox({ lang = "en" }) {
       ? CAPABILITIES
       : CAPABILITIES.filter((group) => group.id === active);
 
-  const total = CAPABILITIES.reduce((sum, group) => sum + group.items.length, 0);
-  const shown = groups.reduce((sum, group) => sum + group.items.length, 0);
-
   const filterClass = (isActive) =>
     `rounded-full border px-3 py-1.5 text-[13px] font-semibold transition-colors ${FOCUS} ${
       isActive
@@ -51,19 +48,16 @@ export default function SkillsToolbox({ lang = "en" }) {
         ))}
       </div>
 
-      <p
-        aria-live="polite"
-        className="mt-3 text-[13px] text-gray-600 dark:text-gray-300"
-      >
-        {shown} / {total} {t(UI.skillsView.count, lang)}
-      </p>
 
-      <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {groups.map((group) => (
           <section key={group.id} className={`p-5 ${CARD}`}>
             <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-blue-900 dark:text-blue-400">
               {t(group.title, lang)}
             </h2>
+            <p className="mt-2 text-[14px] leading-[1.55] text-gray-700 dark:text-gray-300">
+              {t(group.summary, lang)}
+            </p>
             <ul className="mt-3 flex flex-wrap gap-1.5">
               {group.items.map((item, index) => (
                 <li key={index}>
@@ -71,6 +65,10 @@ export default function SkillsToolbox({ lang = "en" }) {
                 </li>
               ))}
             </ul>
+            <p className="mt-4 text-[13px] text-gray-600 dark:text-gray-300">
+              <span className="font-semibold">{t(UI.skillsView.where, lang)}:</span>{" "}
+              {group.where.join(" · ")}
+            </p>
           </section>
         ))}
       </div>

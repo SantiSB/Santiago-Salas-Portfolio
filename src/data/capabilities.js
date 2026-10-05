@@ -1,186 +1,224 @@
 /**
- * Central capability inventory. This is the single place where the full list of
- * technologies lives — experience and work views only show a representative subset.
+ * Capabilities, grouped by specialty. Every group says where it was applied, and
+ * every item is something used in real work (see experience.js and work.js).
+ * No keyword goes in without evidence there, and no adjectives ("team player").
+ *
+ * Order matters twice: groups run from the core specialty outwards, and items
+ * run from the most representative to the least, because the home view shows
+ * only the first four of a few groups.
+ *
+ * `where` is plain company/product names, shared across languages.
  */
 export const CAPABILITIES = [
   {
-    id: "frontend",
-    title: { en: "Frontend Engineering", es: "Frontend Engineering" },
+    id: "architecture",
+    title: { en: "Architecture & state", es: "Arquitectura y estado" },
+    summary: {
+      en: "Modular React and TypeScript applications, shared components and complex state, inside legacy and multi-repository systems.",
+      es: "Aplicaciones modulares en React y TypeScript, componentes compartidos y estado complejo, dentro de sistemas legados y multirrepositorio.",
+    },
+    where: ["Apptega", "PASSTIX", "57Blocks"],
     items: [
       "React",
       "TypeScript",
-      "JavaScript",
+      "Redux Toolkit",
+      "TanStack React Query",
       "Next.js",
       "Angular",
-      "Redux / Redux Toolkit",
-      "TanStack Query",
       "Vite",
-      "Astro",
-      { en: "Web Performance", es: "Rendimiento web" },
+      { en: "Legacy integration", es: "Integración con código legado" },
+      { en: "Hexagonal architecture", es: "Arquitectura hexagonal" },
+      "Feature flags",
+      { en: "Private npm packages", es: "Paquetes npm privados" },
     ],
   },
   {
-    id: "ui",
-    title: { en: "UI & Design Systems", es: "UI y sistemas de diseño" },
+    id: "performance",
+    title: {
+      en: "Performance & data-heavy UI",
+      es: "Rendimiento e interfaces con muchos datos",
+    },
+    summary: {
+      en: "Interfaces that stay responsive over large datasets, large image sets and information-dense screens.",
+      es: "Interfaces que se mantienen fluidas con grandes datasets, grandes conjuntos de imágenes y pantallas con mucha información.",
+    },
+    where: ["LinkedAI", "Servicio Geológico Colombiano", "Apptega"],
     items: [
+      "HTML Canvas",
+      { en: "Interactive maps", es: "Mapas interactivos" },
+      { en: "Data visualization", es: "Visualización de datos" },
+      { en: "Information-dense interfaces", es: "Interfaces con mucha información" },
+      { en: "Query state", es: "Estado de consulta" },
+      { en: "REST and GraphQL APIs", es: "APIs REST y GraphQL" },
+    ],
+  },
+  {
+    id: "design",
+    title: { en: "Design systems & UI", es: "Sistemas de diseño y UI" },
+    summary: {
+      en: "Reusable components shared across applications, and interfaces that are designed as well as built.",
+      es: "Componentes reutilizables compartidos entre aplicaciones, e interfaces que se diseñan además de construirse.",
+    },
+    where: ["Apptega", "PASSTIX"],
+    items: [
+      { en: "Design systems", es: "Sistemas de diseño" },
+      "Storybook",
       "Material UI",
       "Tailwind CSS",
-      "Storybook",
-      "Figma",
-      "HTML Canvas",
       "Sass",
-      { en: "Responsive Design", es: "Responsive Design" },
-    ],
-  },
-  {
-    id: "architecture",
-    title: { en: "Architecture", es: "Arquitectura" },
-    items: [
-      { en: "Frontend Architecture", es: "Arquitectura frontend" },
-      { en: "Multi-repository Systems", es: "Sistemas multi-repositorio" },
-      "Bounded Contexts",
-      { en: "Hexagonal Architecture", es: "Arquitectura hexagonal" },
-      "REST APIs",
-      "GraphQL",
-      { en: "Private npm Packages", es: "Paquetes npm privados" },
-      "Docker Compose",
-      "Feature Flags",
+      "Framer Motion",
+      "Figma",
     ],
   },
   {
     id: "quality",
     title: { en: "Quality", es: "Calidad" },
+    summary: {
+      en: "Unit, component, integration and functional-flow tests written alongside the feature.",
+      es: "Pruebas unitarias, de componentes, de integración y de flujos funcionales escritas junto con la funcionalidad.",
+    },
+    where: ["Apptega", "LinkedAI", "PASSTIX"],
     items: [
-      "Jest",
       "Vitest",
+      "Jest",
       "React Testing Library",
       "Karate",
-      { en: "Testing Strategy", es: "Estrategia de testing" },
-      { en: "Accessibility", es: "Accesibilidad" },
-      { en: "Code Review", es: "Code Review" },
-    ],
-  },
-  {
-    id: "ai",
-    title: { en: "Applied AI", es: "IA aplicada" },
-    items: [
-      "LLMs",
-      "Prompt Engineering",
-      "RAG",
-      "Embeddings",
-      { en: "Vector Databases", es: "Bases vectoriales" },
-      { en: "Semantic Search", es: "Búsqueda semántica" },
-      "Speech-to-text",
-      "Dify",
-      "n8n",
-    ],
-  },
-  {
-    id: "ai-dev",
-    title: {
-      en: "AI-Assisted Development",
-      es: "Desarrollo asistido por IA",
-    },
-    items: [
-      "Claude",
-      "Cursor",
-      { en: "Agents", es: "Agentes" },
-      "Skills",
-      { en: "Code Review", es: "Code Review" },
-      "Testing",
-      { en: "Documentation", es: "Documentación" },
-      { en: "Technical Research", es: "Investigación técnica" },
+      { en: "UI and behavior tests", es: "Pruebas de interfaz y comportamiento" },
     ],
   },
   {
     id: "product",
-    title: { en: "Product", es: "Producto" },
+    title: { en: "Product & experience", es: "Producto y experiencia" },
+    summary: {
+      en: "From validating a problem to defining an MVP, designing the experience and iterating with users.",
+      es: "Desde validar un problema hasta definir un MVP, diseñar la experiencia e iterar con usuarios.",
+    },
+    where: ["PASSTIX", "57Blocks"],
     items: [
-      "Product Discovery",
-      { en: "MVP Validation", es: "Validación de MVP" },
-      { en: "Requirements", es: "Requerimientos" },
+      { en: "UX and UI design", es: "Diseño UX y UI" },
+      { en: "Problem validation", es: "Validación de problemas" },
+      { en: "MVP definition", es: "Definición de MVP" },
       { en: "Prioritization", es: "Priorización" },
-      "UX",
-      { en: "Product Strategy", es: "Estrategia de producto" },
     ],
   },
   {
-    // Things actually done in a team, never adjectives ("team player", etc.)
-    id: "collaboration",
-    title: {
-      en: "Collaboration & Ownership",
-      es: "Colaboración y ownership",
+    id: "delivery",
+    title: { en: "Collaboration & delivery", es: "Colaboración y entrega" },
+    summary: {
+      en: "Working with product, design, backend, QA, DevOps, leadership and clients.",
+      es: "Trabajo con producto, diseño, backend, QA, DevOps, dirección y clientes.",
     },
+    where: ["Apptega", "57Blocks"],
     items: [
-      { en: "Stakeholder Alignment", es: "Alineación con stakeholders" },
-      { en: "Estimation", es: "Estimación" },
-      { en: "Refinement", es: "Refinamiento" },
-      { en: "Technical Decisions", es: "Decisiones técnicas" },
-      { en: "Demos", es: "Demos" },
-      { en: "Cross-functional Work", es: "Trabajo interdisciplinario" },
-      { en: "Client Communication", es: "Comunicación con clientes" },
-      { en: "End-to-end Delivery", es: "Entrega de punta a punta" },
-    ],
-  },
-];
-
-/** Two ways of working with AI. Kept short: the detail lives in the AI view. */
-export const AI_TRACKS = [
-  {
-    id: "with-ai",
-    title: {
-      en: "Building products with AI",
-      es: "Construir productos con IA",
-    },
-    body: {
-      en: "I turn AI capabilities into features people can actually use inside a digital product.",
-      es: "Convierto capacidades de inteligencia artificial en funcionalidades utilizables dentro de productos digitales.",
-    },
-    items: [
-      "LLMs",
-      "RAG",
-      "Embeddings",
-      { en: "Vector databases", es: "Bases vectoriales" },
-      { en: "Semantic search", es: "Búsqueda semántica" },
-      "Speech-to-text",
-      "Workflows",
-      "Dify",
-      "n8n",
+      { en: "Requirement refinement", es: "Refinamiento de requerimientos" },
+      { en: "Progress demos", es: "Demos de avance" },
+      { en: "Client communication", es: "Comunicación con clientes" },
+      "Docker Compose",
+      "Git",
     ],
   },
   {
-    id: "using-ai",
-    title: {
-      en: "Engineering with AI",
-      es: "Ingeniería con IA",
+    id: "ai-products",
+    title: { en: "AI in products", es: "IA en productos" },
+    summary: {
+      en: "AI workflows and models integrated into product experiences.",
+      es: "Flujos de IA y modelos integrados en experiencias de producto.",
     },
-    body: {
-      en: "I use AI throughout the engineering process to improve research, implementation, testing, documentation and problem-solving.",
-      es: "Uso IA a lo largo de todo el proceso de ingeniería para mejorar investigación, implementación, testing, documentación y resolución de problemas.",
-    },
+    where: ["57Blocks", "LinkedAI"],
     items: [
-      "Claude",
+      { en: "Segment Anything (SAM) integration", es: "Integración de Segment Anything (SAM)" },
+      { en: "Dify workflows", es: "Flujos en Dify" },
+      { en: "AI workflow design", es: "Diseño de flujos con IA" },
+    ],
+  },
+  {
+    id: "ai-engineering",
+    title: { en: "AI in engineering", es: "IA en ingeniería" },
+    summary: {
+      en: "Coding agents as part of my day-to-day work. They speed it up; they don't replace the judgment behind it.",
+      es: "Agentes de código como parte de mi trabajo diario. Lo aceleran; no reemplazan el criterio que hay detrás.",
+    },
+    where: ["Apptega", "PASSTIX", "57Blocks"],
+    items: [
+      "Claude Code",
       "Cursor",
-      { en: "Agents", es: "Agentes" },
-      "Skills",
-      "Code Review",
-      "Testing",
-      { en: "Technical research", es: "Investigación técnica" },
+      { en: "Agent-assisted development", es: "Desarrollo asistido por agentes" },
     ],
   },
 ];
 
 /**
- * Condensed version for the home view: three groups, four representative items
- * each. The three are the ones the pillars above them already name — frontend,
- * applied AI and product — so the home tells one story instead of dumping the
- * inventory. No "+N" counter on purpose: a number that isn't clickable reads
- * like a hidden list. The full inventory is one link away.
+ * Two kinds of AI work, kept apart. `examples` are the concrete cases (they link
+ * to the case study); `items` are chips. The AI view renders both in full; the
+ * home view shows only `title` and `body`, so `body` must stand on its own.
  */
-const HOME_GROUPS = ["frontend", "ai", "product"];
+export const AI_TRACKS = [
+  {
+    id: "in-products",
+    title: { en: "AI inside products", es: "IA dentro de los productos" },
+    body: {
+      en: "Models and AI workflows integrated into product experiences I built. My part is the product and the frontend around them, not the model research.",
+      es: "Modelos y flujos de IA integrados en experiencias de producto que construí. Mi parte es el producto y el frontend que los rodea, no la investigación del modelo.",
+    },
+    examples: [
+      {
+        slug: "ai-project-management",
+        eyebrow: "57Blocks",
+        title: {
+          en: "AI workflows for project documentation, planning and tracking",
+          es: "Flujos de IA para documentación, planificación y seguimiento de proyectos",
+        },
+        body: {
+          en: "An application that turns meetings into software-project documentation, planning and tracking. I led its technical planning and initial development, defined its hexagonal architecture, and designed and integrated the Dify workflows for working with documents, generating content and querying project information. It reached an early MVP.",
+          es: "Una aplicación que convierte reuniones en documentación, planificación y seguimiento de proyectos de software. Lideré su planificación técnica y desarrollo inicial, definí su arquitectura hexagonal y diseñé e integré los flujos en Dify para trabajar con documentos, generar contenido y consultar información del proyecto. Llegó a un MVP temprano.",
+        },
+      },
+      {
+        slug: "linkedai",
+        eyebrow: "LinkedAI",
+        title: {
+          en: "Segment Anything (SAM) in the annotation tools",
+          es: "Segment Anything (SAM) en las herramientas de anotación",
+        },
+        body: {
+          en: "I integrated Segment Anything Model into the annotation workflows, so AI-assisted segmentation is part of creating and editing labels in tools I had built on HTML Canvas. My contribution was the integration into the product; I did not research or train the model.",
+          es: "Integré Segment Anything Model en los flujos de anotación, de modo que la segmentación asistida por IA forma parte de la creación y edición de etiquetas en herramientas que yo había construido sobre HTML Canvas. Mi aporte fue la integración en el producto; no investigué ni entrené el modelo.",
+        },
+      },
+    ],
+    items: [
+      { en: "Segment Anything (SAM)", es: "Segment Anything (SAM)" },
+      "Dify",
+      { en: "AI workflow design", es: "Diseño de flujos con IA" },
+      { en: "Model integration", es: "Integración de modelos" },
+    ],
+  },
+  {
+    id: "in-engineering",
+    title: { en: "AI in my engineering work", es: "IA en mi trabajo de ingeniería" },
+    body: {
+      en: "Claude Code and Cursor are part of how I build software, notably at Apptega and on PASSTIX. They speed up exploring code, implementing, testing and documenting. They don't replace technical judgment: I frame the problem, review what they produce and answer for the result.",
+      es: "Claude Code y Cursor son parte de cómo construyo software, sobre todo en Apptega y en PASSTIX. Aceleran la exploración de código, la implementación, las pruebas y la documentación. No reemplazan el criterio técnico: yo planteo el problema, reviso lo que producen y respondo por el resultado.",
+    },
+    examples: [],
+    items: [
+      "Claude Code",
+      "Cursor",
+      { en: "Agent-assisted development", es: "Desarrollo asistido por agentes" },
+    ],
+  },
+];
 
-export const CAPABILITIES_SUMMARY = CAPABILITIES.filter((group) =>
-  HOME_GROUPS.includes(group.id)
+/**
+ * Condensed version for the home view: the three groups the pillars above it
+ * name, four representative items each. No "+N" counter on purpose: a number
+ * that isn't clickable reads like a hidden list. The full inventory is one link
+ * away.
+ */
+const HOME_GROUPS = ["architecture", "performance", "ai-products"];
+
+export const CAPABILITIES_SUMMARY = HOME_GROUPS.map((id) =>
+  CAPABILITIES.find((group) => group.id === id)
 ).map((group) => ({
   id: group.id,
   title: group.title,

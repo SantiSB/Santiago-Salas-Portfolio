@@ -1,37 +1,72 @@
 ---
-import { t } from "../../i18n";
+import { t, UI, workUrl } from "../../i18n";
 import { AI_TRACKS } from "../../data/capabilities";
 import Chip from "../ui/Chip.astro";
-import { CARD, BODY } from "../../styles/ui";
+import ArrowLink from "../ui/ArrowLink.astro";
+import { CARD, EYEBROW, BODY } from "../../styles/ui";
 
 interface Props {
   lang: "en" | "es";
-  /** `compact` hides the chip lists (used on home, where capabilities follow). */
+  /**
+   * `compact` is the home teaser: two cards side by side with title and body
+   * only. `full` is the AI view: one block per track, with its concrete
+   * examples (linked to their case study) and its chips.
+   */
   variant?: "compact" | "full";
 }
 
 const { lang, variant = "full" } = Astro.props;
 ---
 
-<div class="grid gap-4 lg:grid-cols-2">
-  {
-    AI_TRACKS.map((track) => (
-      <article class={`reveal p-5 sm:p-6 ${CARD}`}>
-        <h3 class="text-base font-bold text-gray-900 dark:text-white sm:text-lg">
-          {t(track.title, lang)}
-        </h3>
-        <p class={`mt-2 ${BODY}`}>{t(track.body, lang)}</p>
+{
+  variant === "compact" ? (
+    <div class="grid gap-4 lg:grid-cols-2">
+      {AI_TRACKS.map((track) => (
+        <article class={`reveal p-5 sm:p-6 ${CARD}`}>
+          <h3 class="text-base font-bold text-gray-900 dark:text-white sm:text-lg">
+            {t(track.title, lang)}
+          </h3>
+          <p class={`mt-2 ${BODY}`}>{t(track.body, lang)}</p>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <div class="space-y-10 sm:space-y-12">
+      {AI_TRACKS.map((track) => (
+        <section class="reveal">
+          <h2 class="text-lg font-bold text-blue-900 dark:text-blue-400 sm:text-xl">
+            {t(track.title, lang)}
+          </h2>
+          <p class={`mt-2 max-w-3xl ${BODY}`}>{t(track.body, lang)}</p>
 
-        {variant === "full" && (
-          <ul class="mt-4 flex flex-wrap gap-1.5">
+          {track.examples.length > 0 && (
+            <div class="mt-5 grid gap-4 md:grid-cols-2">
+              {track.examples.map((example) => (
+                <article class={`flex flex-col p-5 sm:p-6 ${CARD}`}>
+                  <p class={EYEBROW}>{example.eyebrow}</p>
+                  <h3 class="mt-1.5 text-base font-bold text-gray-900 dark:text-white sm:text-lg">
+                    {t(example.title, lang)}
+                  </h3>
+                  <p class={`mt-2 ${BODY}`}>{t(example.body, lang)}</p>
+                  <div class="mt-4">
+                    <ArrowLink href={workUrl(example.slug, lang)}>
+                      {t(UI.actions.seeRelatedProject, lang)}
+                    </ArrowLink>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+
+          <ul class="mt-5 flex flex-wrap gap-1.5">
             {track.items.map((item) => (
               <li>
                 <Chip>{t(item, lang)}</Chip>
               </li>
             ))}
           </ul>
-        )}
-      </article>
-    ))
-  }
-</div>
+        </section>
+      ))}
+    </div>
+  )
+}

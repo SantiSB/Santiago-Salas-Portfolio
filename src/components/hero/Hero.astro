@@ -76,13 +76,16 @@ const secondaryLink = `text-sm font-medium text-gray-700 underline-offset-4 tran
     class="rise flex flex-wrap items-center justify-center gap-3"
     style="animation-delay:300ms"
   >
-    <a href={route("experience", lang)} class={BTN_PRIMARY}>
-      {t(UI.actions.seeExperience, lang)}
+    <a href={route("work", lang)} class={BTN_PRIMARY}>
+      {t(UI.actions.seeProjects, lang)}
       <span aria-hidden="true">→</span>
+    </a>
+    <a href={route("experience", lang)} class={BTN_SECONDARY}>
+      {t(UI.actions.seeExperience, lang)}
     </a>
     <a
       href={t(SITE.cv, lang)}
-      download={`Santiago_Salas_CV_${lang.toUpperCase()}.pdf`}
+      download={t(SITE.cvDownloadName, lang)}
       class={BTN_SECONDARY}
     >
       <DownloadCV class="size-4 fill-none" />

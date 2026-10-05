@@ -3,11 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import PageNav from "../components/ui/PageNav.astro";
 import AITracks from "../components/ai/AITracks.astro";
-import WorkCard from "../components/work/WorkCard.astro";
 import ContactCta from "../components/contact/ContactCta.astro";
-import { getWork } from "../data/work";
 import { SEO } from "../data/site";
-import { ROUTES, UI, t, otherLang, route } from "../i18n";
+import { ROUTES, UI, otherLang, route } from "../i18n";
 
 interface Props {
   lang: "en" | "es";
@@ -15,8 +13,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const meta = SEO.ai[lang];
-const aiWork = getWork("ai-project-management");
-const linkedai = getWork("linkedai");
 ---
 
 <Layout
@@ -48,20 +44,8 @@ const linkedai = getWork("linkedai");
       class="reveal"
     />
 
-    <div class="mt-8">
+    <div class="mt-8 sm:mt-10">
       <AITracks lang={lang} />
-    </div>
-
-    <div class="mt-10 sm:mt-14">
-      <h2
-        class="reveal text-lg font-bold text-blue-900 dark:text-blue-400 sm:text-xl"
-      >
-        {t(UI.labels.featuredProjects, lang)}
-      </h2>
-      <div class="mt-4 grid gap-4 sm:gap-5 lg:grid-cols-2">
-        {aiWork && <WorkCard work={aiWork} lang={lang} variant="full" class="reveal" />}
-        {linkedai && <WorkCard work={linkedai} lang={lang} variant="full" class="reveal" />}
-      </div>
     </div>
 
   </div>

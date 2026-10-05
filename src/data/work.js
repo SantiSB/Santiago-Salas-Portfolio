@@ -1,7 +1,11 @@
 /**
- * Featured projects — five problems worth exploring in depth, each showing a
- * different kind of complexity. This replaces the old project catalogue on
- * purpose: depth and impact over quantity.
+ * Case studies — five problems worth exploring in depth, each showing a
+ * different kind of complexity. Depth over quantity.
+ *
+ * Every `story` has the same five blocks, in this order: context, problem,
+ * responsibility (what was mine, and what was not), decisions I can defend, and
+ * a result a reader could check. No block exists to repeat another one, and no
+ * figure goes in without a source. Dates and titles follow the CVs.
  *
  * `media` is consumed by components/media/Media.astro and accepts:
  *   { type: "image",   src, alt }   // src is an imported asset,
@@ -25,20 +29,25 @@ export const WORK = [
     slug: "passtix",
     name: "PASSTIX",
     featured: true,
-    kind: { en: "Own product", es: "Creación propia" },
+    kind: { en: "Co-founded product", es: "Producto cofundado" },
     headline: {
-      en: "From a local need to a real product",
-      es: "De una necesidad local a un producto real",
+      en: "From problem validation to live events",
+      es: "De la validación del problema a eventos reales",
     },
     summary: {
-      en: "A ticketing and event operations platform I co-founded: validated at real events before building the full product.",
-      es: "Una plataforma de ticketing y operación de eventos que cofundé: validada en eventos reales antes de construir el producto completo.",
+      en: "A ticketing platform I co-founded. I lead the product experience and the frontend; my co-founder owns the backend. It covers the digital product and the real operation around it.",
+      es: "Una plataforma de ticketing que cofundé. Lidero la experiencia de producto y el frontend; mi cofundador se encarga del backend. Abarca el producto digital y la operación real a su alrededor.",
     },
-    role: { en: "Founder & Product Lead", es: "Founder & Product Lead" },
-    period: { en: "2025 – Present", es: "2025 – Actualidad" },
+    role: {
+      en: "Co-founder · Frontend and product experience",
+      es: "Cofundador · Frontend y experiencia de producto",
+    },
+    // The CV says "launched in 2025" and nothing more precise. A start date or
+    // an end date has to come from Santiago before it goes here.
+    period: { en: "Launched in 2025", es: "Lanzamiento: 2025" },
     context: {
-      en: "Own product · Ticketing & event operations",
-      es: "Creación propia · Ticketing y operación de eventos",
+      en: "Co-founded product · Ticketing and event operations",
+      es: "Producto cofundado · Ticketing y operación de eventos",
     },
     media: {
       type: "image",
@@ -52,8 +61,12 @@ export const WORK = [
       "React",
       "TypeScript",
       "Redux Toolkit",
+      "TanStack React Query",
       "Firebase",
       "Tailwind CSS",
+      "Framer Motion",
+      "Recharts",
+      "Vitest",
       "Figma",
     ],
     links: [
@@ -67,55 +80,37 @@ export const WORK = [
         key: "context",
         label: { en: "Context", es: "Contexto" },
         body: {
-          en: "Event producers needed a way to generate and validate QR codes for their attendees. That concrete need was the starting point of everything else.",
-          es: "Los productores de eventos necesitaban generar y validar códigos QR para sus asistentes. Esa necesidad concreta fue el punto de partida de todo lo demás.",
+          en: "Selling tickets and controlling access at an event takes more than a checkout page. Buyers need a purchase they can trust, organizers need to know who has paid and who gets in, and someone has to reconcile the money afterwards. My co-founder and I started PASSTIX to cover that whole chain.",
+          es: "Vender entradas y controlar el acceso a un evento exige más que una página de pago. Los compradores necesitan una compra en la que confiar, los organizadores necesitan saber quién pagó y quién entra, y alguien tiene que cuadrar el dinero después. Mi cofundador y yo creamos PASSTIX para cubrir toda esa cadena.",
         },
       },
       {
         key: "problem",
         label: { en: "Problem", es: "Problema" },
         body: {
-          en: "The local events market relied mostly on manual processes or external providers for digital ticket sales and access validation.",
-          es: "El mercado local de eventos dependía principalmente de procesos manuales o de proveedores externos para la venta de entradas y la validación de acceso.",
+          en: "The product only works if the digital side and the physical side agree: a ticket bought online has to be valid at the door, show up correctly in the organizer's report and end in a clean settlement. A good interface on top of a broken operation is not a product.",
+          es: "El producto solo funciona si lo digital y lo físico coinciden: una entrada comprada en línea tiene que ser válida en la puerta, aparecer bien en el reporte del organizador y terminar en una liquidación limpia. Una buena interfaz sobre una operación rota no es un producto.",
         },
       },
       {
-        key: "constraints",
-        label: { en: "Constraints", es: "Restricciones" },
+        key: "responsibility",
+        label: { en: "What I owned", es: "Mi responsabilidad" },
         items: [
           {
-            en: "A small team and our own resources: no room to build a full platform on a hypothesis.",
-            es: "Un equipo pequeño y recursos propios: sin margen para construir una plataforma completa sobre una hipótesis.",
+            en: "Problem validation and MVP definition with my co-founder, with organizers and attendees.",
+            es: "La validación del problema y la definición del MVP junto a mi cofundador, con organizadores y asistentes.",
           },
           {
-            en: "Real events as the testing ground — access control has to work the first time, in front of a queue.",
-            es: "Eventos reales como campo de pruebas: el control de acceso tiene que funcionar a la primera, frente a una fila.",
+            en: "Product experience and UX, and the whole frontend: checkout, event management, ticket issuance and QR access validation, carried from prototype to live use.",
+            es: "La experiencia de producto y la UX, y todo el frontend: compra, gestión de eventos, emisión de entradas y validación de acceso por QR, llevados del prototipo al uso real.",
           },
           {
-            en: "Producers and attendees with very different levels of digital familiarity.",
-            es: "Productores y asistentes con niveles muy distintos de familiaridad digital.",
-          },
-        ],
-      },
-      {
-        key: "work",
-        label: { en: "The work", es: "El trabajo" },
-        items: [
-          {
-            en: "A first minimal solution: register attendees, generate QR codes, send them and validate them from a phone.",
-            es: "Una primera solución mínima: registrar asistentes, generar códigos QR, enviarlos y validarlos desde un teléfono.",
+            en: "Launch and iteration at real events, including the operation around the product: ticket sales, QR, access, reports and settlements.",
+            es: "El lanzamiento y la iteración en eventos reales, incluida la operación alrededor del producto: venta de entradas, QR, acceso, reportes y liquidaciones.",
           },
           {
-            en: "Validation at real events before investing in a full platform.",
-            es: "Validación en eventos reales antes de invertir en una plataforma completa.",
-          },
-          {
-            en: "The MVP: accounts, checkout, payments, ticket generation, QR, access control, event management and reporting.",
-            es: "El MVP: usuarios, checkout, pagos, generación de entradas, QR, control de acceso, gestión de eventos y reportes.",
-          },
-          {
-            en: "Iteration with real producers and attendees, plus the sales, access, reporting and settlement processes around the product.",
-            es: "Iteración con productores y asistentes reales, además de los procesos de venta, acceso, reportes y liquidaciones alrededor del producto.",
+            en: "Not mine: the backend, which my co-founder built and owns. We coordinated delivery between both sides.",
+            es: "No es mío: el backend, que construyó y mantiene mi cofundador. Coordinamos la entrega entre ambas partes.",
           },
         ],
       },
@@ -124,16 +119,16 @@ export const WORK = [
         label: { en: "Decisions", es: "Decisiones" },
         items: [
           {
-            en: "Build the smallest thing that proves the need before building the platform.",
-            es: "Construir lo más pequeño que demuestre la necesidad antes de construir la plataforma.",
+            en: "Design the operation together with the interface: the screen that sells a ticket and the one that validates it at the door share the same ticket and the same states.",
+            es: "Diseñar la operación junto con la interfaz: la pantalla que vende una entrada y la que la valida en la puerta comparten la misma entrada y los mismos estados.",
           },
           {
-            en: "A stack optimized for speed of iteration over infrastructure ownership: React, TypeScript and Firebase.",
-            es: "Un stack optimizado para velocidad de iteración por encima de control de infraestructura: React, TypeScript y Firebase.",
+            en: "Prioritize features by what organizers and attendees actually needed at an event, not by what was easiest to add.",
+            es: "Priorizar funcionalidades según lo que organizadores y asistentes necesitaban realmente en un evento, no según lo más fácil de agregar.",
           },
           {
-            en: "Design the operation, not only the interface: what happens at the door, in the report and in the settlement.",
-            es: "Diseñar la operación, no solo la interfaz: qué pasa en la puerta, en el reporte y en la liquidación.",
+            en: "A clear split of ownership: UX and frontend on my side, backend on my co-founder's, so each of us could iterate without waiting on the other.",
+            es: "Una división clara de responsabilidades: UX y frontend de mi lado, backend del de mi cofundador, para que cada uno pudiera iterar sin esperar al otro.",
           },
         ],
       },
@@ -141,55 +136,44 @@ export const WORK = [
         key: "result",
         label: { en: "Result", es: "Resultado" },
         body: {
-          en: "A product used at real events, with users, transactions and operation under high demand — and a business model behind it.",
-          es: "Un producto utilizado en eventos reales, con usuarios, transacciones y operación bajo alta demanda, y un modelo comercial detrás.",
+          en: "PASSTIX is live at passtix.co and has been used at real events, with real buyers and organizers, covering online sales, QR access and the reports and settlements that follow. It was a finalist at Innovapaz 2026 in Nariño, Colombia.",
+          es: "PASSTIX está en línea en passtix.co y se ha usado en eventos reales, con compradores y organizadores reales, cubriendo la venta digital, el acceso por QR y los reportes y liquidaciones que siguen. Fue finalista de Innovapaz 2026 en Nariño, Colombia.",
         },
-      },
-      {
-        key: "learnings",
-        label: { en: "Learnings", es: "Aprendizajes" },
-        items: [
-          {
-            en: "Validating early changes what you build: most of the first ideas never made it into the MVP.",
-            es: "Validar temprano cambia lo que construyes: la mayoría de las primeras ideas nunca llegaron al MVP.",
-          },
-          {
-            en: "The hardest part of a product is rarely the interface — it's the operation around it.",
-            es: "Lo más difícil de un producto rara vez es la interfaz: es la operación a su alrededor.",
-          },
-        ],
       },
     ],
     seo: {
       en: {
-        title: "PASSTIX — from a local need to a real product | Santiago Salas",
+        title: "PASSTIX — ticketing from validation to live events | Santiago Salas",
         description:
-          "How I co-founded PASSTIX: spotting a problem in event ticketing, validating a minimal solution at real events and turning it into a platform with users, transactions and live operation.",
+          "PASSTIX, a ticketing platform I co-founded: product experience and frontend, from validation and MVP to online sales, QR access and settlements at real events.",
       },
       es: {
-        title: "PASSTIX — de una necesidad local a un producto real | Santiago Salas",
+        title: "PASSTIX — ticketing, de la validación a eventos reales | Santiago Salas",
         description:
-          "Cómo cofundé PASSTIX: detectar un problema en la venta de entradas, validar una solución mínima en eventos reales y convertirla en una plataforma con usuarios, transacciones y operación real.",
+          "PASSTIX, plataforma de ticketing que cofundé: experiencia de producto y frontend, de la validación y el MVP a la venta digital, el acceso por QR y las liquidaciones.",
       },
     },
   },
   {
     slug: "apptega",
     name: "Apptega",
-    kind: { en: "Enterprise platform", es: "Plataforma enterprise" },
+    kind: { en: "Enterprise SaaS", es: "SaaS empresarial" },
     headline: {
-      en: "Frontend modernization at enterprise scale.",
-      es: "Modernización frontend a escala enterprise.",
+      en: "Modernizing an enterprise SaaS, module by module",
+      es: "Modernizar un SaaS empresarial, módulo a módulo",
     },
     summary: {
-      en: "A mature cybersecurity and compliance SaaS that had to keep evolving while it kept running.",
-      es: "Un SaaS maduro de ciberseguridad y cumplimiento que debía seguir evolucionando mientras continuaba operando.",
+      en: "Senior Frontend Developer, full-time, on Apptega's cybersecurity and GRC platform through Cafeto Software: new React modules growing next to legacy Angular applications.",
+      es: "Senior Frontend Developer de tiempo completo en la plataforma de ciberseguridad y GRC de Apptega a través de Cafeto Software: nuevos módulos React creciendo junto a aplicaciones Angular legadas.",
     },
-    role: { en: "Senior Frontend Developer", es: "Senior Frontend Developer" },
-    period: { en: "2025 – 2026", es: "2025 – 2026" },
+    role: {
+      en: "Senior Frontend Developer · Cafeto Software",
+      es: "Senior Frontend Developer · Cafeto Software",
+    },
+    period: { en: "May 2025 – Aug 2026", es: "Mayo 2025 – Agosto 2026" },
     context: {
-      en: "Enterprise SaaS · Cybersecurity & compliance",
-      es: "SaaS enterprise · Ciberseguridad y cumplimiento",
+      en: "Enterprise SaaS · Cybersecurity & GRC",
+      es: "SaaS empresarial · Ciberseguridad y GRC",
     },
     media: {
       type: "image",
@@ -203,12 +187,17 @@ export const WORK = [
       "React",
       "TypeScript",
       "Angular",
-      "Vite",
+      "TanStack React Query",
       "Material UI",
-      "TanStack Query",
+      "Vite",
       "Storybook",
       "Vitest",
+      "Jest",
+      "React Testing Library",
+      "Karate",
       "Docker Compose",
+      "Claude Code",
+      "Cursor",
     ],
     links: [
       {
@@ -221,55 +210,45 @@ export const WORK = [
         key: "context",
         label: { en: "Context", es: "Contexto" },
         body: {
-          en: "An enterprise SaaS platform for cybersecurity and compliance, already in production and used daily by its customers, going through a progressive modernization.",
-          es: "Una plataforma SaaS enterprise de ciberseguridad y cumplimiento, ya en producción y usada a diario por sus clientes, en proceso de modernización progresiva.",
+          en: "Apptega is an enterprise SaaS platform for cybersecurity and compliance (GRC). Cafeto Software assigned me full-time to this international client. The platform was already in production, with legacy Angular applications, new React modules, several repositories run with Docker Compose, private shared packages and feature flags.",
+          es: "Apptega es una plataforma SaaS empresarial de ciberseguridad y cumplimiento (GRC). Cafeto Software me asignó de tiempo completo a este cliente internacional. La plataforma ya estaba en producción, con aplicaciones Angular legadas, nuevos módulos React, varios repositorios con Docker Compose, paquetes privados compartidos y feature flags.",
         },
       },
       {
         key: "problem",
         label: { en: "Problem", es: "Problema" },
         body: {
-          en: "The product had to evolve — new modules, modern interfaces, better foundations — without pausing what customers were already using every day.",
-          es: "El producto debía evolucionar (nuevos módulos, interfaces modernas, mejores bases) sin detener lo que los clientes ya usaban cada día.",
+          en: "The product had to keep evolving while customers kept using it. That meant new React experiences living next to Angular code, consistency across repositories, and screens for assessments, risks and compliance programs that show a lot of interdependent information at once.",
+          es: "El producto tenía que seguir evolucionando mientras los clientes lo usaban. Eso implicaba nuevas experiencias React conviviendo con código Angular, consistencia entre repositorios y pantallas de evaluaciones, riesgos y programas de cumplimiento que muestran mucha información interdependiente a la vez.",
         },
       },
       {
-        key: "constraints",
-        label: { en: "Constraints", es: "Restricciones" },
+        key: "responsibility",
+        label: { en: "What I owned", es: "Mi responsabilidad" },
         items: [
           {
-            en: "Angular legacy and new React modules coexisting inside the same product.",
-            es: "Legado en Angular y nuevos módulos React conviviendo dentro del mismo producto.",
+            en: "Developing and evolving the assessment, risk and compliance-program modules.",
+            es: "Desarrollar y evolucionar los módulos de evaluaciones, riesgos y programas de cumplimiento.",
           },
           {
-            en: "A multi-repository, dockerized ecosystem with independent services, shared packages and feature flags.",
-            es: "Un ecosistema multi-repositorio y dockerizado, con servicios independientes, paquetes compartidos y feature flags.",
+            en: "Defining technical solutions and implementing new workflows, integrating React modules with the legacy Angular applications and services.",
+            es: "Definir soluciones técnicas e implementar nuevos flujos, integrando módulos React con las aplicaciones y servicios Angular legados.",
           },
           {
-            en: "Technical debt that could not be paid off in one move, and interfaces with very high information density.",
-            es: "Deuda técnica que no podía pagarse de una sola vez, e interfaces con una densidad de información muy alta.",
-          },
-        ],
-      },
-      {
-        key: "work",
-        label: { en: "The work", es: "El trabajo" },
-        items: [
-          {
-            en: "Cross-functional frontend work on the main application and on new independent modules.",
-            es: "Trabajo frontend transversal sobre la aplicación principal y sobre nuevos módulos independientes.",
+            en: "Interdependent state, and how data is retrieved and presented in information-dense screens.",
+            es: "El estado interdependiente y la forma de consultar y presentar datos en pantallas con mucha información.",
           },
           {
-            en: "Extending and maintaining the internal design system shared across applications.",
-            es: "Ampliar y mantener el sistema de diseño interno compartido entre aplicaciones.",
+            en: "Extending reusable components of the design system shared across applications, and writing UI and behavior tests.",
+            es: "Extender componentes reutilizables del sistema de diseño compartido entre aplicaciones y escribir pruebas de interfaz y de comportamiento.",
           },
           {
-            en: "Unit, component, integration and functional-flow testing as part of the delivery, not after it.",
-            es: "Testing unitario, de componentes, integración y flujos funcionales como parte de la entrega, no después de ella.",
+            en: "Refining requirements, proposing solutions and presenting progress to product, design, backend, QA, DevOps, sales, leadership and clients.",
+            es: "Refinar requerimientos, proponer soluciones y presentar avances a producto, diseño, backend, QA, DevOps, ventas, dirección y clientes.",
           },
           {
-            en: "Refinements, estimations, demos and troubleshooting with product, design, backend, QA and DevOps.",
-            es: "Refinamientos, estimaciones, demos y resolución de problemas junto a producto, diseño, backend, QA y DevOps.",
+            en: "Not mine alone: the modernization strategy and architecture decisions were the team's. I proposed and implemented inside them; I did not lead the migration.",
+            es: "No es solo mío: la estrategia de modernización y las decisiones de arquitectura fueron del equipo. Propuse e implementé dentro de ellas; no dirigí la migración.",
           },
         ],
       },
@@ -278,16 +257,16 @@ export const WORK = [
         label: { en: "Decisions", es: "Decisiones" },
         items: [
           {
-            en: "Incremental evolution over a full rewrite: new capabilities as modules with clear boundaries.",
-            es: "Evolución incremental en lugar de reescritura total: nuevas capacidades como módulos con límites claros.",
+            en: "Integrate new React modules into the existing applications instead of replacing screens wholesale, so the product kept running while it changed.",
+            es: "Integrar los nuevos módulos React en las aplicaciones existentes en lugar de reemplazar pantallas completas, para que el producto siguiera operando mientras cambiaba.",
           },
           {
-            en: "Shared design system and private packages as the way to keep consistency across repositories.",
-            es: "Sistema de diseño compartido y paquetes privados como forma de mantener consistencia entre repositorios.",
+            en: "Build new interface pieces on the shared design system rather than per-module variants, to keep the experience coherent across repositories.",
+            es: "Construir las nuevas piezas de interfaz sobre el sistema de diseño compartido en lugar de variantes por módulo, para mantener la experiencia coherente entre repositorios.",
           },
           {
-            en: "Feature flags to decouple delivery from release in a product that can't stop.",
-            es: "Feature flags para desacoplar entrega de release en un producto que no puede detenerse.",
+            en: "Use TanStack React Query for data retrieval in the new modules, and test behavior alongside each new workflow rather than after it.",
+            es: "Usar TanStack React Query para la consulta de datos en los nuevos módulos, y probar el comportamiento junto con cada flujo nuevo en lugar de después.",
           },
         ],
       },
@@ -295,71 +274,55 @@ export const WORK = [
         key: "result",
         label: { en: "Result", es: "Resultado" },
         body: {
-          en: "A contribution to the transition towards modern frontend experiences inside a platform of high technical and business complexity.",
-          es: "Una contribución a la transición hacia experiencias frontend modernas dentro de una plataforma de alta complejidad técnica y de negocio.",
+          en: "New React modules and workflows shipped inside a live enterprise product, working with its Angular applications; extensions to the shared design system and the tests that came with them. The assignment ran from May 2025 to August 2026.",
+          es: "Nuevos módulos y flujos React entregados dentro de un producto empresarial en operación, funcionando con sus aplicaciones Angular; extensiones al sistema de diseño compartido y las pruebas que las acompañaron. La asignación duró de mayo de 2025 a agosto de 2026.",
         },
-      },
-      {
-        key: "learnings",
-        label: { en: "Learnings", es: "Aprendizajes" },
-        items: [
-          {
-            en: "How to evolve software that is already in production, without stopping the product and without a full rewrite.",
-            es: "Cómo evolucionar software que ya está en producción, sin detener el producto y sin una reescritura total.",
-          },
-          {
-            en: "Every decision here is a trade-off between speed, maintainability and continuity — you rarely get all three.",
-            es: "Cada decisión aquí es un equilibrio entre velocidad, mantenibilidad y continuidad; rara vez se consiguen las tres.",
-          },
-        ],
       },
     ],
     seo: {
       en: {
-        title: "Apptega — modernizing an enterprise platform | Santiago Salas",
+        title: "Apptega — React next to legacy Angular | Santiago Salas",
         description:
-          "Progressive modernization of a cybersecurity and compliance SaaS: Angular legacy and React modules, multi-repository architecture, Docker, design systems and multi-level testing.",
+          "Senior Frontend Developer on Apptega's cybersecurity and GRC SaaS via Cafeto Software: React modules beside legacy Angular, multi-repo setup and design system.",
       },
       es: {
-        title: "Apptega — modernizar una plataforma enterprise | Santiago Salas",
+        title: "Apptega — React junto a Angular legado | Santiago Salas",
         description:
-          "Modernización progresiva de un SaaS de ciberseguridad y cumplimiento: legado Angular y módulos React, arquitectura multi-repositorio, Docker, sistemas de diseño y testing multinivel.",
+          "Senior Frontend Developer en el SaaS de ciberseguridad y GRC de Apptega vía Cafeto Software: módulos React junto a Angular legado, multirrepositorio y sistema de diseño.",
       },
     },
   },
   {
     slug: "ai-project-management",
     name: "AI Project Management Assistant",
-    kind: { en: "Internal AI MVP", es: "MVP interno de IA" },
+    kind: { en: "AI product · MVP", es: "Producto con IA · MVP" },
     headline: {
-      en: "Product, web, mobile and AI.",
-      es: "Producto, web, mobile e IA.",
+      en: "From meetings to project documentation, planning and tracking",
+      es: "De las reuniones a la documentación, planificación y seguimiento",
     },
     summary: {
-      en: "An internal innovation MVP that turns meetings into an always-updated project state. Not a finished commercial product.",
-      es: "Un MVP interno de innovación que convierte las reuniones en el estado actualizado de un proyecto. No es un producto comercial terminado.",
+      en: "An application at 57Blocks that uses AI workflows to automate software-project documentation, planning and tracking from meetings. I led its technical planning and initial development, up to an early MVP.",
+      es: "Una aplicación en 57Blocks que usa flujos de IA para automatizar la documentación, planificación y seguimiento de proyectos de software a partir de reuniones. Lideré su planificación técnica y desarrollo inicial, hasta un MVP temprano.",
     },
-    role: { en: "Frontend Developer · 57Blocks", es: "Frontend Developer · 57Blocks" },
-    period: { en: "2024 – 2025", es: "2024 – 2025" },
+    role: {
+      en: "Frontend Developer · Led technical planning and initial development",
+      es: "Frontend Developer · Lideré planificación técnica y desarrollo inicial",
+    },
+    period: { en: "May 2024 – May 2025", es: "Mayo 2024 – Mayo 2025" },
     context: {
-      en: "Internal innovation MVP · Applied AI",
-      es: "MVP interno de innovación · IA aplicada",
+      en: "57Blocks · Application envisioned as a commercial product",
+      es: "57Blocks · Aplicación concebida como producto comercial",
     },
-    // Internal MVP: the pipeline is the story, so the pipeline is the image.
+    // The pipeline is the story, so the pipeline is the image.
     media: { type: "concept", key: "ai-flow" },
     tech: [
-      "LLMs",
-      "Prompt engineering",
-      "RAG",
-      "Embeddings",
-      "Vector databases",
-      "Semantic search",
-      "Speech-to-text",
       "Dify",
-      "n8n",
+      "Hexagonal architecture",
+      "TypeScript",
       "Next.js",
       "Python",
       "FastAPI",
+      "Cursor",
     ],
     links: [],
     story: [
@@ -367,47 +330,41 @@ export const WORK = [
         key: "context",
         label: { en: "Context", es: "Contexto" },
         body: {
-          en: "A conceptual demo existed internally, with the potential to become a product that reduced manual documentation and project tracking work.",
-          es: "Existía internamente un demo conceptual con potencial de convertirse en un producto que redujera el trabajo manual de documentación y seguimiento de proyectos.",
+          en: "57Blocks, where I worked on projects for international clients, set out to build an application envisioned as a commercial product. I was given its technical planning and initial development.",
+          es: "57Blocks, donde trabajé en proyectos para clientes internacionales, se propuso construir una aplicación concebida como producto comercial. Se me encargaron su planificación técnica y su desarrollo inicial.",
         },
       },
       {
         key: "problem",
         label: { en: "Problem", es: "Problema" },
         body: {
-          en: "Project meetings generate decisions, tasks, owners and knowledge that afterwards have to be organized by hand — and often simply get lost.",
-          es: "Las reuniones de proyectos generan decisiones, tareas, responsables y conocimiento que después hay que organizar a mano, y que muchas veces simplemente se pierden.",
+          en: "Project meetings produce decisions, tasks and knowledge that someone then has to write up, plan and track by hand. The idea was to let AI workflows produce and maintain that documentation, planning and tracking from the meetings themselves.",
+          es: "Las reuniones de proyecto producen decisiones, tareas y conocimiento que alguien tiene que documentar, planificar y seguir a mano. La idea era que flujos de IA generaran y mantuvieran esa documentación, planificación y seguimiento a partir de las propias reuniones.",
         },
       },
       {
-        key: "constraints",
-        label: { en: "Constraints", es: "Restricciones" },
+        key: "responsibility",
+        label: { en: "What I owned", es: "Mi responsabilidad" },
         items: [
           {
-            en: "A new domain with no predefined path: the technical solution had to be researched, not just implemented.",
-            es: "Un dominio nuevo sin camino predefinido: la solución técnica había que investigarla, no solo implementarla.",
+            en: "Technical planning and initial development, from scratch.",
+            es: "La planificación técnica y el desarrollo inicial, desde cero.",
           },
           {
-            en: "An internal MVP: enough scope to prove the idea, not to ship a commercial product.",
-            es: "Un MVP interno: alcance suficiente para probar la idea, no para lanzar un producto comercial.",
-          },
-        ],
-      },
-      {
-        key: "work",
-        label: { en: "The work", es: "El trabajo" },
-        items: [
-          {
-            en: "Turned the conceptual demo into a working web MVP and helped define the technical solution.",
-            es: "Convertí el demo conceptual en un MVP web funcional y ayudé a definir la solución técnica.",
+            en: "The initial frontend and backend architecture, on hexagonal principles.",
+            es: "La arquitectura inicial de frontend y backend, con principios hexagonales.",
           },
           {
-            en: "Designed and integrated AI flows: LLMs, prompt engineering, RAG, embeddings, vector databases, semantic search and contextual memory.",
-            es: "Diseñé e integré flujos de IA: LLMs, prompt engineering, RAG, embeddings, bases de datos vectoriales, búsqueda semántica y memoria contextual.",
+            en: "Designing and integrating the Dify workflows to work with documents, generate content and query project information.",
+            es: "Diseñar e integrar los flujos en Dify para trabajar con documentos, generar contenido y consultar información del proyecto.",
           },
           {
-            en: "Used meeting audio and documents as sources of information through speech-to-text and document processing.",
-            es: "Utilicé audio de reuniones y documentos como fuentes de información mediante speech-to-text y procesamiento de documentos.",
+            en: "Taking the application to a first MVP version.",
+            es: "Llevar la aplicación a una primera versión de MVP.",
+          },
+          {
+            en: "Boundary: defining the backend architecture was part of the job; running a production backend was not. My role stayed frontend and product-oriented.",
+            es: "Límite: definir la arquitectura del backend fue parte del trabajo; operar un backend en producción no. Mi rol siguió siendo de frontend y producto.",
           },
         ],
       },
@@ -416,16 +373,12 @@ export const WORK = [
         label: { en: "Decisions", es: "Decisiones" },
         items: [
           {
-            en: "Orchestrate the AI flows with tooling (Dify, n8n) instead of hard-coding each step, to keep iteration cheap.",
-            es: "Orquestar los flujos de IA con herramientas (Dify, n8n) en lugar de codificar cada paso, para mantener barata la iteración.",
+            en: "Hexagonal principles from day one, on both sides, so the application's logic stayed independent of the interface and of external pieces such as the AI workflows.",
+            es: "Principios hexagonales desde el primer día, en ambos lados, para que la lógica de la aplicación se mantuviera independiente de la interfaz y de piezas externas como los flujos de IA.",
           },
           {
-            en: "Retrieval over raw context: embeddings and semantic search instead of pushing everything into the prompt.",
-            es: "Recuperación en lugar de contexto crudo: embeddings y búsqueda semántica en vez de meter todo en el prompt.",
-          },
-          {
-            en: "Keep the human in the loop — the system proposes, the team decides.",
-            es: "Mantener a la persona en el ciclo: el sistema propone, el equipo decide.",
+            en: "Dify to build and test the AI capabilities, so the workflows could be tried and adjusted without rewriting application code each time.",
+            es: "Dify para construir y probar las capacidades de IA, de modo que los flujos pudieran probarse y ajustarse sin reescribir código de la aplicación cada vez.",
           },
         ],
       },
@@ -433,55 +386,41 @@ export const WORK = [
         key: "result",
         label: { en: "Result", es: "Resultado" },
         body: {
-          en: "A functional base for a product able to turn meetings into useful operational knowledge — an internal MVP with commercial potential, not a finished product.",
-          es: "Una base funcional para un producto capaz de convertir reuniones en conocimiento operativo útil: un MVP interno con potencial comercial, no un producto terminado.",
+          en: "An early MVP of the application, with AI workflows for documents, content generation and project queries, built on the architecture I defined. It was a first version, not a finished product.",
+          es: "Un MVP temprano de la aplicación, con flujos de IA para documentos, generación de contenido y consultas del proyecto, construido sobre la arquitectura que definí. Fue una primera versión, no un producto terminado.",
         },
-      },
-      {
-        key: "learnings",
-        label: { en: "Learnings", es: "Aprendizajes" },
-        items: [
-          {
-            en: "Working with AI is mostly product work: the hard part is deciding what the model should be trusted with.",
-            es: "Trabajar con IA es sobre todo trabajo de producto: lo difícil es decidir qué se le puede confiar al modelo.",
-          },
-          {
-            en: "Autonomy in an undefined problem is a skill of its own — research, decide, build, discard.",
-            es: "La autonomía en un problema indefinido es una habilidad en sí misma: investigar, decidir, construir, descartar.",
-          },
-        ],
       },
     ],
     seo: {
       en: {
-        title: "AI Project Management Assistant — applied AI | Santiago Salas",
+        title: "AI Project Management Assistant — led to MVP | Santiago Salas",
         description:
-          "An internal AI MVP that uses meetings to keep a project's state up to date: LLMs, RAG, embeddings, vector databases, semantic search and speech-to-text.",
+          "At 57Blocks I led technical planning and initial development of an app that automates project documentation, planning and tracking from meetings with Dify.",
       },
       es: {
-        title: "AI Project Management Assistant — IA aplicada | Santiago Salas",
+        title: "AI Project Management Assistant — hasta el MVP | Santiago Salas",
         description:
-          "Un MVP interno de IA que usa las reuniones para mantener actualizado el estado de un proyecto: LLMs, RAG, embeddings, bases vectoriales, búsqueda semántica y speech-to-text.",
+          "En 57Blocks lideré la planificación técnica y el desarrollo inicial de una app que automatiza documentación, planificación y seguimiento de proyectos desde reuniones con Dify.",
       },
     },
   },
   {
     slug: "linkedai",
     name: "LinkedAI",
-    kind: { en: "Product platform", es: "Plataforma de producto" },
+    kind: { en: "AI data platform", es: "Plataforma de datos para IA" },
     headline: {
-      en: "Interfaces for computer vision training.",
-      es: "Interfaces para entrenamiento de visión computacional.",
+      en: "Annotation tools on HTML Canvas, with SAM-assisted segmentation",
+      es: "Herramientas de anotación sobre HTML Canvas, con segmentación asistida por SAM",
     },
     summary: {
-      en: "Graphic tooling to create, annotate, curate and review large image datasets for computer vision.",
-      es: "Herramientas gráficas para crear, anotar, curar y revisar grandes datasets de imágenes para visión computacional.",
+      en: "Annotation, segmentation and review tools for computer vision datasets. I built them on HTML Canvas and integrated Segment Anything Model (SAM) into the annotation workflows.",
+      es: "Herramientas de anotación, segmentación y revisión para datasets de visión computacional. Las construí sobre HTML Canvas e integré Segment Anything Model (SAM) en los flujos de anotación.",
     },
     role: { en: "Frontend Developer", es: "Frontend Developer" },
-    period: { en: "2022 – 2024", es: "2022 – 2024" },
+    period: { en: "Nov 2022 – Feb 2024", es: "Noviembre 2022 – Febrero 2024" },
     context: {
-      en: "Product platform · Computer vision",
-      es: "Plataforma de producto · Visión computacional",
+      en: "International SaaS · Computer vision datasets",
+      es: "SaaS internacional · Datasets de visión computacional",
     },
     media: {
       type: "image",
@@ -493,11 +432,12 @@ export const WORK = [
     },
     tech: [
       "React",
-      "JavaScript",
+      "TypeScript",
       "Redux",
       "HTML Canvas",
-      "Material UI",
+      "Segment Anything (SAM)",
       "GraphQL",
+      "Material UI",
       "Jest",
       "React Testing Library",
       "AWS",
@@ -510,47 +450,37 @@ export const WORK = [
         key: "context",
         label: { en: "Context", es: "Contexto" },
         body: {
-          en: "A platform to create and curate training datasets for AI and computer vision models, where the quality of the annotation directly determines the quality of the model.",
-          es: "Una plataforma para crear y curar datasets de entrenamiento para modelos de IA y visión computacional, donde la calidad de la anotación determina directamente la calidad del modelo.",
+          en: "LinkedAI is an international SaaS platform for preparing the image datasets that train computer vision models. The quality of those datasets depends on the tools people use to draw, correct and review labels.",
+          es: "LinkedAI es una plataforma SaaS internacional para preparar los datasets de imágenes con los que se entrenan modelos de visión computacional. La calidad de esos datasets depende de las herramientas con las que las personas dibujan, corrigen y revisan etiquetas.",
         },
       },
       {
         key: "problem",
         label: { en: "Problem", es: "Problema" },
         body: {
-          en: "Annotating and reviewing thousands of images requires precise graphic tools that stay responsive — a generic UI is not enough.",
-          es: "Anotar y revisar miles de imágenes exige herramientas gráficas precisas que sigan siendo fluidas: una UI genérica no alcanza.",
+          en: "Annotators draw and edit regions over images all day, across large collections. A generic interface is too imprecise for that and too slow once state and data volumes grow. And tracing every outline by hand is slow work in itself.",
+          es: "Los anotadores dibujan y editan regiones sobre imágenes todo el día, en colecciones grandes. Una interfaz genérica es demasiado imprecisa para eso y demasiado lenta cuando crecen el estado y los volúmenes de datos. Y trazar cada contorno a mano ya es un trabajo lento de por sí.",
         },
       },
       {
-        key: "constraints",
-        label: { en: "Constraints", es: "Restricciones" },
+        key: "responsibility",
+        label: { en: "What I owned", es: "Mi responsabilidad" },
         items: [
           {
-            en: "Large data volumes: projects, datasets, images and review states, all interconnected.",
-            es: "Grandes volúmenes de datos: proyectos, datasets, imágenes y estados de revisión, todos interconectados.",
+            en: "Image annotation, segmentation and review tools on HTML Canvas: precise editing interactions, and the complex state behind them.",
+            es: "Las herramientas de anotación, segmentación y revisión de imágenes sobre HTML Canvas: interacciones de edición precisas y el estado complejo detrás de ellas.",
           },
           {
-            en: "Drawing and editing directly over images, where precision and responsiveness are the product.",
-            es: "Dibujar y editar directamente sobre imágenes, donde la precisión y la fluidez son el producto.",
-          },
-        ],
-      },
-      {
-        key: "work",
-        label: { en: "The work", es: "El trabajo" },
-        items: [
-          {
-            en: "Built interactive tools for annotation, segmentation and object editing on top of images using HTML Canvas.",
-            es: "Construí herramientas interactivas de anotación, segmentación y edición de objetos sobre imágenes usando HTML Canvas.",
+            en: "The features to organize projects and image collections and to review large volumes of data, for responsiveness and for clearer review flows.",
+            es: "Las funcionalidades para organizar proyectos y colecciones de imágenes y revisar grandes volúmenes de datos, para lograr fluidez y flujos de revisión más claros.",
           },
           {
-            en: "Handled complex application state across projects, datasets, images and review flows.",
-            es: "Manejé estado de aplicación complejo entre proyectos, datasets, imágenes y flujos de revisión.",
+            en: "Integrating Segment Anything Model (SAM) into the annotation workflows, so AI-assisted segmentation is available when creating and editing labels.",
+            es: "Integrar Segment Anything Model (SAM) en los flujos de anotación, para que la segmentación asistida por IA esté disponible al crear y editar etiquetas.",
           },
           {
-            en: "Contributed to AI-assisted labeling features and to unit and integration testing.",
-            es: "Participé en funcionalidades de etiquetado asistido por IA y en testing unitario y de integración.",
+            en: "My part of SAM was the integration into the tools. I did not research or train the model.",
+            es: "Mi parte de SAM fue la integración en las herramientas. No investigué ni entrené el modelo.",
           },
         ],
       },
@@ -559,12 +489,16 @@ export const WORK = [
         label: { en: "Decisions", es: "Decisiones" },
         items: [
           {
-            en: "Canvas over DOM for the annotation surface: the only way to keep drawing precise and smooth at scale.",
-            es: "Canvas en lugar de DOM para la superficie de anotación: la única forma de mantener el dibujo preciso y fluido a escala.",
+            en: "Canvas rather than the DOM for the annotation surface, to keep drawing and editing precise and responsive over large images.",
+            es: "Canvas en lugar del DOM para la superficie de anotación, para mantener el dibujo y la edición precisos y fluidos sobre imágenes grandes.",
           },
           {
-            en: "Normalized state so that images, annotations and review status could evolve independently.",
-            es: "Estado normalizado para que imágenes, anotaciones y estado de revisión pudieran evolucionar de forma independiente.",
+            en: "Keep the state of projects, image collections, annotations and review separate, so each could change without dragging the others.",
+            es: "Mantener separado el estado de proyectos, colecciones de imágenes, anotaciones y revisión, para que cada uno pudiera cambiar sin arrastrar a los demás.",
+          },
+          {
+            en: "Put SAM-assisted segmentation inside the same label creation and editing flow, not in a separate tool, so the annotator keeps working in one place.",
+            es: "Poner la segmentación asistida por SAM dentro del mismo flujo de creación y edición de etiquetas, no en una herramienta aparte, para que el anotador trabaje en un solo lugar.",
           },
         ],
       },
@@ -572,55 +506,41 @@ export const WORK = [
         key: "result",
         label: { en: "Result", es: "Resultado" },
         body: {
-          en: "Graphic tooling used in the day-to-day annotation and review flow of datasets that feed computer vision models.",
-          es: "Herramientas gráficas usadas en el flujo diario de anotación y revisión de datasets que alimentan modelos de visión computacional.",
+          en: "Canvas-based annotation, segmentation and review tools with SAM-assisted segmentation in the annotation workflows. The platform is no longer publicly available, so there is no live link.",
+          es: "Herramientas de anotación, segmentación y revisión sobre Canvas, con segmentación asistida por SAM en los flujos de anotación. La plataforma ya no está disponible públicamente, así que no hay enlace en vivo.",
         },
-      },
-      {
-        key: "learnings",
-        label: { en: "Learnings", es: "Aprendizajes" },
-        items: [
-          {
-            en: "This is where frontend stopped being 'screens' for me and became tooling with real engineering constraints.",
-            es: "Aquí el frontend dejó de ser 'pantallas' para mí y pasó a ser herramientas con restricciones reales de ingeniería.",
-          },
-          {
-            en: "My first close contact with how AI products actually get built, from the data side.",
-            es: "Mi primer contacto cercano con cómo se construyen realmente los productos de IA, desde el lado de los datos.",
-          },
-        ],
       },
     ],
     seo: {
       en: {
-        title: "LinkedAI — interfaces for AI training data | Santiago Salas",
+        title: "LinkedAI — Canvas annotation tools with SAM | Santiago Salas",
         description:
-          "Interactive annotation and segmentation tooling on HTML Canvas for large computer vision datasets: complex state, large data volumes and AI-assisted labeling.",
+          "Annotation, segmentation and review tools on HTML Canvas for computer vision datasets, and the integration of Segment Anything (SAM) into LinkedAI's workflows.",
       },
       es: {
-        title: "LinkedAI — interfaces para datos de entrenamiento de IA | Santiago Salas",
+        title: "LinkedAI — herramientas de anotación en Canvas con SAM | Santiago Salas",
         description:
-          "Herramientas interactivas de anotación y segmentación sobre HTML Canvas para grandes datasets de visión computacional: estado complejo, grandes volúmenes de datos y etiquetado asistido por IA.",
+          "Herramientas de anotación, segmentación y revisión sobre HTML Canvas para visión computacional, y la integración de Segment Anything (SAM) en los flujos de LinkedAI.",
       },
     },
   },
-{
+  {
     slug: "sgc-viewers",
     name: { en: "Seismic & volcanic viewers", es: "Visores sísmicos y volcánicos" },
-    kind: { en: "Public product", es: "Producto público" },
+    kind: { en: "Public data product", es: "Producto público de datos" },
     headline: {
-      en: "Interactive visualization of geoscientific data.",
-      es: "Visualización interactiva de datos geocientíficos.",
+      en: "Public viewers built from scratch for geoscientific data",
+      es: "Visores públicos construidos desde cero para datos geocientíficos",
     },
     summary: {
-      en: "The public earthquake and volcano viewers of the Colombian Geological Survey: interactive maps and large historical datasets made navigable.",
-      es: "Los visores públicos de sismos y volcanes del Servicio Geológico Colombiano: mapas interactivos y grandes históricos de información hechos navegables.",
+      en: "The public seismic and volcanic activity viewers of the Colombian Geological Survey. I took part from defining the experience to the frontend implementation.",
+      es: "Los visores públicos de actividad sísmica y volcánica del Servicio Geológico Colombiano. Participé desde la definición de la experiencia hasta la implementación frontend.",
     },
     role: { en: "Frontend Developer", es: "Frontend Developer" },
-    period: { en: "2020 – 2021", es: "2020 – 2021" },
+    period: { en: "Mar 2020 – Nov 2021", es: "Marzo 2020 – Noviembre 2021" },
     context: {
-      en: "Public product · Geoscientific visualization",
-      es: "Producto público · Visualización geocientífica",
+      en: "Colombian Geological Survey · Public geoscientific data",
+      es: "Servicio Geológico Colombiano · Datos geocientíficos públicos",
     },
     media: {
       type: "image",
@@ -638,6 +558,7 @@ export const WORK = [
       "Sass",
       "REST APIs",
       { en: "Interactive maps", es: "Mapas interactivos" },
+      "Git",
     ],
     links: [
       {
@@ -653,51 +574,41 @@ export const WORK = [
         key: "context",
         label: { en: "Context", es: "Contexto" },
         body: {
-          en: "The Colombian Geological Survey monitors seismic and volcanic activity across the country. That information is of public interest, and it needed public interfaces to consult it.",
-          es: "El Servicio Geológico Colombiano monitorea la actividad sísmica y volcánica del país. Esa información es de interés público y necesitaba interfaces públicas para consultarla.",
+          en: "The Colombian Geological Survey monitors the country's seismic and volcanic activity. That information is of public interest, and the public viewers did not exist yet: they had to be built from scratch.",
+          es: "El Servicio Geológico Colombiano monitorea la actividad sísmica y volcánica del país. Esa información es de interés público y los visores públicos todavía no existían: había que construirlos desde cero.",
         },
       },
       {
         key: "problem",
         label: { en: "Problem", es: "Problema" },
         body: {
-          en: "There was no product yet: everything had to be built from scratch, and the data ranged from the latest event of the day to decades of historical records.",
-          es: "Todavía no existía producto: había que construirlo todo desde cero, y la información iba desde el último evento del día hasta décadas de registros históricos.",
+          en: "Turn large geoscientific datasets, from the latest events to historical records, into maps, charts and views that very different audiences can read and query, without losing responsiveness.",
+          es: "Convertir grandes datasets geocientíficos, desde los últimos eventos hasta registros históricos, en mapas, gráficas y vistas que públicos muy distintos puedan leer y consultar, sin perder fluidez.",
         },
       },
       {
-        key: "constraints",
-        label: { en: "Constraints", es: "Restricciones" },
+        key: "responsibility",
+        label: { en: "What I owned", es: "Mi responsabilidad" },
         items: [
           {
-            en: "A very wide audience: from citizens checking the last earthquake to researchers querying historical series.",
-            es: "Un público muy amplio: desde ciudadanos consultando el último sismo hasta investigadores consultando series históricas.",
+            en: "Taking part from the definition of the experience to its frontend implementation.",
+            es: "Participar desde la definición de la experiencia hasta su implementación frontend.",
           },
           {
-            en: "Large data volumes on a map, where every extra rendered layer costs responsiveness.",
-            es: "Grandes volúmenes de datos sobre un mapa, donde cada capa adicional renderizada cuesta fluidez.",
+            en: "The seismic and volcanic viewers, from scratch: maps, search, filters, tables, charts and detailed views for events and historical records.",
+            es: "Los visores sísmicos y volcánicos, desde cero: mapas, búsquedas, filtros, tablas, gráficas y vistas detalladas de eventos y registros históricos.",
           },
           {
-            en: "Public, institutional traffic: it has to hold up exactly when an event happens.",
-            es: "Tráfico público e institucional: tiene que responder justo cuando ocurre un evento.",
-          },
-        ],
-      },
-      {
-        key: "work",
-        label: { en: "The work", es: "El trabajo" },
-        items: [
-          {
-            en: "Built the earthquake and volcano viewers from scratch, with interactive maps and detail views per event.",
-            es: "Construí desde cero los visores de sismos y volcanes, con mapas interactivos y vistas detalladas por evento.",
+            en: "Query state and interface performance, to keep exploration responsive.",
+            es: "El estado de consulta y el rendimiento de la interfaz, para mantener la exploración fluida.",
           },
           {
-            en: "Made the data explorable through search, filters, sorting, charts and tables over the same dataset.",
-            es: "Hice la información explorable mediante búsqueda, filtros, ordenamiento, gráficas y tablas sobre el mismo conjunto de datos.",
+            en: "The historical catalog and further modules of the institutional portal.",
+            es: "El catálogo histórico y otros módulos del portal institucional.",
           },
           {
-            en: "Developed a historical catalog with search, filtering and pagination over long time series.",
-            es: "Desarrollé un catalogador histórico con búsqueda, filtrado y paginación sobre series temporales largas.",
+            en: "Not mine: the backend.",
+            es: "No es mío: el backend.",
           },
         ],
       },
@@ -706,12 +617,12 @@ export const WORK = [
         label: { en: "Decisions", es: "Decisiones" },
         items: [
           {
-            en: "One data model behind several representations — map, chart and table — instead of separate screens with separate logic.",
-            es: "Un solo modelo de datos detrás de varias representaciones (mapa, gráfica y tabla) en lugar de pantallas separadas con lógica separada.",
+            en: "One dataset behind several views (map, table and chart) driven by the same search and filters, instead of separate screens with separate logic.",
+            es: "Un mismo conjunto de datos detrás de varias vistas (mapa, tabla y gráfica) gobernadas por la misma búsqueda y los mismos filtros, en lugar de pantallas separadas con lógica separada.",
           },
           {
-            en: "Filtering and pagination on the data layer, so the map never has to render more than it can handle.",
-            es: "Filtrado y paginación en la capa de datos, para que el mapa nunca tenga que renderizar más de lo que puede manejar.",
+            en: "Treat query state as the source of truth for every view, and limit what the map renders, so exploring a large history stays fluid.",
+            es: "Tratar el estado de consulta como fuente de verdad de todas las vistas y limitar lo que el mapa renderiza, para que explorar un historial grande se mantenga fluido.",
           },
         ],
       },
@@ -719,35 +630,21 @@ export const WORK = [
         key: "result",
         label: { en: "Result", es: "Resultado" },
         body: {
-          en: "Public products that expose large amounts of geoscientific information in a way that is navigable and useful for very different kinds of user.",
-          es: "Productos públicos que exponen grandes volúmenes de información geocientífica de forma navegable y útil para tipos de usuario muy distintos.",
+          en: "The public viewers and the historical catalog were released on the Survey's portal. The link goes to the Survey's current site, which may have changed since I left in November 2021.",
+          es: "Los visores públicos y el catálogo histórico se publicaron en el portal del Servicio. El enlace lleva al sitio actual del Servicio, que puede haber cambiado desde que salí en noviembre de 2021.",
         },
-      },
-      {
-        key: "learnings",
-        label: { en: "Learnings", es: "Aprendizajes" },
-        items: [
-          {
-            en: "My frontend foundations were built here: interface design, state, data handling, performance and reuse, without relying on tooling to think for me.",
-            es: "Aquí construí mis fundamentos de frontend: diseño de interfaces, estado, manejo de datos, rendimiento y reutilización, sin depender de herramientas que pensaran por mí.",
-          },
-          {
-            en: "Building something public teaches a different kind of discipline: someone always needs it to work today.",
-            es: "Construir algo público enseña otra disciplina: siempre hay alguien que necesita que funcione hoy.",
-          },
-        ],
       },
     ],
     seo: {
       en: {
-        title: "Seismic & volcanic viewers (SGC) — built from zero | Santiago Salas",
+        title: "Seismic & volcanic viewers (SGC) | Santiago Salas",
         description:
-          "Public earthquake and volcano viewers for the Colombian Geological Survey: interactive maps, filters, charts, tables and a historical catalog over large geoscientific datasets.",
+          "Public seismic and volcanic viewers for the Colombian Geological Survey, built from scratch: maps, search, filters, charts and a historical catalog, from UX to frontend.",
       },
       es: {
-        title: "Visores sísmicos y volcánicos (SGC) — desde cero | Santiago Salas",
+        title: "Visores sísmicos y volcánicos (SGC) | Santiago Salas",
         description:
-          "Visores públicos de sismos y volcanes para el Servicio Geológico Colombiano: mapas interactivos, filtros, gráficas, tablas y un catalogador histórico sobre grandes volúmenes de datos geocientíficos.",
+          "Visores públicos sísmicos y volcánicos del Servicio Geológico Colombiano, desde cero: mapas, búsquedas, filtros, gráficas y catálogo histórico, de la UX al frontend.",
       },
     },
   },

@@ -6,11 +6,11 @@ export const SITE = {
   name: "Santiago Salas",
   fullName: "Santiago Salas Bolaños",
   /** Plain job title. Used for structured data and image alt text. */
-  role: "Frontend Developer",
+  role: "Senior Frontend Engineer",
   /** Public positioning line: hero, footer, share previews. */
   positioning: {
-    en: "Frontend Developer · Product Engineering · Applied AI",
-    es: "Frontend Developer · Product Engineering · IA aplicada",
+    en: "Senior Frontend Engineer · 7 years of experience",
+    es: "Ingeniero Frontend Senior · 7 años de experiencia",
   },
   location: { en: "Colombia · Remote", es: "Colombia · Remoto" },
   email: "a.santiago.salas.b@gmail.com",
@@ -20,12 +20,18 @@ export const SITE = {
   linkedin: "https://www.linkedin.com/in/santiagosalasbola%C3%B1os",
   github: "https://www.github.com/SantiSB/SantiSB",
   // One CV per language, served straight from public/files. The visitor gets
-  // the version written in the language they are reading the site in.
+  // the version written in the language they are reading the site in. When a
+  // CV is replaced, change the file name too: the CDN caches PDFs by path.
   cv: {
-    en: "/files/Santiago_Salas_CV_Frontend_Developer_EN_2026_v2.pdf",
-    es: "/files/Santiago_Salas_CV_Frontend_Developer_ES_2026_v2.pdf",
+    en: "/files/Santiago_Salas_CV_Senior_Frontend_Engineer_EN.pdf",
+    es: "/files/Santiago_Salas_CV_Senior_Frontend_Engineer_ES.pdf",
   },
-  ogImage: "/images/mockups/portfolio.webp",
+  /** File name the browser saves the CV as: the visitor sees it, so it names the person and the language. */
+  cvDownloadName: {
+    en: "Santiago_Salas_Senior_Frontend_Engineer_CV_EN.pdf",
+    es: "Santiago_Salas_Ingeniero_Frontend_Senior_CV_ES.pdf",
+  },
+  ogImage: "/images/og/santiago-salas.png",
 };
 
 /** Per-view metadata. `path`/`altPath` are resolved from ROUTES in each page. */
@@ -33,109 +39,112 @@ export const SEO = {
   home: {
     en: {
       title:
-        "Santiago Salas | Frontend Developer · React, TypeScript & Applied AI",
+        "Santiago Salas — Senior Frontend Engineer | Architecture & Applied AI",
       description:
-        "Frontend Developer specialized in React and TypeScript, building digital products, modernizing complex platforms and applying AI to product and engineering.",
+        "Senior Frontend Engineer, 7 years: architecture, state, performance and UX in enterprise SaaS, data-heavy tools and a ticketing product I co-founded. Applied AI.",
     },
     es: {
       title:
-        "Santiago Salas | Frontend Developer · React, TypeScript e IA aplicada",
+        "Santiago Salas — Ingeniero Frontend Senior | Arquitectura e IA aplicada",
       description:
-        "Frontend Developer especializado en React y TypeScript: construyo productos digitales, modernizo plataformas complejas y aplico IA al producto y a la ingeniería.",
+        "Ingeniero Frontend Senior, 7 años: arquitectura, estado, rendimiento y UX en SaaS empresarial, herramientas con muchos datos y un producto de ticketing que cofundé. IA aplicada.",
     },
   },
   experience: {
     en: {
-      title: "Work experience — Santiago Salas | Frontend Developer",
+      title: "Experience — Santiago Salas | Senior Frontend Engineer",
       description:
-        "Four stages of a frontend career: public data viewers at the Colombian Geological Survey, computer vision tooling at LinkedAI, applied AI at 57Blocks and enterprise modernization at Apptega.",
+        "Seven years of frontend work: Apptega enterprise SaaS, 57Blocks, LinkedAI annotation tools with SAM and public viewers for the Colombian Geological Survey. Plus PASSTIX.",
     },
     es: {
-      title: "Experiencia laboral — Santiago Salas | Frontend Developer",
+      title: "Experiencia — Santiago Salas | Ingeniero Frontend Senior",
       description:
-        "Cuatro etapas de una carrera frontend: visores públicos en el Servicio Geológico Colombiano, herramientas de visión computacional en LinkedAI, IA aplicada en 57Blocks y modernización enterprise en Apptega.",
+        "Siete años de frontend: SaaS empresarial en Apptega, 57Blocks, herramientas de anotación con SAM en LinkedAI y visores públicos del Servicio Geológico Colombiano. Y PASSTIX.",
     },
   },
   work: {
     en: {
-      title: "Featured projects — Santiago Salas | Frontend Developer",
+      title: "Projects — Santiago Salas | Senior Frontend Engineer",
       description:
-        "Five problems explored in depth: PASSTIX, an own ticketing product; Apptega, enterprise modernization; an internal AI project assistant; annotation tooling at LinkedAI; and public geoscientific viewers.",
+        "Five case studies with my scope and decisions explicit: PASSTIX, Apptega, an AI project-management MVP, SAM annotation tooling and public seismic viewers.",
     },
     es: {
-      title: "Proyectos destacados — Santiago Salas | Frontend Developer",
+      title: "Proyectos — Santiago Salas | Ingeniero Frontend Senior",
       description:
-        "Cinco problemas explorados en profundidad: PASSTIX, un producto propio de ticketing; Apptega, modernización enterprise; un asistente interno de proyectos con IA; herramientas de anotación en LinkedAI; y visores geocientíficos públicos.",
+        "Cinco casos con mi alcance y mis decisiones explícitos: PASSTIX, Apptega, un MVP de gestión de proyectos con IA, anotación con SAM y visores sísmicos públicos.",
     },
   },
   ai: {
     en: {
-      title: "Applied AI — Santiago Salas | Frontend Developer",
+      title: "Applied AI — Santiago Salas | Senior Frontend Engineer",
       description:
-        "Two ways of working with AI: building products with LLMs, RAG, embeddings, vector databases and semantic search — and engineering with AI across research, implementation, testing and documentation.",
+        "AI inside products (Dify workflows at 57Blocks, SAM at LinkedAI) and AI in my engineering with Claude Code and Cursor. A frontend engineer, not an ML researcher.",
     },
     es: {
-      title: "IA aplicada — Santiago Salas | Frontend Developer",
+      title: "IA aplicada — Santiago Salas | Ingeniero Frontend Senior",
       description:
-        "Dos formas de trabajar con IA: construir productos con LLMs, RAG, embeddings, bases vectoriales y búsqueda semántica, y usar IA en investigación, implementación, testing y documentación.",
+        "IA dentro de productos (flujos Dify en 57Blocks, SAM en LinkedAI) e IA en mi ingeniería con Claude Code y Cursor. Ingeniero frontend, no investigador de ML.",
     },
   },
   skills: {
     en: {
-      title: "Capabilities — Santiago Salas | React, TypeScript, Architecture",
+      title: "Capabilities — Santiago Salas | Frontend Architecture & State",
       description:
-        "Full capability inventory: frontend engineering, UI and design systems, architecture, quality and performance, applied AI, AI-assisted development, product and ownership.",
+        "Capabilities by specialty, each with where I applied it: frontend architecture and state, performance, design systems, quality, product and applied AI.",
     },
     es: {
-      title: "Capacidades — Santiago Salas | React, TypeScript, Arquitectura",
+      title: "Capacidades — Santiago Salas | Arquitectura frontend y estado",
       description:
-        "Inventario completo de capacidades: frontend engineering, UI y sistemas de diseño, arquitectura, calidad y rendimiento, IA aplicada, desarrollo asistido por IA, producto y ownership.",
+        "Capacidades por especialidad, cada una con dónde la apliqué: arquitectura frontend y estado, rendimiento, sistemas de diseño, calidad, producto e IA aplicada.",
     },
   },
 };
 
 export const HERO = {
   badge: { en: "Open to opportunities", es: "Abierto a oportunidades" },
+  // Specialties, not just the stack: React and TypeScript are the tools, these
+  // are what the work is actually about.
   stack: [
-    "React",
-    "TypeScript",
-    { en: "Product", es: "Producto" },
+    { en: "Frontend architecture", es: "Arquitectura frontend" },
+    { en: "State management", es: "Gestión de estado" },
+    { en: "Performance", es: "Rendimiento" },
+    { en: "UX & product", es: "UX y producto" },
     { en: "Applied AI", es: "IA aplicada" },
   ],
   headline: {
-    en: "I turn complex problems into digital products people use — and pay for.",
-    es: "Convierto problemas complejos en productos digitales que las personas usan y por los que están dispuestas a pagar.",
+    en: "I build and evolve complex frontends: data-dense, legacy-bound and used in production.",
+    es: "Construyo y evoluciono frontends complejos: con mucha información, código legado y usuarios reales en producción.",
   },
   support: {
-    en: "React and TypeScript are my craft. I build products from scratch, modernize platforms that can't stop running, and bring AI into both the product and the way it gets built.",
-    es: "React y TypeScript son mi oficio. Construyo productos desde cero, modernizo plataformas que no pueden detenerse y llevo la IA tanto al producto como a la forma de construirlo.",
+    en: "Seven years across enterprise SaaS, scientific data, computer vision and a ticketing product I co-founded. I own frontend architecture, state, performance and UX, and I work with AI both inside products and in how I engineer.",
+    es: "Siete años en SaaS empresarial, datos científicos, visión computacional y un producto de ticketing que cofundé. Me hago cargo de la arquitectura frontend, el estado, el rendimiento y la experiencia, y trabajo con IA tanto dentro de los productos como en mi forma de desarrollar.",
   },
 };
 
-/** Frontend + AI + Product, deliberately short: three lines, one mobile screen. */
+/** Specialty first, then what widens it: three lines, one mobile screen. */
 export const PILLARS = [
   {
-    key: "frontend",
-    title: { en: "Frontend", es: "Frontend" },
+    key: "architecture",
+    title: { en: "Architecture & state", es: "Arquitectura y estado" },
     body: {
-      en: "My specialty: React, TypeScript, frontend architecture, UI and design systems.",
-      es: "Mi especialidad: React, TypeScript, arquitectura frontend, UI y sistemas de diseño.",
+      en: "Modular React and TypeScript applications, shared components and complex state, including inside legacy and multi-repository systems.",
+      es: "Aplicaciones modulares en React y TypeScript, componentes compartidos y estado complejo, también dentro de sistemas legados y multirrepositorio.",
     },
   },
   {
-    key: "ai",
-    title: { en: "Applied AI", es: "IA aplicada" },
+    key: "performance",
+    title: { en: "Performance & quality", es: "Rendimiento y calidad" },
     body: {
-      en: "I integrate AI into products and use it to accelerate research, development, testing and problem-solving.",
-      es: "Integro IA en los productos y la uso para acelerar investigación, desarrollo, testing y resolución de problemas.",
+      en: "Interfaces that stay responsive over large datasets and image sets, backed by unit, component and integration tests.",
+      es: "Interfaces que se mantienen fluidas con grandes volúmenes de datos e imágenes, respaldadas por pruebas unitarias, de componentes y de integración.",
     },
   },
   {
-    key: "product",
-    title: { en: "Product", es: "Producto" },
+    key: "product-ai",
+    title: { en: "Product & AI", es: "Producto e IA" },
     body: {
-      en: "I move from problem discovery and validation to MVP definition, prioritization, delivery and iteration with users.",
-      es: "Voy desde el descubrimiento y la validación del problema hasta la definición del MVP, la priorización, la entrega y la iteración con usuarios.",
+      en: "From validating a problem to live operation, and AI both integrated into products and used in my engineering work.",
+      es: "Desde validar un problema hasta la operación real, y la IA tanto integrada en productos como usada en mi trabajo de ingeniería.",
     },
   },
 ];
@@ -143,19 +152,19 @@ export const PILLARS = [
 /** PASSTIX teaser on the home view — deliberately separate from the job timeline. */
 export const OWN_PRODUCT = {
   slug: "passtix",
-  label: { en: "Own product", es: "Creación propia" },
+  label: { en: "Co-founded product", es: "Producto cofundado" },
   title: "PASSTIX",
   message: {
-    en: "I spotted a problem, validated a solution and turned it into a real product.",
-    es: "Detecté un problema, validé una solución y la convertí en un producto real.",
+    en: "A ticketing platform I co-founded, from problem validation to live events.",
+    es: "Una plataforma de ticketing que cofundé, desde la validación del problema hasta eventos reales.",
   },
   body: {
-    en: "It started as a concrete need at real events, was validated with a minimal solution and evolved into a ticketing platform with users, transactions and live operation.",
-    es: "Empezó como una necesidad concreta en eventos reales, se validó con una solución mínima y evolucionó hacia una plataforma de ticketing con usuarios, transacciones y operación real.",
+    en: "I lead the product experience and the frontend; my co-founder owns the backend. The work covers the digital product and the real operation around it: sales, QR access, reports and settlements with organizers and attendees.",
+    es: "Lidero la experiencia de producto y el frontend; mi cofundador se encarga del backend. El trabajo abarca el producto digital y la operación real a su alrededor: venta, acceso por QR, reportes y liquidaciones con organizadores y asistentes.",
   },
   highlights: [
-    { en: "Problem & validation", es: "Problema y validación" },
-    { en: "MVP & launch", es: "MVP y lanzamiento" },
-    { en: "Users & transactions", es: "Usuarios y transacciones" },
+    { en: "Validation & MVP", es: "Validación y MVP" },
+    { en: "UX & frontend", es: "UX y frontend" },
+    { en: "Live operation", es: "Operación real" },
   ],
 };

@@ -31,7 +31,7 @@ const { lang } = Astro.props;
       </button>
       <a
         href={t(SITE.cv, lang)}
-        download={`Santiago_Salas_CV_${lang.toUpperCase()}.pdf`}
+        download={t(SITE.cvDownloadName, lang)}
         class={BTN_SECONDARY}
       >
         <DownloadCV class="size-4 fill-none" />
